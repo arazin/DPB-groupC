@@ -2,7 +2,7 @@
 class Student extends AppModel{
 	public $name='Student';
 
-
+	public $primaryKey='user_id';
 	
 	public $belongsTo=array(
 		'User' => array(

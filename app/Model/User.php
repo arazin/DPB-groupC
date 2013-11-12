@@ -20,8 +20,8 @@ class User extends AppModel{
 			'className' => 'Graduate',
 			'foreignKey' => 'user_id'
 		),
-		'Joiner' => array(
-			'className' => 'Joiner',
+		'Participant' => array(
+			'className' => 'Participant',
 			'foreignKey' => 'user_id'
 		)
 	);

@@ -3,8 +3,8 @@ class Course extends AppModel{
 	public $name='Course';
 
 	public $hasMany=array(
-		'Joiner' => array(
-			'className' => 'Joiner',
+		'Participant' => array(
+			'className' => 'Participant',
 			'foreignKey' => 'course_id'
 		)
 	);

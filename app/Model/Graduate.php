@@ -2,6 +2,8 @@
 class Graduate extends AppModel{
 	public $name='Graduate';
 
+	public $primaryKey='user_id';
+	
 	public $belongsTo=array(
 		'User' => array(
 			'className' => 'User',
@@ -12,7 +14,7 @@ class Graduate extends AppModel{
 	public $hasMany=array(
 		'Career' => array(
 			'className' => 'Career',
-			'foreignKey' => 'user_id'
+			'foreignKey' => 'graduate_id'
 		)
 	);
 		

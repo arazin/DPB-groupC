@@ -5,7 +5,7 @@ class Career extends AppModel{
 	public $belongsTo=array(
 		'Graduate' => array(
 			'className' => 'Graduate',
-			'foreignKey' => 'user_id'
+			'foreignKey' => 'graduate_id'
 		),
 		'Industry' => array(
 			'className' => 'Industry',

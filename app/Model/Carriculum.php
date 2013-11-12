@@ -3,8 +3,8 @@ class Carriculum extends AppModel{
 	public $name='Carriculum';
 
 	public $hasMany=array(
-		'Joiner' => array(
-			'className' => 'Joiner',
+		'Participant' => array(
+			'className' => 'Participant',
 			'foreignKey' => 'carriculum_id'
 		)
 	);
