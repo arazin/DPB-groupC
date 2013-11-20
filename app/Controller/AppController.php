@@ -34,24 +34,24 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 	public $components=array(
     'Session',
-//    'Auth'=>array(
-//      'loginRedirect'=>array('controller'=>'events','action'=>''),
-//      /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
-//      'logoutRedirect'=>array('controller'=>'events','action'=>''),
-//      'authorize'=>array('Controller')
-//    )
+    'Auth'=>array(
+      'loginRedirect'=>array('controller'=>'events','action'=>''),
+      /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
+      'logoutRedirect'=>array('controller'=>'events','action'=>''),
+      'authorize'=>array('Controller')
+    )
   );
 
-//  public function isAuthorized($user){
-//    if (isset($user['role']) && $user['role'] === 'admin'){
-//      return true;
-//    }
-//    return false;
-//  }
-  
-//  public function beforeFilter(){
-//		/* $this->Auth->allow("index","view"); */
-//  }
+  public function isAuthorized($user){
+    if (isset($user['role']) && $user['role'] === 'admin'){
+      return true;
+    }
+    return false;
+  }
+
+  public function beforeFilter(){
+		/* $this->Auth->allow("index","view"); */
+  }
 
 
 }
