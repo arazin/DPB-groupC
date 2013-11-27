@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Career Model
+ * EventsParticipant Model
  *
- * @property Graduate $Graduate
- * @property Industry $Industry
+ * @property Participant $Participant
+ * @property Event $Event
  */
-class Career extends AppModel {
+class EventsParticipant extends AppModel {
 
 /**
  * Validation rules
@@ -14,7 +14,7 @@ class Career extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'graduate_id' => array(
+		'participant_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -24,27 +24,7 @@ class Career extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'belong' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'posit' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'industry_id' => array(
+		'event_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -64,16 +44,16 @@ class Career extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Graduate' => array(
-			'className' => 'Graduate',
-			'foreignKey' => 'graduate_id',
+		'Participant' => array(
+			'className' => 'Participant',
+			'foreignKey' => 'participant_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Industry' => array(
-			'className' => 'Industry',
-			'foreignKey' => 'industry_id',
+		'Event' => array(
+			'className' => 'Event',
+			'foreignKey' => 'event_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

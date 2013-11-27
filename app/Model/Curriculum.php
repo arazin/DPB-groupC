@@ -1,12 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Group Model
+ * Curriculum Model
  *
- * @property Department $Department
- * @property Student $Student
+ * @property Participant $Participant
  */
-class Group extends AppModel {
+class Curriculum extends AppModel {
 
 /**
  * Validation rules
@@ -14,7 +13,7 @@ class Group extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'group_name' => array(
+		'curriculum_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -29,29 +28,14 @@ class Group extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Department' => array(
-			'className' => 'Department',
-			'foreignKey' => 'department_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
-
-/**
  * hasMany associations
  *
  * @var array
  */
 	public $hasMany = array(
-		'Student' => array(
-			'className' => 'Student',
-			'foreignKey' => 'group_id',
+		'Participant' => array(
+			'className' => 'Participant',
+			'foreignKey' => 'curriculum_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
