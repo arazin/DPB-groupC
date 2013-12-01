@@ -50,8 +50,8 @@ class Department extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Group' => array(
-			'className' => 'Group',
+		'Labo' => array(
+			'className' => 'Labo',
 			'foreignKey' => 'department_id',
 			'dependent' => false,
 			'conditions' => '',

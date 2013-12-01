@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Group Model
+ * Labo Model
  *
  * @property Department $Department
  * @property Student $Student
  */
-class Group extends AppModel {
+class Labo extends AppModel {
 
 /**
  * Validation rules
@@ -14,7 +14,7 @@ class Group extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'group_name' => array(
+		'labo_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -51,7 +51,7 @@ class Group extends AppModel {
 	public $hasMany = array(
 		'Student' => array(
 			'className' => 'Student',
-			'foreignKey' => 'group_id',
+			'foreignKey' => 'labo_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
