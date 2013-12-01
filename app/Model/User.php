@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+
+
 /**
  * User Model
  *
@@ -9,12 +11,19 @@ App::uses('AppModel', 'Model');
  * @property Student $Student
  */
 class User extends AppModel {
+  public function beforeSave($options = array()) {
+    if (isset($this->data['User']['password'])) {
+			$this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+		}
+		return true;
+	}
 
-/**
- * Validation rules
- *
- * @var array
- */
+
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
 	public $validate = array(
 		'username' => array(
 			'notempty' => array(
@@ -150,11 +159,11 @@ class User extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'Industry' => array(
 			'className' => 'Industry',
@@ -165,11 +174,11 @@ class User extends AppModel {
 		)
 	);
 
-/**
- * hasMany associations
- *
- * @var array
- */
+	/**
+	 * hasMany associations
+	 *
+	 * @var array
+	 */
 	public $hasMany = array(
 		'Graduate' => array(
 			'className' => 'Graduate',
