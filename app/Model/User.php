@@ -11,12 +11,36 @@ App::uses('AppModel', 'Model');
  * @property Student $Student
  */
 class User extends AppModel {
+
+	/*
+	 * Hash化
+	 */
   public function beforeSave($options = array()) {
     if (isset($this->data['User']['password'])) {
 			$this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
 		}
 		return true;
 	}
+
+	/*
+	 * ACL
+	 */
+  public $actsAs = array('Acl' => array('type' => 'requester'));
+  public function parentNode() {
+    if (!$this->id && empty($this->data)) {
+      return null;
+    }
+    if (isset($this->data['User']['group_id'])) {
+      $groupId = $this->data['User']['group_id'];
+    } else {
+      $groupId = $this->field('group_id');
+    }
+    if (!$groupId) {
+      return null;
+    } else {
+      return array('Group' => array('id' => $groupId));
+    }
+  }
 
 
 	/**
@@ -45,9 +69,9 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'role' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'group_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -55,6 +79,7 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -171,7 +196,15 @@ class User extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Group' => array(
+			'className' => 'Group',
+			'foreignKey' => 'group_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
+
 	);
 
 	/**
