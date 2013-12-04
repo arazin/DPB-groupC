@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Faculty $Faculty
  * @property Department $Department
- * @property Group $Group
+ * @property Labo $Labo
  * @property Student $Student
  * @property Student $Student
  */
@@ -118,27 +118,21 @@ class Student extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'group_id',
+		'Labo' => array(
+			'className' => 'Labo',
+			'foreignKey' => 'labo_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Student' => array(
-			'className' => 'Student',
-			'foreignKey' => 'student_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
 	);
 
 /**
  * hasMany associations
  *
  * @var array
- */
+
+
 	public $hasMany = array(
 		'Student' => array(
 			'className' => 'Student',
@@ -154,5 +148,5 @@ class Student extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+ */
 }

@@ -1,4 +1,3 @@
-
 <?php
 App::uses('AppModel', 'Model');
 /**
@@ -7,25 +6,15 @@ App::uses('AppModel', 'Model');
  * @property Department $Department
  * @property Student $Student
  */
-class Group extends AppModel {
+class Labo extends AppModel {
 
-
-	/*
-	 * ACL
-	 */
-  public $actsAs = array('Acl' => array('type' => 'requester'));
-  public function parentNode() {
-    return null;
-  }
-
-	
-	/**
-	 * Validation rules
-	 *
-	 * @var array
-	 */
+/**
+ * Validation rules
+ *
+ * @var array
+ */
 	public $validate = array(
-		'group_name' => array(
+		'labo_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -39,21 +28,30 @@ class Group extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-	/**
-	 * belongsTo associations
-	 *
-	 * @var array
-	 */
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Department' => array(
+			'className' => 'Department',
+			'foreignKey' => 'department_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
-	/**
-	 * hasMany associations
-	 *
-	 * @var array
-	 */
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
 	public $hasMany = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'group_id',
+		'Student' => array(
+			'className' => 'Student',
+			'foreignKey' => 'labo_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

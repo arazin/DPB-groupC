@@ -33,6 +33,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $components=array(
+		'Acl',
     'Session',
     'Auth'=>array(
       'loginRedirect'=>array('controller'=>'events','action'=>''),
@@ -42,16 +43,15 @@ class AppController extends Controller {
     )
   );
 
-  public function isAuthorized($user){
-    if (isset($user['role']) && $user['role'] === 'admin'){
-      return true;
+	public function isAuthorized($user) {
+    if (isset($user['group_id']) && $user['group_id'] === '1') {
+        return true;
     }
     return false;
-  }
+}
 
+	
   public function beforeFilter(){
-		/* $this->Auth->allow("index","view"); */
+		$this->Auth->allow(/*"index","view","add"*/);
   }
-
-
 }

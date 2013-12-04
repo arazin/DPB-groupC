@@ -7,9 +7,9 @@ class UsersController extends AppController {
 		/* $this->Auth->allow('add'); // ユーザーに自身で登録させる */
 	}
 	
-	public function index(){
-		$this->set('users',$this->User->find('all'));
-	}
+//	public function index(){
+//		$this->set('users',$this->User->find('all'));
+//	}
 	
 	public function login() {
     if ($this->request->is('post')) {
