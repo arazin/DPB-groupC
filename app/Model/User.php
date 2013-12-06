@@ -52,23 +52,42 @@ class User extends AppModel {
 		'username' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'error:notempty', 
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				'required' => true,
+				'message' => 'error:alphaNumeric',
+			),
+			'between' => array(
+				'rule' => array('between',5,15),
+				'message' => 'error:between'
+			),
 		),
+		
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'minLength' => array(
+				'rule' => array('minLength',8),
+				'message' => 'error:minlength',
+			),
+			'maxLength' => array(
+				'rule' => array('maxLength',100),
+				'message' => 'error:maxlength',
+			),
 		),
+		
 		'group_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
