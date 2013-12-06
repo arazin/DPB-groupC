@@ -1,19 +1,11 @@
+
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Graduate Model
+ * Gevent Model
  *
- * @property Career $Career
- * @property Certificate $Certificate
  */
-class Graduate extends AppModel {
-
-	/**
-	 * Primary key field
-	 *
-	 * @var string
-	 */
-	public $primaryKey = 'user_id';
+class Gevent extends AppModel {
 
 	/**
 	 * Validation rules
@@ -21,9 +13,9 @@ class Graduate extends AppModel {
 	 * @var array
 	 */
 	public $validate = array(
-		'changed' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
+		'gevent_date' => array(
+			'date' => array(
+				'rule' => array('date'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -31,9 +23,9 @@ class Graduate extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'garaduation_date' => array(
-			'date' => array(
-				'rule' => array('date'),
+		'place' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -61,43 +53,19 @@ class Graduate extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	/**
-	 * hasMany associations
+	 * belongsTo associations
 	 *
 	 * @var array
 	 */
-	public $hasMany = array(
-		'Career' => array(
-			'className' => 'Career',
-			'foreignKey' => 'graduate_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Certificate' => array(
-			'className' => 'Certificate',
-			'foreignKey' => 'graduate_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
-
+	
+	/**
+	 * hasAndBelongsToMany associations
+	 *
+	 * @var array
+	 */
 }
