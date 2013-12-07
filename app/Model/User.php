@@ -65,10 +65,13 @@ class User extends AppModel {
 			),
 			'between' => array(
 				'rule' => array('between',5,15),
-				'message' => 'error:between'
+				'message' => 'error:between',
+			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'error:isUnique',
 			),
 		),
-		
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -83,7 +86,7 @@ class User extends AppModel {
 				'message' => 'error:minlength',
 			),
 			'maxLength' => array(
-				'rule' => array('maxLength',100),
+				'rule' => array('maxLength',50),
 				'message' => 'error:maxlength',
 			),
 		),
@@ -97,6 +100,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			
 		),
 		
 		'name' => array(
@@ -108,6 +112,10 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'maxLength' => array(
+				'rule' => array('maxLength',100),
+				'message' => 'error:maxlength',
+			),
 		),
 		'nationarity' => array(
 			'notempty' => array(
@@ -117,6 +125,10 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'maxLength' => array(
+				'rule' => array('maxLength',50),
+				'message' => 'error:maxlength',
 			),
 		),
 		'prefecture' => array(
@@ -128,6 +140,10 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'maxLength' => array(
+				'rule' => array('maxLength',50),
+				'message' => 'error:maxlength',
+			),
 		),
 		'remain' => array(
 			'notempty' => array(
@@ -138,7 +154,12 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'maxLength' => array(
+				'rule' => array('maxLength',100),
+				'message' => 'error:maxlength',
+			),	
 		),
+		
 		'postcord' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -148,7 +169,16 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'custom' => array(
+				'rule' => array('custom','/^[0-9]{3}\-[0-9]{4}$/'),
+				'messeage' => 'error:please NNN-NNNN',
+			),
+			'maxLength' => array(
+				'rule' => array('maxLength',20),
+				'message' => 'error:maxlength',
+			),	
 		),
+		
 		'phonenumber' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -158,7 +188,12 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'phone' => array(
+				'rule' => array('phone','/\d{2,4}-\d{2,4}-\d{4}/','all'),
+				'message' => 'error:phone',
+			),
 		),
+		
 		'job' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -168,7 +203,12 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'maxLength' => array(
+				'rule' => array('maxLength',50),
+				'message' => 'error:maxlength',
+			),	
 		),
+		
 		'industry_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -181,7 +221,7 @@ class User extends AppModel {
 		),
 		'birthday' => array(
 			'date' => array(
-				'rule' => array('date'),
+				'rule' => array('date','ymd'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -190,13 +230,9 @@ class User extends AppModel {
 			),
 		),
 		'sex' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			'inList' => array(
+				'rule' => array('inList',array(0,1)),
+				'message' => 'error:0or1',
 			),
 		),
 	);
