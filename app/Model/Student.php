@@ -25,8 +25,8 @@ class Student extends AppModel {
 	 */
 	public $validate = array(
 		'grade' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+			'inList' => array(
+				'rule' => array('inList',array(1,2,3)),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -63,7 +63,17 @@ class Student extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				'required' => true,
+				'message' => 'error:alphaNumeric',
+			),
+			'maxLength' => array(
+				'rule' => array('maxLength',30),
+				'message' => 'error:maxlength',
+			),
 		),
+		
 		'guarantor_address' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -73,7 +83,12 @@ class Student extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'maxLength' => array(
+				'rule' => array('maxLength',400),
+				'message' => 'error:maxlength',
+			),
 		),
+		
 		'guarantor_contact' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -83,7 +98,16 @@ class Student extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'maxLength' => array(
+				'rule' => array('maxLength',20),
+				'message' => 'error:maxlength',
+			),
+			'phone' => array(
+				'rule' => array('phone','/\d{2,4}-\d{2,4}-\d{4}/','all'),
+				'message' => 'error:phone',
+			),
 		),
+		
 		'entrance_date' => array(
 			'date' => array(
 				'rule' => array('date'),
@@ -114,7 +138,6 @@ class Student extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -148,6 +171,25 @@ class Student extends AppModel {
 		),
 	);
 
+	/**
+	 * hasMany associations
+	 *
+	 * @var array
+	 */
+	public $hasOne =array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+		),
+	);
+
+	
+
+	
 	/**
 	 * hasMany associations
 	 *
