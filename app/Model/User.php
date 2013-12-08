@@ -210,9 +210,17 @@ class User extends AppModel {
 		),
 		
 		'industry_id' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'error:notenmpty',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'error:numeric',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

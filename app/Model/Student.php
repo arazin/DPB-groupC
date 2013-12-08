@@ -26,7 +26,7 @@ class Student extends AppModel {
 	public $validate = array(
 		'grade' => array(
 			'inList' => array(
-				'rule' => array('inList',array(1,2,3)),
+				'rule' => array('inList',array(1,2,3,4,5)),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -43,10 +43,44 @@ class Student extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			)
 		),
 		'department_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			)
+		),
+		'labo_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -74,6 +108,21 @@ class Student extends AppModel {
 			),
 		),
 		
+		'guarantor_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'maxLength' => array(
+				'rule' => array('maxLength',100),
+				'message' => 'error:maxlength',
+			),
+		),
+
 		'guarantor_address' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -148,6 +197,14 @@ class Student extends AppModel {
 	 * @var array
 	 */
 	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+		),
 		'Faculty' => array(
 			'className' => 'Faculty',
 			'foreignKey' => 'faculty_id',
@@ -172,13 +229,13 @@ class Student extends AppModel {
 	);
 
 	/**
-	 * hasMany associations
+	 * hasOne associations
 	 *
 	 * @var array
-	 */
+
 	public $hasOne =array(
 		'User' => array(
-			'className' => 'User',
+			'className' => 'Student',
 			'foreignKey' => 'user_id',
 			'dependent' => true,
 			'conditions' => '',
@@ -186,7 +243,7 @@ class Student extends AppModel {
 			'order' => '',
 		),
 	);
-
+	 */
 	
 
 	
