@@ -16,7 +16,7 @@ echo $this->Form->input('User.industry_id',array(
 	'label'=>'ぎょうしゅ',
 ));
 
-echo $this->Form->input('User.job',array('label'=>'しょくしゅ'));
+echo $this->Form->hidden('User.job',array('value'=>'大学生'));
 
 echo $this->Form->input('User.birthday',array(
 	'dateFormat'=>'YMD',
@@ -46,7 +46,7 @@ echo $this->Form->input('Student.labo_id',array(
 	'label'=>'けんきゅうしつ',
 	'empty'=>'--けんきゅうしつをえらんでね--'
 ));
-echo $this->Form->input('Studetnt.student_id',array(
+echo $this->Form->input('Student.student_id',array(
 	'type' => 'text',
 	'maxLength' => 30,
 	'div' => 'input text required',

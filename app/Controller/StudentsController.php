@@ -9,6 +9,7 @@ class StudentsController extends AppController{
 		 */
 		//業種
 		$findoption = array(
+			'conditions'=> array('industry_name' => '学生'),
 			'fields' => array('id','industry_name'),//取り出す属性
 			'recursive' => 0,//関連テーブルからは検索しない
 			);
@@ -39,6 +40,9 @@ class StudentsController extends AppController{
 		$this->set('sexes',array('男','女'));//viewでselectフォームにする
 		//学年
 		$this->set('grades',array(1,2,3,4,5));//viewでselectフォームにする
+		if($this->request->is('post')){
+			pr($this->request->data);
+		}
 	}
 }
 
