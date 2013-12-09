@@ -40,7 +40,7 @@ class AppController extends Controller {
       'loginRedirect'=>array('controller'=>'events','action'=>'index'),
       /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
       'logoutRedirect'=>array('controller'=>'events','action'=>'index'),
-      'authorize'=>array('Controller')
+//      'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
     )
   );
 

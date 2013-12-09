@@ -11,6 +11,7 @@ App::uses('AppModel', 'Model');
  * @property Student $Student
  */
 class User extends AppModel {
+	public $name = 'User';
 
 	/*
 	 * Hash化
