@@ -66,7 +66,11 @@ echo $this->Form->input('Student.guarantor_contact',array(
 ));
 
 echo $this->Form->input('Student.entrance_date',array(
-	'label'=>'入学日',
+	'dateFormat'=>'YMD',
+	'minYear'=>date('Y')-100,
+	'maxYear'=>date('Y')+1,
+	'monthNames'=>false,
+	'label'=>'入学年',
 ));
 
 
