@@ -36,9 +36,10 @@ class AppController extends Controller {
 		'Acl',
     'Session',
     'Auth'=>array(
-      //'loginRedirect'=>array('controller'=>'events','action'=>''),
-      'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), 
-      'logoutRedirect'=>array('controller'=>'events','action'=>''),
+			'loginAction' => array('controller' => 'users', 'action' => 'login'),
+      'loginRedirect'=>array('controller'=>'events','action'=>'index'),
+      /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
+      'logoutRedirect'=>array('controller'=>'events','action'=>'index'),
       'authorize'=>array('Controller')
     )
   );
