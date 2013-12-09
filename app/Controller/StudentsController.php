@@ -12,7 +12,7 @@ class StudentsController extends AppController{
 			'conditions'=> array('industry_name' => '学生'),
 			'fields' => array('id','industry_name'),//取り出す属性
 			'recursive' => 0,//関連テーブルからは検索しない
-			);
+		);
 		$this->set('industries',$this->Student->User->Industry->find('list',$findoption));
 
 		//学部
@@ -37,10 +37,32 @@ class StudentsController extends AppController{
 		$this->set('labos',$this->Student->Labo->find('list',$findoption));
 
 		//性別
-		$this->set('sexes',array('男','女'));//viewでselectフォームにする
+		$this->set('sexes',array(0=>'男',1=>'女'));//viewでselectフォームにする
 		//学年
 		$this->set('grades',array(1,2,3,4,5));//viewでselectフォームにする
+
+		
 		if($this->request->is('post')){
+			$findoption = array(
+				'conditions' => array('Group.name'=>'students'),
+				'fields' => array('id'),
+				'recursive' => 0,
+			);
+			$tmp=$this->Student->User->Group->find('first',$findoption);
+			$this->request->data['User']['group_id']=$tmp['Group']['id'];
+			$this->Student->User->create();
+			if($this->Student->User->saveAll($this->request->data,array('validate'=>'only'))){
+				if($this->Student->User->save($this->request->data)){
+					$this->request->data['Student']['user_id']=$this->Student->User->id;
+					$this->Student->create();				
+					if($this->Student->save($this->request->data)){
+						$this->Session->setFlash(__('保存されました'));
+						return $this->redirect(array('action'=>'index'));
+					}
+					$this->Session->setFlash(__('学生情報に間違いがあります'));
+				}
+			}
+			$this->Session->setFlash(__('基本情報に間違いがあります'));
 			pr($this->request->data);
 		}
 	}

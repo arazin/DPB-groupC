@@ -25,8 +25,8 @@ class Student extends AppModel {
 	 */
 	public $validate = array(
 		'grade' => array(
-			'inList' => array(
-				'rule' => array('inList',array(1,2,3,4,5)),
+			'range' => array(
+				'rule' => array('range',-1,6),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

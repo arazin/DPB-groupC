@@ -238,9 +238,17 @@ class User extends AppModel {
 			),
 		),
 		'sex' => array(
-			'inList' => array(
-				'rule' => array('inList',array(0,1)),
-				'message' => 'error:0or1',
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'error:numeric',
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'error:notempty',
+			),
+			'range' => array(
+				'rule' => array('range',-1,2),
+				'message' => 'error:range',
 			),
 		),
 	);
