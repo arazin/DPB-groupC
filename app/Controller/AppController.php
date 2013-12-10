@@ -46,7 +46,11 @@ class AppController extends Controller {
   );
 
 	public function isAuthorized($user) {
-    if (isset($user['group_id']) && ($user['group_id'] === '1' || $user['group_id']==='2'||$user['group_id'] === '3' ||$user['group_id']==='4')) {
+    if (isset($user['group_id'])&&
+				($user['group_id'] === '1' ||
+				 $user['group_id'] === '2' ||
+				 $user['group_id'] === '3' ||
+				 $user['group_id'] === '4')) {
         return true;
     }
     return false;
@@ -54,6 +58,6 @@ class AppController extends Controller {
 
 	
   public function beforeFilter(){
-		$this->Auth->allow(/*"index","view","add"*/);
+//		$this->Auth->allow(/*"index","view","add"*/);
   }
 }

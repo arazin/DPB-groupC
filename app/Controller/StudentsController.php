@@ -3,9 +3,44 @@ class StudentsController extends AppController{
 	public $scaffold;
 	public $helpers =array('Form','Html','Js','Time');
 
+	public function compadd(){
+		//ここは仮 ACLが動くまでの辛抱
+		if($this->request->is('post')){
+			if($this->Auth->user('Group.name')!='students'){
+				return $this->redirect(array('action'=>'add'));
+			}
+			//修了情報の保存
+			$userId=$this->Auth->user('id');
+			$this->request->data['Graduate']['user_id']=$userId;
+			$this->Student->User->Graduate->save($this->request->data);
+
+			//グループをgraduatesに。ゆくゆくはcompstudentsに
+			$findoption = array(
+				'conditions' => array('Group.name'=>'graduates'),
+				'fields' => array('id'),
+				'recursive' => 0,
+			);
+			$tmp=$this->Student->User->Group->find('first',$findoption);
+			$this->Student->User->id=$userId;
+			$findoption = array(
+				'conditions' => array('User.id'=> $userId),
+				'fields' => array('id','group_id'),
+				'recursive' => 0,
+			);
+			$data=$this->Student->User->findById($userId,array('recursive'=>0));
+			$data['User']['id']=$userId;
+			$data['User']['group_id']=$tmp['Group']['id'];
+			unset($data['User']['password']);
+			$this->Student->User->save($data);
+			return $this->redirect(array('controller'=>'users','action'=>'logout'));
+		}
+
+	}
+	
 	public function add(){
 		/*
-		 *findで検索し、viewでselectの選択肢とする
+		 * アクター:大学 ユースケース: 学生を登録する
+		 * findで検索し、viewでselectの選択肢とする
 		 */
 		//業種
 		$findoption = array(
@@ -59,11 +94,9 @@ class StudentsController extends AppController{
 						$this->Session->setFlash(__('保存されました'));
 						return $this->redirect(array('action'=>'index'));
 					}
-					$this->Session->setFlash(__('学生情報に間違いがあります'));
 				}
 			}
-			$this->Session->setFlash(__('基本情報に間違いがあります'));
-			pr($this->request->data);
+			$this->Session->setFlash(__('記述に間違いがあります'));
 		}
 	}
 }
