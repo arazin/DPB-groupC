@@ -4,8 +4,9 @@ class StudentsController extends AppController{
 	public $helpers =array('Form','Html','Js','Time');
 
 	public function compadd(){
+		//ここは仮 ACLが動くまでの辛抱
 		if($this->request->is('post')){
-			if($this->Auth->user('Group.name')=='administrators'){
+			if($this->Auth->user('Group.name')!='students'){
 				return $this->redirect(array('action'=>'add'));
 			}
 			//修了情報の保存
