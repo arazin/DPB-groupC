@@ -33,7 +33,7 @@ class Graduate extends AppModel {
 		),
 		'garaduation_date' => array(
 			'date' => array(
-				'rule' => array('date'),
+				'rule' => array('date','ymd'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
