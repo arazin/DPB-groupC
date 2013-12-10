@@ -21,9 +21,15 @@ class StudentsController extends AppController{
 			);
 			$tmp=$this->Student->User->Group->find('first',$findoption);
 			$this->Student->User->id=$userId;
+			$findoption = array(
+				'conditions' => array('User.id'=> $userId),
+				'fields' => array('id','group_id'),
+				'recursive' => 0,
+			);
 			$data=$this->Student->User->findById($userId,array('recursive'=>0));
 			$data['User']['id']=$userId;
 			$data['User']['group_id']=$tmp['Group']['id'];
+			unset($data['User']['password']);
 			$this->Student->User->save($data);
 			return $this->redirect(array('controller'=>'users','action'=>'logout'));
 		}
