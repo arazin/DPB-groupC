@@ -32,6 +32,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $helpers =array('Form','Html','Js','Time');
 	public $components=array(
 		'Acl',
     'Session',
@@ -45,7 +46,7 @@ class AppController extends Controller {
   );
 
 	public function isAuthorized($user) {
-    if (isset($user['group_id']) && $user['group_id'] === '1') {
+    if (isset($user['group_id']) && ($user['group_id'] === '1' || $user['group_id']==='2'||$user['group_id'] === '3' ||$user['group_id']==='4')) {
         return true;
     }
     return false;
