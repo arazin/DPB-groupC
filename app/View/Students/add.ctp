@@ -2,18 +2,18 @@
 <h1>Add student</h1>
 <?php
 echo $this->Form->create('Student');
-echo $this->Form->input('User.username',array('label'=>'ゆーざID'));
-echo $this->Form->input('User.password',array('label'=>'ぱすわーど'));
-echo $this->Form->input('User.name',array('label'=>'おなまえ'));
-echo $this->Form->input('User.nationarity',array('label'=>'こくせき'));
-echo $this->Form->input('User.prefecture',array('label'=>'とどうふけん'));
-echo $this->Form->input('User.remain',array('label'=>'しくちょうそん・番地・など'));
-echo $this->Form->input('User.postcord',array('label'=>'ゆうびんばんごう'));
-echo $this->Form->input('User.phonenumber',array('label'=>'でんわばんごう'));
+echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
+echo $this->Form->input('User.password',array('label'=>'パスワード'));
+echo $this->Form->input('User.name',array('label'=>'お名前'));
+echo $this->Form->input('User.nationarity',array('label'=>'国籍'));
+echo $this->Form->input('User.postcord',array('label'=>'郵便番号'));
+echo $this->Form->input('User.prefecture',array('label'=>'都道府県'));
+echo $this->Form->input('User.remain',array('label'=>'市区町村・番地・その他'));
+echo $this->Form->input('User.phonenumber',array('label'=>'電話番号'));
 
 echo $this->Form->input('User.industry_id',array(
-	'empty'=>'--ぎょうしゅをえらんでね--',
-	'label'=>'ぎょうしゅ',
+	'empty'=>'--業種を選んで下さい--',
+	'label'=>'業種',
 ));
 
 echo $this->Form->hidden('User.job',array('value'=>'大学生'));
@@ -23,28 +23,28 @@ echo $this->Form->input('User.birthday',array(
 	'minYear'=>date('Y')-100,
 	'maxYear'=>date('Y')-1,
 	'monthNames'=>false,
-	'label'=>'せいねんがっぴ',
+	'label'=>'生年月日',
 ));
 
 echo $this->Form->input('User.sex',array(
-	'empty' => '--せいべつをえらんでね--',
-	'label' => 'せいべつ'
+	'empty' => '--性別を選んで下さい--',
+	'label' => '性別'
 ));
 echo $this->Form->input('Student.grade',array(
-	'empty' => '--がくねんをえらんでね--',
-	'label' => 'がくねん'
+	'empty' => '--学年を選んで下さい--',
+	'label' => '学年'
 ));
 echo $this->Form->input('Student.faculty_id',array(
-	'label'=>'がくぶ',
-	'empty'=>'--がくぶをえらんでね--'
+	'label'=>'学部',
+	'empty'=>'--学部を選んで下さい--'
 ));
 echo $this->Form->input('Student.department_id',array(
-	'label'=>'がっか',
-	'empty'=>'--がっかをえらんでね--'
+	'label'=>'学科',
+	'empty'=>'--学科を選んで下さい--'
 ));
 echo $this->Form->input('Student.labo_id',array(
-	'label'=>'けんきゅうしつ',
-	'empty'=>'--けんきゅうしつをえらんでね--'
+	'label'=>'研究室',
+	'empty'=>'--研究室を選んで下さい--'
 ));
 echo $this->Form->input('Student.student_id',array(
 	'type' => 'text',
