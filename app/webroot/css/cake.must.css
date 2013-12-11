@@ -1,21 +1,10 @@
-﻿@charset "utf-8";
-/**
- *
- * Generic CSS for CakePHP
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.webroot.css
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
+﻿/*このcssはデフォルトで存在したcakephpのcssの必要部分のみにした物です*
+授業内でしか使用しないから元々の著作権表示とか消したけど大丈夫だよね？*
+ヤバそうならその部分は戻します。*
+あと、コメントの入ってる部分を書き換えるとそこが変わります。*
+他にも解析出来たらコメント書いてくれるとうれしいです。*/
 
+@charset "utf-8";
 * {
 	margin:0;
 	padding:0;
@@ -46,7 +35,6 @@ h1, h2, h3, h4 {
 	margin-bottom:0.5em;
 }
 h1 {
-	background:#fff;
 	color: #003d4c;
 	font-size: 100%;
 }
@@ -116,6 +104,8 @@ p {
 /** containers **/
 div.form,
 div.index,
+
+/*フォームで横線が入り、邪魔なため除去*
 div.view {
 	float:right;
 	width:76%;
@@ -127,9 +117,12 @@ div.actions {
 	width:16%;
 	padding:10px 1.5%;
 }
+*/
+
 div.actions h3 {
 	padding-top:0;
-	color:#777;
+	color:#A52A2A/*入力フォーム等の入力させる要素の文字色　デフォ#777*/
+;
 }
 
 
@@ -356,18 +349,22 @@ input[type=submit] {
 	font-size: 110%;
 	width: auto;
 }
+
+/*フォームのボタン関連*/
 form .submit input[type=submit] {
 	background:#62af56;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
-	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+	/*ボタン色　グラデーション(どこから,何色から,何色へ)*	デフォ　(top, #76BF6B, #3B8230)*/
+	background-image: -webkit-linear-gradient(top, #2E8B57, #90EE90); 
 	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
-	border-color: #2d6324;
-	color: #fff;
+	border-color: #2d6324;/*ボタン枠　色*/
+	color: #FFF; /*文字色*/
 	text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 0px;
 	padding: 8px 10px;
 }
 form .submit input[type=submit]:hover {
-	background: #5BA150;
+	color: #000000; /*重ねたときの文字色*/
+	background: #FF7F50;/*ボタン　カーソル重ねたときの色　デフォルト#5BA150*/
 }
 /* Form errors */
 form .error {

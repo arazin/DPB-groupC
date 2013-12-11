@@ -27,29 +27,8 @@
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-					<?php echo $this->Html->link('Project name', array('action' => 'top'),array('class' => 'navbar-brand')); ?>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </div><!-- /.navbar -->
 
     <div class="container">
-
       <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
@@ -101,11 +80,6 @@
             <?php echo $this->Html->link('イベント', array('action' => 'link'),array('class' => 'list-group-item')); ?>
             <?php echo $this->Html->link('修了証発行', array('action' => 'link'),array('class' => 'list-group-item')); ?>
             <?php echo $this->Html->link('Link1', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('Link2', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('Link3', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('Link4', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('Link5', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('Link6', array('action' => 'link'),array('class' => 'list-group-item')); ?>
           </div>
         </div><!--/span-->
       </div><!--/row-->
