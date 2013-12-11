@@ -91,6 +91,18 @@ class User extends AppModel {
 				'message' => 'error:maxlength',
 			),
 		),
+
+		'newpassword' => array(
+			'minLength' => array(
+				'rule' => array('minLength',8),
+				'message' => 'error:minlength',
+			),
+			'maxLength' => array(
+				'rule' => array('maxLength',50),
+				'message' => 'error:maxlength',
+			),
+		),
+
 		
 		'group_id' => array(
 			'numeric' => array(
