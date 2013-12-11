@@ -1,24 +1,81 @@
 <?php
-class Department extends AppModel{
-	public $name='Department';
+App::uses('AppModel', 'Model');
+/**
+ * Department Model
+ *
+ * @property Faculty $Faculty
+ * @property Group $Group
+ * @property Student $Student
+ */
+class Department extends AppModel {
 
-	public $hasMany=array(
-		'Student'=> array(
-			'className' => 'Student',
-			'foreignKey' => 'department_id',
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'department_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'department_id'
+	);
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Faculty' => array(
+			'className' => 'Faculty',
+			'foreignKey' => 'faculty_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 
-	public $belongsTo=array(
-		'Faculty' => array(
-			'className' => 'Faculty',
-			'foreignKey' => 'faculty_id'
-			)
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Labo' => array(
+			'className' => 'Labo',
+			'foreignKey' => 'department_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Student' => array(
+			'className' => 'Student',
+			'foreignKey' => 'department_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
 	);
 
-	}
-?>
+}
