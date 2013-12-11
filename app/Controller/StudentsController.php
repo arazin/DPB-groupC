@@ -4,8 +4,9 @@ class StudentsController extends AppController{
 	public $helpers =array('Form','Html','Js','Time');
 
 	public function editone(){
-		$data=$this->Auth->user();
-		pr($data);
+		$this->request->data = $this->Student->User->findById($this->Auth->user('id'),array('recursive'=>0));
+			
+														
 	}
 
 	public function compadd(){
@@ -31,16 +32,11 @@ class StudentsController extends AppController{
 			);
 			$tmp=$this->Student->User->Group->find('first',$findoption);
 			$this->Student->User->id=$userId;
-			$findoption = array(
-				'conditions' => array('User.id'=> $userId),
-				'fields' => array('id','group_id'),
-				'recursive' => 0,
-			);
-			$data=$this->Student->User->findById($userId,array('recursive'=>0));
-			$data['User']['id']=$userId;
-			$data['User']['group_id']=$tmp['Group']['id'];
-			unset($data['User']['password']);
-			$this->Student->User->save($data);
+			$sdata=$this->Student->User->findById($userId,array('recursive'=>0));
+			$sdata['User']['id']=$userId;
+			$sdata['User']['group_id']=$tmp['Group']['id'];
+			unset($sdata['User']['password']);
+			$this->Student->User->save($sdata);
 			return $this->redirect(array('controller'=>'users','action'=>'logout'));
 		}
 
