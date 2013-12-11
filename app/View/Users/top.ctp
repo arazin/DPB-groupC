@@ -62,33 +62,33 @@
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>ここに他情報</h2>
-              <p>他情報の所にイベントが表示されるように書き直すかもしれない</p>
+               <h2>他情報</h2>
+              <p>この枠にイベント情報が表示されるように改良するかも</p>
               <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>他情報2</h2>
-              <p>色、構造はそのままになってしまってるんであとで調整します</p>
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>他情報3</h2>
-              <p>6まで必要ないなら消去</p>
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>他情報4</h2>
-              <p>上のCakePHPへのリンクもあとで消去します</p>
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>他情報５</h2>
-              <p>少し大きな青ボタンにも変更可</p>
-              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-primary btn-lg')); ?></p>
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>他情報６</h2>
-              <p>ほかほか</p>
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
             </div><!--/span-->
           </div><!--/row-->
