@@ -3,13 +3,22 @@ class StudentsController extends AppController{
 	public $scaffold;
 	public $helpers =array('Form','Html','Js','Time');
 
+	public function editone(){
+		$data=$this->Auth->user();
+		pr($data);
+	}
+
 	public function compadd(){
+		/*
+		 * アクター:学生 ユースケース:修了生を登録する
+		 * 
+		 */
 		//ここは仮 ACLが動くまでの辛抱
 		if($this->request->is('post')){
 			if($this->Auth->user('Group.name')!='students'){
 				return $this->redirect(array('action'=>'add'));
 			}
-			//修了情報の保存
+			//修了情報の登録
 			$userId=$this->Auth->user('id');
 			$this->request->data['Graduate']['user_id']=$userId;
 			$this->Student->User->Graduate->save($this->request->data);
