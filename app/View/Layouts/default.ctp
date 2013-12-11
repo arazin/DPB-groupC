@@ -22,20 +22,26 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
+    <?php echo $this->Html->charset(); ?>
+    <title>
+        <?php echo $cakeDescription ?>:
+        <?php echo $title_for_layout; ?>
+    </title>
+    <?php
 
-		echo $this->Html->css('cake.generic');
+        echo $this->Html->meta('icon');
 
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
+        // jQuery CDN
+        echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
+
+        // Twitter Bootstrap 3.0 CDN
+        echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css');
+        echo $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
+
+        echo $this->fetch('meta');
+        echo $this->fetch('css');
+        echo $this->fetch('script');
+    ?>
 </head>
 <body>
 	<div id="container">

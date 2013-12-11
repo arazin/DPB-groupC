@@ -10,7 +10,6 @@ class UsersController extends AppController {
 	//	public function index(){
 	//		$this->set('users',$this->User->find('all'));
 	//	}
-	
 	public function login() {
 		if($this->Session->read('Auth.User')){
 			$this->Session->setFlash('あなたは既にログイン済です');
@@ -21,14 +20,20 @@ class UsersController extends AppController {
         $this->redirect($this->Auth->redirect());
       } else {
         $this->Session->setFlash(__('Invalid username or password, try again'));
-			}
-		}
+
+      }
+    }
 	}
-	
+
 	public function logout() {
-		$this->Session->setFlash('Good-Bye');
-		$this->redirect($this->Auth->logout());
+    $this->redirect($this->Auth->logout());
 	}
+
+	public function top() {
+
+	}
+
+	
 }
 
 ?>
