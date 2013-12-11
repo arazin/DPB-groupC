@@ -7,16 +7,20 @@ class UsersController extends AppController {
 		/* $this->Auth->allow('add'); // ユーザーに自身で登録させる */
 	}
 	
-//	public function index(){
-//		$this->set('users',$this->User->find('all'));
-//	}
-	
+	//	public function index(){
+	//		$this->set('users',$this->User->find('all'));
+	//	}
 	public function login() {
+		if($this->Session->read('Auth.User')){
+			$this->Session->setFlash('あなたは既にログイン済です');
+			$this->redirect('/',null,false);
+		}
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->redirect($this->Auth->redirect());
       } else {
         $this->Session->setFlash(__('Invalid username or password, try again'));
+
       }
     }
 	}
@@ -29,6 +33,7 @@ class UsersController extends AppController {
 
 	}
 
+	
 }
 
 ?>

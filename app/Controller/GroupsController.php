@@ -1,6 +1,5 @@
 <?php
-class GroupsController extends AppController{
+class GroupsController extends AppController {
 	public $scaffold;
 }
-
 ?>

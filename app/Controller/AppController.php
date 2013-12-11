@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Application level Controller
  *
@@ -32,26 +32,32 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $helpers =array('Form','Html','Js','Time');
 	public $components=array(
+		'Acl',
     'Session',
     'Auth'=>array(
-      'loginRedirect'=>array('controller'=>'events','action'=>''),
+			'loginAction' => array('controller' => 'users', 'action' => 'login'),
+      'loginRedirect'=>array('controller'=>'events','action'=>'index'),
       /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
-      'logoutRedirect'=>array('controller'=>'events','action'=>''),
-      'authorize'=>array('Controller')
+      'logoutRedirect'=>array('controller'=>'events','action'=>'index'),
+//      'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
     )
   );
 
-  public function isAuthorized($user){
-    if (isset($user['role']) && $user['role'] === 'admin'){
-      return true;
+	public function isAuthorized($user) {
+    if (isset($user['group_id'])&&
+				($user['group_id'] === '1' ||
+				 $user['group_id'] === '2' ||
+				 $user['group_id'] === '3' ||
+				 $user['group_id'] === '4')) {
+        return true;
     }
     return false;
-  }
+}
 
+	
   public function beforeFilter(){
-		/* $this->Auth->allow("index","view"); */
+//		$this->Auth->allow(/*"index","view","add"*/);
   }
-
-
 }
