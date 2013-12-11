@@ -4,8 +4,40 @@ class StudentsController extends AppController{
 	public $helpers =array('Form','Html','Js','Time');
 
 	public function editone(){
-		$this->request->data = $this->Student->User->findById($this->Auth->user('id'),array('recursive'=>0));
-			
+		$this->request->data = $this->Student->User->findById($this->Auth->user('id'));
+		$findoption = array(
+			'conditions'=> array('industry_name' => '学生'),
+			'fields' => array('id','industry_name'),//取り出す属性
+			'recursive' => 0,//関連テーブルからは検索しない
+		);
+		$this->set('industries',$this->Student->User->Industry->find('list',$findoption));
+
+		//学部
+		$findoption = array(
+			'fields' => array('id','faculty_name'),
+			'recursive' => 0,
+		);
+		$this->set('faculties',$this->Student->Faculty->find('list',$findoption));
+
+		//学科
+		$findoption = array(
+			'fields' => array('id','department_name'),
+			'recursive' => 0,
+		);
+		$this->set('departments',$this->Student->Department->find('list',$findoption));
+
+		//研究室
+		$findoption = array(
+			'fields' => array('id','labo_name'),
+			'recursive' => 0,
+		);
+		$this->set('labos',$this->Student->Labo->find('list',$findoption));
+
+		//性別
+		$this->set('sexes',array(0=>'男',1=>'女'));//viewでselectフォームにする
+		//学年
+		$this->set('grades',array(1,2,3,4,5));//viewでselectフォームにする
+		
 														
 	}
 
