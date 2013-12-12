@@ -1,46 +1,90 @@
 <?php
 class StudentsController extends AppController{
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
+  //public $components = array('Security');//悪質なポストを防ぐ
 	public $scaffold;
 	public $helpers =array('Form','Html','Js','Time');
-
+	
+	
 	public function editone(){
-		$this->request->data = $this->Student->User->findById($this->Auth->user('id'));
+		$id=$this->Auth->user('id');
+		//最初に更新であることを宣言
+		$this->Student->id=$id;
+		$this->Student->User->id=$id;
+		
+		$editdata= $this->Student->User->findById($id);
+		//例外処理
+		if (!$editdata) {
+      throw new NotFoundException(__('Invalid user'));
+    }
 		$findoption = array(
 			'conditions'=> array('industry_name' => '学生'),
 			'fields' => array('id','industry_name'),//取り出す属性
 			'recursive' => 0,//関連テーブルからは検索しない
 		);
 		$this->set('industries',$this->Student->User->Industry->find('list',$findoption));
-
+		
 		//学部
 		$findoption = array(
 			'fields' => array('id','faculty_name'),
 			'recursive' => 0,
 		);
 		$this->set('faculties',$this->Student->Faculty->find('list',$findoption));
-
+		
 		//学科
 		$findoption = array(
 			'fields' => array('id','department_name'),
 			'recursive' => 0,
 		);
 		$this->set('departments',$this->Student->Department->find('list',$findoption));
-
+		
 		//研究室
 		$findoption = array(
 			'fields' => array('id','labo_name'),
 			'recursive' => 0,
 		);
 		$this->set('labos',$this->Student->Labo->find('list',$findoption));
-
+		
 		//性別
 		$this->set('sexes',array(0=>'男',1=>'女'));//viewでselectフォームにする
 		//学年
 		$this->set('grades',array(1,2,3,4,5));//viewでselectフォームにする
 		
-														
+		//更新ロジック
+		if($this->request->is('put')){
+			pr('0\n');
+			//データ送信時
+			//値の正当性のみチェック
+			if($this->Student->User->save($this->request->data,array('validate'=>'only'))){
+				pr('1\n');
+				if($this->Student->save($this->request->data,array('validate'=>'only'))){
+					pr('2\n');
+  				//保存
+					if($this->Student->User->save($this->request->data)){
+						pr('3\n');
+						if($this->Student->save($this->request->data)){
+							pr('4\n');
+							$this->Session->setFlash(__('情報が更新されました'));
+							$this->redirect(array('acion'=>'add'));						
+						}
+					}
+					$this->Session->setFlash(__('更新されませんでした'));
+				}
+			}
+			pr($this->Student->invalidFields());
+			pr($this->Student->User->invalidFields());
+		}else{
+			pr('5\n');
+			//通常アクセス フォームにdataをセット
+			$this->request->data=$editdata;
+			unset($this->request->data['User']['password']);			
+		}
 	}
-
+	
 	public function compadd(){
 		/*
 		 * アクター:学生 ユースケース:修了生を登録する
@@ -49,7 +93,7 @@ class StudentsController extends AppController{
 		//ここは仮 ACLが動くまでの辛抱
 		if($this->request->is('post')){
 			if($this->Auth->user('Group.name')!='students'){
-				return $this->redirect(array('action'=>'add'));
+				return $this->redirect(array('action'=>''));
 			}
 			//修了情報の登録
 			$userId=$this->Auth->user('id');
@@ -115,6 +159,9 @@ class StudentsController extends AppController{
 
 		
 		if($this->request->is('post')){
+			/*
+			 *学生のグループidをセット
+			 */
 			$findoption = array(
 				'conditions' => array('Group.name'=>'students'),
 				'fields' => array('id'),
