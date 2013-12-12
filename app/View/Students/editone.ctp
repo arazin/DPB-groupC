@@ -1,8 +1,21 @@
 <h1>編集</h1>
 <?php
 echo $this->Form->create('Student');
-echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
-echo $this->Form->input('User.new_password',array('label'=>'新しいパスワード'));
+
+//echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
+echo $this->Form->input('User.new_username',array(
+	'label'=>'新しいユーザーID',
+	'required' => false,
+));
+/*echo $this->Form->input('User.password',array(
+	'label'=>'パスワード',
+	'required' => false,
+));*/
+
+echo $this->Form->input('User.new_password',array(
+	'label'=>'新しいパスワード',
+	'required' => false,
+));
 echo $this->Form->input('User.name',array('label'=>'お名前'));
 echo $this->Form->input('User.nationarity',array('label'=>'国籍'));
 echo $this->Form->input('User.postcord',array('label'=>'郵便番号'));
