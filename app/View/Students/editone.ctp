@@ -2,11 +2,7 @@
 <?php
 echo $this->Form->create('Student');
 
-//echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
-echo $this->Form->input('User.new_username',array(
-	'label'=>'新しいユーザーID',
-	'required' => false,
-));
+echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
 /*echo $this->Form->input('User.password',array(
 	'label'=>'パスワード',
 	'required' => false,
