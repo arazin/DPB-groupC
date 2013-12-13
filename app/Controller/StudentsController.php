@@ -185,9 +185,16 @@ class StudentsController extends AppController{
 			);
 			$tmp=$this->Student->User->Group->find('first',$findoption);
 			$this->request->data['User']['group_id']=$tmp['Group']['id'];
+						
+			/*
+			 *登録ロジック
+			 */
 			$this->Student->User->create();
+			//まず値の正当性チェックのみ
 			if($this->Student->User->saveAll($this->request->data,array('validate'=>'only'))){
+				//userテーブルの登録
 				if($this->Student->User->save($this->request->data)){
+					//登録したユーザーのIDで、学生情報を保存
 					$this->request->data['Student']['user_id']=$this->Student->User->id;
 					$this->Student->create();				
 					if($this->Student->save($this->request->data)){
