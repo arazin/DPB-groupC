@@ -1,7 +1,14 @@
 
 <h1>Add student</h1>
 <?php
-echo $this->Form->create('Student');
+echo $this->Form->create('Student',array(
+	'inputDefaults' => array(
+		'div' => 'form-group',
+		'wrapInput' => false,
+		'class' => 'form-control',
+	),
+	'class' => 'well',
+));
 echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
 echo $this->Form->input('User.password',array('label'=>'パスワード'));
 echo $this->Form->input('User.name',array('label'=>'お名前'));
