@@ -21,7 +21,7 @@ class GeventsController extends AppController {
     $oldcount = 0;
 
 		$user_id = $this->Auth->user('id');
-    $user_id = 4; //実験用
+    //$user_id = 4; //実験用
 		$login_graduate = $this -> Graduate-> findByUser_id($user_id);
 
 
