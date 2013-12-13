@@ -43,6 +43,14 @@ class User extends AppModel {
     }
   }
 
+	/*
+	 * 同値チェック
+	 */
+	public function sameCheck($check,$field){
+		$str1 = array_shift($check);
+		$str2 = $this->data[$this->name][$field];
+		return $str1 == $str2;
+	}
 
 	/**
 	 * Validation rules
@@ -111,7 +119,14 @@ class User extends AppModel {
 				'message' => 'error:maxlength',
 			),
 		),
-
+		
+		'password2' => array(
+			'sameCheck' => array(
+				'rule' => array('sameCheck','password'),
+				'message' => 'パスワードが一致しません'
+			),
+		),
+		
 		'new_password' => array(
 			'minLength' => array(
 				'rule' => array('minLength',8),

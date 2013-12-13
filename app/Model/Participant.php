@@ -93,6 +93,14 @@ class Participant extends AppModel {
 	 * @var array
 	 */
 	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+		),
 		'Curriculum' => array(
 			'className' => 'Curriculum',
 			'foreignKey' => 'curriculum_id',
