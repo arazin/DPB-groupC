@@ -1,4 +1,4 @@
-﻿<html>
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +19,8 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
 
@@ -30,16 +30,23 @@
         <h1>Login Form</h1>
         <p class="lead">
 					<div class="users form">
-					<?php echo $this->Session->flash('auth'); ?>
-					<?php echo $this->Form->create('User'); ?>
-					<?php echo $this->Html->css('bootstrap.min'); ?> 
-					    <fieldset>
-					        <legend><?php echo __('Please enter your username and password'); ?></legend>
-					        <?php echo $this->Form->input('username');
-					        echo $this->Form->input('password');
+						<?php echo $this->Session->flash('auth'); ?>
+						<?php echo $this->Form->create('User',array(
+							'inputDefaults' => array(
+								'div' => 'form-group',
+								'wrapInput' => false,
+								'class' => 'form-control',
+							),
+							'class' => 'well',
+						)); ?>
+						<?php echo $this->Html->css('bootstrap.min'); ?> 
+					  <fieldset>
+					    <legend><?php echo __('Please enter your username and password'); ?></legend>
+					    <?php echo $this->Form->input('username');
+					    echo $this->Form->input('password');
 					    ?>
-					    </fieldset>
-					<?php echo $this->Form->end(__('Login')); ?>
+					  </fieldset>
+						<?php echo $this->Form->end(__('Login')); ?>
 					</div>
 				</p>
       </div>
