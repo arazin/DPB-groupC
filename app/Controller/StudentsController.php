@@ -12,11 +12,13 @@ class StudentsController extends AppController{
 	
 	public function editone(){
 		$id=$this->Auth->user('id');
+
 		//最初に更新であることを宣言
 		$this->Student->id=$id;
 		$this->Student->User->id=$id;
-		
+
 		$editdata= $this->Student->User->findById($id);
+
 		//例外処理
 		if (!$editdata) {
       throw new NotFoundException(__('Invalid user'));
@@ -68,8 +70,8 @@ class StudentsController extends AppController{
 						pr('3\n');
 						if($this->Student->save($this->request->data)){
 							pr('4\n');
-							$this->Session->setFlash(__('情報が更新されました'));
-							$this->redirect(array('acion'=>'add'));						
+							$this->Session->setFlash(__('情報が更新されました。認証しなおしてください'));
+							$this->redirect('/users/logout');						
 						}
 					}
 					$this->Session->setFlash(__('更新されませんでした'));
