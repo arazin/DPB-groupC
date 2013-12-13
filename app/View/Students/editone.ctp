@@ -9,13 +9,14 @@ echo $this->Form->create('Student',array(
 	'class' => 'well',
 ));
 
-echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
-/*echo $this->Form->input('User.password',array(
-	'label'=>'パスワード',
+
+echo $this->Form->input('User.new_username',array(
+	'label'=>'新しいユーザーID',
 	'required' => false,
-));*/
+));
 
 echo $this->Form->input('User.new_password',array(
+	'type' => 'password',
 	'label'=>'新しいパスワード',
 	'required' => false,
 ));

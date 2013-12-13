@@ -55,7 +55,7 @@ class StudentsController extends AppController{
 		$this->set('sexes',array(0=>'男',1=>'女'));//viewでselectフォームにする
 		//学年
 		$this->set('grades',array(1,2,3,4,5));//viewでselectフォームにする
-		
+		$flag=false;
 		//更新ロジック
 		if($this->request->is('put')){
 			pr('0\n');
@@ -65,13 +65,27 @@ class StudentsController extends AppController{
 				pr('1\n');
 				if($this->Student->save($this->request->data,array('validate'=>'only'))){
 					pr('2\n');
+					if(!empty($this->request->data['User']['new_username'])){
+						$this->request->data['User']['username']=$this->request->data['User']['new_username'];
+						$flag=true;
+					}
+					if(!empty($this->request->data['User']['new_password'])){
+						$this->request->data['User']['password']=$this->request->data['User']['new_password'];
+						$flag=true;
+					}
+					
   				//保存
 					if($this->Student->User->save($this->request->data)){
 						pr('3\n');
 						if($this->Student->save($this->request->data)){
 							pr('4\n');
-							$this->Session->setFlash(__('情報が更新されました。認証しなおしてください'));
-							$this->redirect('/users/logout');						
+							if($flag){
+								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'));
+								$this->redirect('/users/logout');
+							} else {
+								$this->Session->setFlash(__('情報が更新されました。'));
+								$this->redirect('/');
+							}
 						}
 					}
 					$this->Session->setFlash(__('更新されませんでした'));
