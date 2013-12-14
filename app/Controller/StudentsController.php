@@ -7,8 +7,6 @@ class StudentsController extends AppController{
 	 */
   //public $components = array('Security');//悪質なポストを防ぐ
 	public $scaffold;
-	public $helpers =array('Form','Html','Js','Time');
-	
 	
 	public function editone(){
 		$id=$this->Auth->user('id');

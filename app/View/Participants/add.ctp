@@ -49,7 +49,7 @@ echo $this->Form->input('Participant.course_id',array(
 	'empty'=>'--コースを選んで下さい--'
 ));
 echo $this->Form->input('Participant.teacher_name',array(
-	'label'=>'指導教員',
+	'label'=>'志望指導教員名',
 ));
 echo $this->Form->input('Participant.entranced',array(
 	'label'=>'入学',
