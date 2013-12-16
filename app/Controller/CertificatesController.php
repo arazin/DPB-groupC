@@ -10,8 +10,22 @@ class CertificatesController extends AppController {
         $this->set('certificates', $this->paginate());
     }
 
+    public function view($id = null) {
+       // $this->Certificate->graduate_id = $id;
+        if (!$this->Certificate->exists($id)) {
+            throw new NotFoundException(__('Invalid certificate'));
+        }
+				$options = array('conditions' => array('Certificate.' . $this->Certificate->primarykey => id));
+				$this -> set('certificate',$this->Certificate->find('first',$options));
+       // $this->set(certificate', $this->Certificate->read(null, $id));
+    }
+
 	
     public function add() {
+    			$userId=$this->Auth->user('id');
+					$this->request->data['Certificate']['graduate_id']=$userId;
+					$Issue=0;
+					$this->request->data['Certificate']['issued']=$Issue;
         if ($this->request->is('post')) {
             $this->Certificate->create();
             if ($this->Certificate->save($this->request->data)) {

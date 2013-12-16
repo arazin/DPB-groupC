@@ -6,12 +6,7 @@
 		<?php 
 		echo ('変更先を記入してください');
 				echo $this->Form->input('belong');
-				echo $this->Form->input('posit');
-				echo $this->Form->input('special report');
-				echo $this->Form->input('Career.industry_id',array(
-        'empty'=>'--業種を選んで下さい--',
-        'label'=>'業種',
-));
+				/*echo $this->Form->input('industry_id');*/
 				?>
 				</fieldset>
 	<?php echo $this->Form->end(__('submit')); ?>
