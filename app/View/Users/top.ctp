@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -36,43 +36,9 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1>トップページへようこそ（ここに見出し）</h1>
-            <p>ここにコメント</p>
+						<?php echo $this->Html->image('kousya.jpg-large',array('width'=>'555')); ?>
           </div>
-          <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4">
-               <h2>他情報</h2>
-              <p>この枠にイベント情報が表示されるように改良するかも</p>
-              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><?php echo $this->Html->link('View details >>', array('action' => 'link'),array('class' => 'btn btn-default')); ?></p>
-            </div><!--/span-->
-          </div><!--/row-->
         </div><!--/span-->
-
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
 						<?php echo $this->Html->link('TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>

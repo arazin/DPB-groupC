@@ -37,15 +37,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<?php echo $this->Html->link('Page Name', array('action' => 'link'),array('class' => 'navbar-brand')); ?>
+					<?php echo $this->Html->link('Page Name', '/',array('class' => 'navbar-brand')); ?>
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><?php echo $this->Html->link('TOP', array('action' => 'link')); ?></li>
-						<li><?php echo $this->Html->link('Infomation', array('action' => 'link')); ?></li>
-						<li><?php echo $this->Html->link('Event', array('action' => 'link')); ?></li>
-						<li><?php echo $this->Html->link('Issue', array('action' => 'link')); ?></li>
-						<li><?php echo $this->Html->link('Other', array('action' => 'link')); ?></li>
+						<li><?php echo $this->Html->link('TOP', '/'); ?></li>
+						<li><?php echo $this->Html->link('Infomation', array('action' => 'top')); ?></li>
+						<li><?php echo $this->Html->link('Event', array('action' => 'top')); ?></li>
+						<li><?php echo $this->Html->link('Issue', array('action' => 'top')); ?></li>
+						<li><?php echo $this->Html->link('Other', array('action' => 'top')); ?></li>
 						<li><?php echo $this->Html->link('logout', array('controller'=>'users','action'=>'logout')); ?></li>
 					</ul>
 				</div><!--/.nav-collapse -->
