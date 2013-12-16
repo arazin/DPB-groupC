@@ -55,8 +55,8 @@ class Certificate extends AppModel {
 		),
 		'issue_num' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'rule' => array('range',0,15),
+				'message' => '15–‡ˆÈ‰º‚Ì”ÍˆÍ‚ÌŽ©‘R”‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

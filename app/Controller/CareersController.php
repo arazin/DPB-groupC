@@ -26,7 +26,7 @@ class CareersController extends AppController {
             $this->Career->create();
             if ($this->Career->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => '/Users/index'));
+                $this->redirect(array('action' => '/'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
