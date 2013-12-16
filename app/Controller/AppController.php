@@ -38,9 +38,9 @@ class AppController extends Controller {
     'Session',
     'Auth'=>array(
 			'loginAction' => array('controller' => 'users', 'action' => 'login'),
-      'loginRedirect'=>array('controller'=>'events','action'=>'index'),
+      'loginRedirect'=>array('controller'=>'users','action'=>'top'),
       /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
-      'logoutRedirect'=>array('controller'=>'events','action'=>'index'),
+      'logoutRedirect'=>array('controller'=>'users','action'=>'top'),
 //      'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
     )
   );
