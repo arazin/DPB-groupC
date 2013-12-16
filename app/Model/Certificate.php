@@ -80,5 +80,13 @@ class Certificate extends AppModel {
 			'fields' => '',
 			'order' => ''
 		)
+/*		'Graduate' => array(
+			'className' => 'Graduate',
+			'foreignKey' => 'graduate_date',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)*/
+
 	);
 }
