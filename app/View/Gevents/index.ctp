@@ -60,4 +60,3 @@ array('controller' => 'gevents', 'action' => 'view', $oldgevent['Gevent']['id'])
 <?php endforeach; ?>
 </table>
 <?php endif; ?>
-
