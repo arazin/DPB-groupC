@@ -17,35 +17,31 @@ class GeventsController extends AppController {
     $graduates = $this->Graduate->find('all');
     $newgevents = NULL;
     $oldgevents = NULL;
-    $count = 0;
-    $oldcount = 0;
+
 
 		$user_id = $this->Auth->user('id');
     //$user_id = 4; //実験用
 		$login_graduate = $this -> Graduate-> findByUser_id($user_id);
 
 
-    if($login_graduate != NULL){
-        foreach($gevents as $gevent){
-          if($gevent['Gevent']['created'] > $login_graduate['Graduate']['lasteventview']){
-            $newgevents[] = $gevent;
-            $count++;
-          }
-          
-          if($gevent['Gevent']['created'] <= $login_graduate['Graduate']['lasteventview']){
-            $oldgevents[] = $gevent;
-            $oldcount++;
-          }
-          
-       }           
-    }
+
+
+  $newgevents = $this -> Gevent -> find('all',array(
+ 'fields'=>array('id', 'title','gevent_date','place', 'detail', 'created', 'modified'),
+ 'conditions'=>array('created >' => $login_graduate['Graduate']['lasteventview']),
+ ));
+
+  $oldgevents = $this -> Gevent -> find('all',array(
+  'fields'=>array('id','title','gevent_date','place', 'detail', 'created', 'modified'),
+  'conditions'=>array('created <=' => $login_graduate['Graduate']['lasteventview']),
+ ));
+
+
 
 
   /*  $this -> set('gevents', $this->Gevent->find('all'));*/
     $this -> set('newgevents', $newgevents);
     $this -> set('oldgevents', $oldgevents);
-    $this -> set('count', $count);
-    $this -> set('oldcount', $oldcount);
 
   }
 

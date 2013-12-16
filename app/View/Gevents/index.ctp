@@ -12,23 +12,22 @@
  				<th>更新日</th>
     </tr>
     
-       
-        <?php for($i = 0; $i < $count; $i++): ?>
+       <?php foreach ($newgevents as $newgevent): ?>
+        
     <tr>
         <td>
 
-            <?php echo $this->Html->link($newgevents[$i]['Gevent']['title'],
-array('controller' => 'gevents', 'action' => 'view', $newgevents[$i]['Gevent']['id'])); ?>
+            <?php echo $this->Html->link($newgevent['Gevent']['title'],
+array('controller' => 'gevents', 'action' => 'view', $newgevent['Gevent']['id'])); ?>
         </td>
-        <td><?php echo $newgevents[$i]['Gevent']['gevent_date']; ?></td>
-        <td><?php echo $newgevents[$i]['Gevent']['place']; ?></td>
-        <td><?php echo $newgevents[$i]['Gevent']['detail']; ?></td>
-        <td><?php echo $newgevents[$i]['Gevent']['created']; ?></td>
-        <td><?php echo $newgevents[$i]['Gevent']['modified']; ?></td>
+        <td><?php echo $newgevent['Gevent']['gevent_date']; ?></td>
+        <td><?php echo $newgevent['Gevent']['place']; ?></td>
+        <td><?php echo $newgevent['Gevent']['detail']; ?></td>
+        <td><?php echo $newgevent['Gevent']['created']; ?></td>
+        <td><?php echo $newgevent['Gevent']['modified']; ?></td>
     </tr>
-
+<?php endforeach; ?>
 </table>
-<?php endfor ?>
 <?php endif; ?>
 
 
@@ -44,22 +43,21 @@ array('controller' => 'gevents', 'action' => 'view', $newgevents[$i]['Gevent']['
  				<th>作成日</th>
  				<th>更新日</th>
     </tr>
-
+    <?php foreach ($oldgevents as $oldgevent): ?>
 
     <tr>
         <td>
-        <?php for($j = 0; $j < $oldcount; $j++): ?>
-            <?php echo $this->Html->link($oldgevents[$j]['Gevent']['title'],
-array('controller' => 'gevents', 'action' => 'view', $oldgevents[$j]['Gevent']['id'])); ?>
+        
+            <?php echo $this->Html->link($oldgevent['Gevent']['title'],
+array('controller' => 'gevents', 'action' => 'view', $oldgevent['Gevent']['id'])); ?>
         </td>
-        <td><?php echo $oldgevents[$j]['Gevent']['gevent_date']; ?></td>
-        <td><?php echo $oldgevents[$j]['Gevent']['place']; ?></td>
-        <td><?php echo $oldgevents[$j]['Gevent']['detail']; ?></td>
-        <td><?php echo $oldgevents[$j]['Gevent']['created']; ?></td>
-        <td><?php echo $oldgevents[$j]['Gevent']['modified']; ?></td>
+        <td><?php echo $oldgevent['Gevent']['gevent_date']; ?></td>
+        <td><?php echo $oldgevent['Gevent']['place']; ?></td>
+        <td><?php echo $oldgevent['Gevent']['detail']; ?></td>
+        <td><?php echo $oldgevent['Gevent']['created']; ?></td>
+        <td><?php echo $oldgevent['Gevent']['modified']; ?></td>
     </tr>
-
+<?php endforeach; ?>
 </table>
-<?php endfor ?>
 <?php endif; ?>
 
