@@ -46,7 +46,7 @@
 						<li><?php echo $this->Html->link('Event', array('action' => 'link')); ?></li>
 						<li><?php echo $this->Html->link('Issue', array('action' => 'link')); ?></li>
 						<li><?php echo $this->Html->link('Other', array('action' => 'link')); ?></li>
-						<li><?php echo $this->Html->link('LogOut', array('action' => 'link')); ?></li>
+						<li><?php echo $this->Html->link('logout', array('controller'=>'users','action'=>'logout')); ?></li>
 					</ul>
 				</div><!--/.nav-collapse -->
       </div>
