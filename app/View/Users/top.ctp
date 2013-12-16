@@ -36,18 +36,45 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-						<?php echo $this->Html->image('kousya.jpg-large',array('width'=>'555')); ?>
+						<h1>ここに</h1>
+						<h1>なにか</h1>
+						<h1>欲しい</h1>
+						<h1>かな</h1>
           </div>
         </div><!--/span-->
+				
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-						<?php echo $this->Html->link('TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
-            <?php echo $this->Html->link('情報', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('イベント', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('修了証発行', array('action' => 'link'),array('class' => 'list-group-item')); ?>
-            <?php echo $this->Html->link('Link1', array('action' => 'link'),array('class' => 'list-group-item')); ?>
+						<?php echo $this->Html->link('大学TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+            <?php echo $this->Html->link('ユーザー一覧', '/users/',array('class' => 'list-group-item')); ?>
+            <?php echo $this->Html->link('イベント', '/events/',array('class' => 'list-group-item')); ?>
+            <?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
+            <?php echo $this->Html->link('学生新規登録','/students/add/',array('class' => 'list-group-item')); ?>
           </div>
         </div><!--/span-->
+				
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+						<?php echo $this->Html->link('参加者TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+          </div>
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+						<?php echo $this->Html->link('学生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+            <?php echo $this->Html->link('学生情報編集', '/students/editone',array('class' => 'list-group-item')); ?>
+          </div>
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+						<?php echo $this->Html->link('修了生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+          </div>
+        </div><!--/span-->
+
+
+
+				
       </div><!--/row-->
 
       <hr>
