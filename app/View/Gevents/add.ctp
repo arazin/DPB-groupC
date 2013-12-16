@@ -13,3 +13,4 @@ echo $this->Form->input('place',array('label'=>'場所'));
 echo $this->Form->input('detail',array('label'=>'詳細'));
 echo $this->Form->end('保存');
 ?>
+
