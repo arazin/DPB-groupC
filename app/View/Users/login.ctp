@@ -13,7 +13,7 @@
 
     <!-- Custom styles for this template -->
 		<?php echo $this->Html->css('starter-template'); ?> 
-
+		<?php echo $this->Html->css('bootstrap.min'); ?> 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -29,7 +29,6 @@
       <div class="starter-template">
         <h1>Login Form</h1>
         <p class="lead">
-					<div class="users form">
 						<?php echo $this->Session->flash('auth'); ?>
 						<?php echo $this->Form->create('User',array(
 							'inputDefaults' => array(
@@ -39,7 +38,6 @@
 							),
 							'class' => 'well',
 						)); ?>
-						<?php echo $this->Html->css('bootstrap.min'); ?> 
 					  <fieldset>
 					    <legend><?php echo __('Please enter your username and password'); ?></legend>
 					    <?php echo $this->Form->input('username');
@@ -47,7 +45,8 @@
 					    ?>
 					  </fieldset>
 						<?php echo $this->Form->end(__('Login')); ?>
-					</div>
+						<?php echo $this->Html->link('一般新規登録','/participants/preadd/') ?>
+						<?php echo $this->Html->link('修了生新規登録','/graduates/preadd/') ?>
 				</p>
       </div>
     </div><!-- /.container -->

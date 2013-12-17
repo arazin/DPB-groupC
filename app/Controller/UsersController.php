@@ -7,7 +7,7 @@ class UsersController extends AppController {
 		/* $this->Auth->allow('add'); // ユーザーに自身で登録させる */
 	}
 
-	public $components = array('Security','Paginator');
+	public $components = array('Security');
 	//Component:paginatorのoption
 	public $paginate;
 

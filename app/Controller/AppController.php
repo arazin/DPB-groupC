@@ -32,7 +32,13 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $helpers =array('Form','Html','Js','Time');
+	public $helpers =array(
+		'Session',
+		'Form'=>array('className'=>'BoostCake.BoostCakeForm'),
+		'Html'=>array('className'=>'BoostCake.BoostCakeHtml'),
+		'Paginator'=>array('className'=>'BoostCake.BoostCakePaginator'),
+		'Js','Time');
+	
 	public $components=array(
 		'Acl',
     'Session',
