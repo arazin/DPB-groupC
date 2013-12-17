@@ -67,7 +67,7 @@ class ParticipantsController extends AppController{
 					$this->Participant->create();				
 					if($this->Participant->save($this->request->data)){
 						$this->Session->setFlash(__('保存されました'));
-						return $this->redirect(array('action'=>'index'));
+						return $this->redirect('/users/login');
 					}
 				}
 			}

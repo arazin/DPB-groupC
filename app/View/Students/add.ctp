@@ -11,6 +11,7 @@ echo $this->Form->create('Student',array(
 ));
 echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
 echo $this->Form->input('User.password',array('label'=>'パスワード'));
+echo $this->Form->input('User.password2',array('type'=>'password','label'=>'パスワード再入力'));
 echo $this->Form->input('User.name',array('label'=>'お名前'));
 echo $this->Form->input('User.nationarity',array('label'=>'国籍'));
 echo $this->Form->input('User.postcord',array('label'=>'郵便番号'));
