@@ -36,6 +36,7 @@ class AppController extends Controller {
 		'Session',
 		'Form'=>array('className'=>'BoostCake.BoostCakeForm'),
 		'Html'=>array('className'=>'BoostCake.BoostCakeHtml'),
+
 		'Paginator'=>array('className'=>'BoostCake.BoostCakePaginator'),
 		'Js','Time');
 	
