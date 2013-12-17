@@ -6,7 +6,12 @@ class ParticipantsController extends AppController{
 	 * Security:悪質なリクエストを防ぐ Paginator:便利な一覧表示
 	 */
 	public $components = array('Security','Paginator');
-	
+
+	public function beforeFilter() {
+    parent::beforeFilter();
+		 $this->Auth->allow('preadd'); // ユーザーに自身で登録させる 
+	}
+
 	
 	/*
 	 * アクター:誰でも 未認証として登録

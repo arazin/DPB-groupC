@@ -72,6 +72,8 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 CakePlugin::load('Acl', array('bootstrap' => true));
+CakePlugin::load('BoostCake');
+//CakePlugin::loadAll();
 
 
 
