@@ -131,14 +131,15 @@ class StudentsController extends AppController{
 			$this->Student->User->save($sdata);
 			return $this->redirect(array('controller'=>'users','action'=>'logout'));
 		}
-
 	}
+
+
 	
-	public function add(){
 		/*
 		 * アクター:大学 ユースケース: 学生を登録する
 		 * findで検索し、viewでselectの選択肢とする
 		 */
+	public function add(){
 		//業種
 		$findoption = array(
 			'conditions'=> array('industry_name' => '学生'),
@@ -199,7 +200,7 @@ class StudentsController extends AppController{
 					$this->Student->create();				
 					if($this->Student->save($this->request->data)){
 						$this->Session->setFlash(__('保存されました'));
-						return $this->redirect(array('action'=>'index'));
+						return $this->redirect('/Students/add');
 					}
 				}
 			}
