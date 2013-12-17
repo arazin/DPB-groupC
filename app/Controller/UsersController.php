@@ -13,7 +13,7 @@ class UsersController extends AppController {
 	}
 
 	
-	public $components = array('Security');
+	public $components = array('Security','Paginator');
 	//Component:paginatorのoption
 	public $paginate;
 
