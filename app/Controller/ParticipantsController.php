@@ -66,7 +66,7 @@ class ParticipantsController extends AppController{
 					$this->request->data['Participant']['user_id']=$this->Participant->User->id;
 					$this->Participant->create();				
 					if($this->Participant->save($this->request->data)){
-						$this->Session->setFlash(__('保存されました'));
+						$this->Session->setFlash(__('保存されました。認証されるまでお待ちください。'));
 						return $this->redirect('/users/login');
 					}
 				}
