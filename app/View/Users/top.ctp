@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -48,8 +48,7 @@
 						<?php if($acllist[$groupId]=='administrators'): ?>
 							<?php echo $this->Html->link('大学TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
 							<?php echo $this->Html->link('ユーザー一覧', '/users/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('イベント一覧', '/events/events',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('new! イベント一覧', '/events/events',array('class' => 'list-group-item-new')); ?>
+							<?php echo $this->Html->link('イベント', '/events/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('学生新規登録','/students/add/',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
@@ -61,7 +60,6 @@
 						<?php if($acllist[$groupId]=='students'): ?>
 							<?php echo $this->Html->link('学生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
 							<?php echo $this->Html->link('学生情報編集', '/students/editone',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('イベント情報', '/events/events',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
 
 						<?php if($acllist[$groupId]=='graduates'): ?>
