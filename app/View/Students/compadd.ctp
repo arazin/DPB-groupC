@@ -7,7 +7,7 @@ echo $this->Form->input('Graduate.garaduation_date',array(
 	'monthNames'=>false,
 	'label'=>'修了日',
 ));
-$msg=__('大学が確認するまでログインできなくなります。\nよろしいですか？\nadminでやらないで！');
+$msg=__('大学が確認するまでログインできなくなります。\nよろしいですか？\n');
 echo $this->Form->submit('修了申請',array('onClick'=>"return confirm('$msg')"));
 echo $this->Form->end();
 

@@ -43,6 +43,14 @@ class User extends AppModel {
     }
   }
 
+	/*
+	 * 同値チェック
+	 */
+	public function sameCheck($check,$field){
+		$str1 = array_shift($check);
+		$str2 = $this->data[$this->name][$field];
+		return $str1 == $str2;
+	}
 
 	/**
 	 * Validation rules
@@ -61,7 +69,6 @@ class User extends AppModel {
 			),
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
-				'required' => true,
 				'message' => 'error:alphaNumeric',
 			),
 			'between' => array(
@@ -71,16 +78,37 @@ class User extends AppModel {
 			'isUnique' => array(
 				'rule' => array('isUnique'),
 				'message' => 'error:isUnique',
+				'on' => 'create', // Limit validation to 'create' or 'update' operations
+
 			),
 		),
+		
+		'new_username' => array(
+			'alphaNumeric' => array(
+				'rule' => array('alphaNumeric'),
+				'message' => 'error:alphaNumeric',
+				'allowEmpty' => true,
+				'required' => false,
+			),
+			'between' => array(
+				'rule' => array('between',5,15),
+				'message' => 'error:between',
+			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'error:isUnique',
+				'on' => 'create',
+			),
+		),
+
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Your custom message here',
+				'message' => 'error:notempty',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'minLength' => array(
 				'rule' => array('minLength',8),
@@ -91,6 +119,27 @@ class User extends AppModel {
 				'message' => 'error:maxlength',
 			),
 		),
+		
+		'password2' => array(
+			'sameCheck' => array(
+				'rule' => array('sameCheck','password'),
+				'message' => 'パスワードが一致しません'
+			),
+		),
+		
+		'new_password' => array(
+			'minLength' => array(
+				'rule' => array('minLength',8),
+				'message' => 'error:minlength',
+				'allowEmpty' => true,
+				'required' => false,
+			),
+			'maxLength' => array(
+				'rule' => array('maxLength',50),
+				'message' => 'error:maxlength',
+			),
+		),
+
 		
 		'group_id' => array(
 			'numeric' => array(

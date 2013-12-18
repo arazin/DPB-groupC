@@ -51,8 +51,11 @@
 							<?php echo $this->Html->link('イベント', '/events/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('学生新規登録','/students/add/',array('class' => 'list-group-item')); ?>
+<<<<<<< HEAD
 							<?php echo $this->Html->link('進路変更情報','/careers/add/',array('class' => 'list-group-item')); ?>
 
+=======
+>>>>>>> origin/master
 						<?php endif; ?>
 						
 						<?php if($acllist[$groupId]=='generals'): ?>
