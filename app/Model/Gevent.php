@@ -1,4 +1,4 @@
-
+﻿
 <?php
 App::uses('AppModel', 'Model');
 /**
@@ -13,6 +13,23 @@ class Gevent extends AppModel {
 	 * @var array
 	 */
 	public $validate = array(
+
+		'title' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Your custom message here',
+				),
+			'maxlength' => array(
+				'rule' => array('maxLength', '50'),
+				'message' => 'タイトルは50文字以内にしてください。'
+				),
+			
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		),
+
 		'gevent_date' => array(
 			'date' => array(
 				'rule' => array('date'),
@@ -23,15 +40,36 @@ class Gevent extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+
 		'place' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Your custom message here',
+				),
+			'maxlength' => array(
+				'rule' => array('maxLength', '50'),
+				'message' => '場所は50文字以内にしてください。'
+				),
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			
+		),
+		'detail' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Your custom message here',
+				),
+			'maxlength' => array(
+				'rule' => array('maxLength', '500'),
+				'message' => '詳細は500文字以内にしてください。'
+				),
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			
 		),
 		'created' => array(
 			'date' => array(
