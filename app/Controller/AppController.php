@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Application level Controller
  *
@@ -32,16 +32,23 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $helpers =array('Form','Html','Js','Time');
+	public $helpers =array(
+		'Session',
+		'Form'=>array('className'=>'BoostCake.BoostCakeForm'),
+		'Html'=>array('className'=>'BoostCake.BoostCakeHtml'),
+
+		'Paginator'=>array('className'=>'BoostCake.BoostCakePaginator'),
+		'Js','Time');
+	
 	public $components=array(
 		'Acl',
     'Session',
     'Auth'=>array(
 			'loginAction' => array('controller' => 'users', 'action' => 'login'),
-      'loginRedirect'=>array('controller'=>'events','action'=>'index'),
+      'loginRedirect'=>array('controller'=>'users','action'=>'top'),
       /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
-      'logoutRedirect'=>array('controller'=>'events','action'=>'index'),
-//      'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
+      'logoutRedirect'=>array('controller'=>'users','action'=>'top'),
+      //'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
     )
   );
 
@@ -58,6 +65,7 @@ class AppController extends Controller {
 
 	
   public function beforeFilter(){
-//		$this->Auth->allow(/*"index","view","add"*/);
+		//$this->Auth->allow(/*"index","view","add"*/);
+		//$this->Auth->allow('add');
   }
 }
