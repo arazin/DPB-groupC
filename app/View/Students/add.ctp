@@ -1,14 +1,17 @@
+﻿<div class="container"> 
+<div class="row">  
+<div class="col-md-10 col-md-offset-1">
 
-<h1>Add student</h1>
+<h1>新規登録</h1>
 <?php
 echo $this->Form->create('Student',array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
-		'wrapInput' => false,
 		'class' => 'form-control',
 	),
 	'class' => 'well',
 ));
+
 echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
 echo $this->Form->input('User.password',array('label'=>'パスワード'));
 echo $this->Form->input('User.password2',array('type'=>'password','label'=>'パスワード再入力'));
@@ -40,7 +43,7 @@ echo $this->Form->input('User.sex',array(
 ));
 echo $this->Form->input('Student.grade',array(
 	'empty' => '--学年を選んで下さい--',
-	'label' => '学年'
+	'label' => '学年',
 ));
 echo $this->Form->input('Student.faculty_id',array(
 	'label'=>'学部',
@@ -81,9 +84,16 @@ echo $this->Form->input('Student.entrance_date',array(
 	'label'=>'入学年',
 ));
 
+echo $this->Form->submit('確 認', array(
+	'div' => 'form-group',
+	'class' => 'btn btn-default'
+));
 
-
-echo $this->Form->end('Add');
-
+echo $this->Form->end();
 
 ?>
+
+</div>
+</div>
+</div>
+
