@@ -59,6 +59,8 @@
 						
 						<?php if($acllist[$groupId]=='students'): ?>
 							<?php echo $this->Html->link('学生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+
+							<?php echo $this->Html->link('学生情報参照', '/students/index',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('学生情報編集', '/students/editone',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
 
