@@ -8,15 +8,17 @@ class StudentsController extends AppController{
   //public $components = array('Security');//悪質なポストを防ぐ
 	public $scaffold;
 
-	/* 学生本人の情報を参照 */
+	/*
+	 * アクター:学生 学生本人の情報を参照
+	 */
 	public function index(){
 		$id=$this->Auth->user('id');
-		$findoption = array(
-			'conditions' => array('id' => $id),
-			);
 		$this->set('data',$this->Student->User->findById($id));
 	}
-	
+
+	/*
+   * アクター:学生 学生本人の情報を編集
+	 */
 	public function editone(){
 		$id=$this->Auth->user('id');
 

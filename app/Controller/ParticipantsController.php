@@ -12,6 +12,13 @@ class ParticipantsController extends AppController{
 		 $this->Auth->allow('preadd'); // ユーザーに自身で登録させる 
 	}
 
+	/*
+	 * アクター:参加者 自身の情報を参照
+   */
+	public function index(){
+		$id=$this->Auth->user('id');
+		$this->set('data',$this->Participant->User->findById($id));
+	}
 	
 	/*
 	 * アクター:誰でも 未認証として登録
