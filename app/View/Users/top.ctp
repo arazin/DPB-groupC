@@ -67,6 +67,8 @@
 
 						<?php if($acllist[$groupId]=='graduates'): ?>
 							<?php echo $this->Html->link('修了生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+							<?php echo $this->Html->link('修了生情報参照', '/graduates/index',array('class' => 'list-group-item')); ?>
+
 						<?php endif; ?>
           </div>
         </div><!--/span-->

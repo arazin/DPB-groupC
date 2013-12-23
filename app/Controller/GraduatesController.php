@@ -6,6 +6,18 @@ class GraduatesController extends AppController{
 		$this->Auth->allow('preadd'); // ユーザーに自身で登録させる 
 	}
 
+
+	/*
+	 * アクター:修了生 本人の情報を参照
+	 */
+	public function index(){
+		$id=$this->Auth->user('id');
+		$this->set('data',$this->Graduate->User->findById($id));
+	}
+
+	/*
+	 * アクター:誰でも 修了生の情報を登録 未認証
+	 */
 	public function preadd(){
 				//業種
 		$findoption = array(
