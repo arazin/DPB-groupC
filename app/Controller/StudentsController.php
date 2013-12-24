@@ -26,12 +26,15 @@ class StudentsController extends AppController{
 		$this->Student->id=$id;
 		$this->Student->User->id=$id;
 
+		/* ユーザーのデータ取出し */
 		$editdata= $this->Student->User->findById($id);
 
 		//例外処理
 		if (!$editdata) {
       throw new NotFoundException(__('Invalid user'));
     }
+
+		/* selectフォームに値をセット */
 		$findoption = array(
 			'conditions'=> array('industry_name' => '学生'),
 			'fields' => array('id','industry_name'),//取り出す属性
@@ -64,8 +67,9 @@ class StudentsController extends AppController{
 		$this->set('sexes',array(0=>'男',1=>'女'));//viewでselectフォームにする
 		//学年
 		$this->set('grades',array(1,2,3,4,5));//viewでselectフォームにする
-		$flag=false;
+
 		//更新ロジック
+		$flag=false;
 		if($this->request->is('put')){
 			pr('0\n');
 			//データ送信時
@@ -74,6 +78,8 @@ class StudentsController extends AppController{
 				pr('1\n');
 				if($this->Student->save($this->request->data,array('validate'=>'only'))){
 					pr('2\n');
+					
+					/* ログイン情報に変更あり */
 					if(!empty($this->request->data['User']['new_username'])){
 						$this->request->data['User']['username']=$this->request->data['User']['new_username'];
 						$flag=true;
