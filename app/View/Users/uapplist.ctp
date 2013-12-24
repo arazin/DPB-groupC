@@ -1,6 +1,7 @@
 <h1>参加者リスト(未認証)</h1>
 <?php pr($data);?>
 <table>
+	<?php echo $this->Paginator->pager(); ?>
 <?php 
 echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
 echo $this->Paginator->numbers(array('separator' => ''));

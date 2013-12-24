@@ -4,10 +4,16 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
     parent::beforeFilter();
-		/* $this->Auth->allow('add'); // ユーザーに自身で登録させる */
+		 $this->Auth->allow('login','logout'); 
+	}
+	public function isAuthorized($user) {
+    if ($this->action === 'login'||$this->action ==='logout') {
+      return true;
+    }
 	}
 
-	public $components = array('Security');
+	
+	public $components = array('Security','Paginator');
 	//Component:paginatorのoption
 	public $paginate;
 

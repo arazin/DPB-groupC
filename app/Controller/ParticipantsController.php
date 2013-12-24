@@ -12,6 +12,13 @@ class ParticipantsController extends AppController{
 		 $this->Auth->allow('preadd'); // ユーザーに自身で登録させる 
 	}
 
+	/*
+	 * アクター:参加者 自身の情報を参照
+   */
+	public function index(){
+		$id=$this->Auth->user('id');
+		$this->set('data',$this->Participant->User->findById($id));
+	}
 	
 	/*
 	 * アクター:誰でも 未認証として登録
@@ -66,7 +73,7 @@ class ParticipantsController extends AppController{
 					$this->request->data['Participant']['user_id']=$this->Participant->User->id;
 					$this->Participant->create();				
 					if($this->Participant->save($this->request->data)){
-						$this->Session->setFlash(__('保存されました'));
+						$this->Session->setFlash(__('保存されました。認証されるまでお待ちください。'));
 						return $this->redirect('/users/login');
 					}
 				}

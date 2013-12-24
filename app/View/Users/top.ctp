@@ -55,15 +55,20 @@
 						
 						<?php if($acllist[$groupId]=='generals'): ?>
 							<?php echo $this->Html->link('参加者TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+							<?php echo $this->Html->link('参加者情報参照', '/participants/index',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
 						
 						<?php if($acllist[$groupId]=='students'): ?>
 							<?php echo $this->Html->link('学生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+
+							<?php echo $this->Html->link('学生情報参照', '/students/index',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('学生情報編集', '/students/editone',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
 
 						<?php if($acllist[$groupId]=='graduates'): ?>
 							<?php echo $this->Html->link('修了生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
+							<?php echo $this->Html->link('修了生情報参照', '/graduates/index',array('class' => 'list-group-item')); ?>
+
 						<?php endif; ?>
           </div>
         </div><!--/span-->
