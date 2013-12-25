@@ -13,7 +13,18 @@ class StudentsController extends AppController{
 	 */
 	public function index(){
 		$id=$this->Auth->user('id');
-		$this->set('data',$this->Student->User->findById($id));
+		$findoption1 = array(
+			'conditions' => array('User.id' => $id),
+			'contain' => array('Industry'),
+		);
+		$findoption2 = array(
+			'conditions' => array('Student.user_id' => $id),
+			'contain' => array('Faculty','Department','Labo',),
+		);
+			
+		$this->set('userdata',$this->Student->User->find('first',$findoption1));
+		$this->set('studentdata',$this->Student->find('first',$findoption2));
+
 	}
 
 	/*
