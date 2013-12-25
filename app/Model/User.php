@@ -12,6 +12,13 @@ App::uses('AppModel', 'Model');
  */
 class User extends AppModel {
 	public $name = 'User';
+	public $actsAs = array(
+		'Search.Searchable',
+		'Acl' => array('type' => 'requester'),
+	);
+	public $filterArgs = array(
+		'User.name' => array('type' => 'like','field' => 'User.name','name' => 'name'),
+	);
 
 	/*
 	 * Hash化
@@ -26,7 +33,6 @@ class User extends AppModel {
 	/*
 	 * ACL
 	 */
-  public $actsAs = array('Acl' => array('type' => 'requester'));
   public function parentNode() {
     if (!$this->id && empty($this->data)) {
       return null;

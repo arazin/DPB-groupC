@@ -1,4 +1,22 @@
-﻿<h2>ユーザー情報一覧</h2>
+﻿<h2>ユーザー情報検索</h2>
+
+<legend>検索</legend>
+<?php echo $this->Form->create('User',array(
+	'inputDefaults' => array(
+		'div' => 'form-group',
+		'wrapInput' => false,
+		'class' => 'form-control',
+	),
+	'class' => 'well',
+));?>
+
+<?php echo $this->Form->input('User.name',array(
+	'label' => '名前',
+));?>
+
+<?php echo $this->Form->end('検索'); ?>
+
+
 <table>
 <tr>
 	<th>ID</th>

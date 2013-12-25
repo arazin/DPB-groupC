@@ -72,7 +72,8 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 CakePlugin::load('Acl', array('bootstrap' => true));
-CakePlugin::load('BoostCake','Search');
+CakePlugin::load('BoostCake');
+CakePlugin::load('Search');
 
 
 //CakePlugin::loadAll();

@@ -13,14 +13,26 @@ class UsersController extends AppController {
 	}
 
 	
-	public $components = array('Security','Paginator');
+	public $components = array('Security','Paginator','Search.Prg');
 	//Component:paginatorのoption
 	public $paginate;
+	//Searchの変数
+	public $presetVars = true;
 
+	public function index(){
+		$this->Prg->commonProcess();
+		pr($this->passedArgs);
+		pr($this->User->parseCriteria($this->passedArgs));
 
-	//	public function index(){
-	//		$this->set('users',$this->User->find('all'));
-	//	}
+		$this->paginate = array(
+			//'conditions' => $this->passedArgs,
+			'conditions' => $this->User->parseCriteria($this->passedArgs),
+			'recursive' => 0,
+		);
+		$this->Paginator->settings = $this->paginate;
+		$this->set('users',$this->Paginator->paginate());
+	}
+	
 	public function login() {
 		if($this->Session->read('Auth.User')){
 			$this->Session->setFlash('あなたは既にログイン済です');
