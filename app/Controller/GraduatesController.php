@@ -14,6 +14,74 @@ class GraduatesController extends AppController{
 		$id=$this->Auth->user('id');
 		$this->set('data',$this->Graduate->User->findById($id));
 	}
+	
+	/*
+	 * アクター:修了生 本人の情報を編集
+   */
+	public function editone(){
+		$id=$this->Auth->user('id');
+
+		//最初に更新であることを宣言
+		$this->Graduate->id=$id;
+		$this->Graduate->User->id=$id;
+
+		/* ユーザーのデータ取出し */
+		$editdata = $this->Graduate->User->findById($id);
+
+		//例外処理
+		if (!$editdata) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+
+		/* selectフォームに値をセット */
+		//業種
+		$findoption = array(
+			'fields' => array('id','industry_name'),//取り出す属性
+			'recursive' => 0,//関連テーブルからは検索しない
+		);
+		$this->set('industries',$this->Graduate->User->Industry->find('list',$findoption));
+
+		//性別
+		$this->set('sexes',array(0=>'男',1=>'女'));//viewでselectフォームにする
+		
+		$flag=false;
+		/* データ送信時 */
+		if($this->request->is('put')){
+			if($this->Graduate->User->save($this->request->data,array('validate'=>'only'))){
+				if($this->Graduate->save($this->request->data,array('validate'=>'only'))){
+					/* ログイン情報に変更あり */
+					if(!empty($this->request->data['User']['new_username'])){
+						$this->request->data['User']['username']=$this->request->data['User']['new_username'];
+						$flag=true;
+					}
+					if(!empty($this->request->data['User']['new_password'])){
+						$this->request->data['User']['password']=$this->request->data['User']['new_password'];
+						$flag=true;
+					}
+
+					/* 保存 */
+					if($this->Graduate->User->save($this->request->data)){
+						if($this->Graduate->save($this->request->data)){
+							if($flag){
+								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'));
+								$this->redirect('/users/logout');
+							} else {
+								$this->Session->setFlash(__('情報が更新されました。'));
+								$this->redirect('/');
+							}
+						}
+					}
+					$this->Session->setFlash(__('更新されませんでした'));
+				}
+			}
+		}else{
+			//通常アクセス フォームにdataをセット
+			$this->request->data=$editdata;
+			pr($editdata);
+			unset($this->request->data['User']['password']);			
+		}
+	}
+	
 
 	/*
 	 * アクター:誰でも 修了生の情報を登録 未認証

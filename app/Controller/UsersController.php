@@ -66,8 +66,6 @@ class UsersController extends AppController {
 		);
 		$this->Paginator->settings = $this->paginate;
 		$this->set('data',$this->Paginator->paginate());
-		
-
 	}
 
 	
@@ -95,6 +93,56 @@ class UsersController extends AppController {
 		if($this->User->save($this->request->data)){
 			$this->Session->setFlash(__('参加者が認証されました'));
 			$this->redirect(array('action'=>'uapplist'));
+		}
+	}
+
+	/*
+	 * アクター:大学 未認証の修了生一覧
+	 */
+	public function gapplist(){
+		//unapproveグループの検索
+		$findoption = array(
+			'conditions' => array('Group.name'=>'pregraduates'),
+			'fields' => array('id'),
+			'recursive' => '-1',
+		);
+		$tmp=$this->User->Group->find('first',$findoption);
+		//paginatorの検索オプション
+		$this->paginate=array(
+		'conditions' => array('User.group_id'=>$tmp['Group']['id']),
+		'limit' => 25,
+		'order' => array('User.created'=>'asc'),
+		'recursive' => '-1',
+		);
+		$this->Paginator->settings = $this->paginate;
+		$this->set('data',$this->Paginator->paginate());
+	}
+
+	/*
+	 * アクター:大学 未認証の参加者を認証
+	 */
+	public function gapprove($id=NULL){
+		$this->request->onlyAllow('post');
+		
+    $this->User->id = $id;
+    if (!$this->User->exists()) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+		
+		/*
+		 * 修了生のグループidをセット
+		 */
+		$findoption = array(
+			'conditions' => array('Group.name'=>'graduates'),
+			'fields' => array('id'),
+			'recursive' => '-1',
+		);
+		$tmp=$this->User->Group->find('first',$findoption);
+		pr($tmp);
+		$this->request->data['User']['group_id']=$tmp['Group']['id'];
+		if($this->User->save($this->request->data)){
+			$this->Session->setFlash(__('修了生が認証されました'));
+			$this->redirect(array('action'=>'gapplist'));
 		}
 	}
 
