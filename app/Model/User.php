@@ -31,14 +31,27 @@ class User extends AppModel {
 			'name' => 'group_id',
 			'empty' => true,
 		),
+		'User.nationarity' => array(
+			'type' => 'like',
+			'field' => 'User.nationarity',
+			'name' => 'nationarity',
+			'empty' => true,
+		),
 		'User.prefecture' => array(
 			'type' => 'like',
 			'field' => 'User.prefecture',
 			'name' => 'prefecture',
 			'empty' => true,
 		),
+		'User.remain' => array(
+			'type' => 'like',
+			'field' => 'User.remain',
+			'name' => 'remain',
+			'empty' => true,
+		),
+
 		'User.birthday' => array(
-			'type' => 'value',
+			'type' => 'between',
 			'field' => 'User.birthday',
 			'name' => 'birthday',
 			'empty' => true,

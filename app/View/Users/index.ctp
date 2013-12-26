@@ -23,20 +23,22 @@
 	'label' => '名前',
 	'required' => false,
 ));?>
+
+<?php echo $this->Form->input('User.nationarity',array(
+	'label' => '国籍',
+	'required' => false,
+));?>
+
 <?php echo $this->Form->input('User.prefecture',array(
 	'label' => '都道府県',
 	'required' => false,
 ));?>
 
-<?php echo $this->Form->input('User.birthday',array(
-	'label' => '誕生日',
+<?php echo $this->Form->input('User.remain',array(
+	'label' => '市区町村',
 	'required' => false,
-	'dateFormat'=>'YMD',
-	'minYear'=>date('Y')-100,
-	'maxYear'=>date('Y')-1,
-	'monthNames'=>false,
-
 ));?>
+
 
 
 <?php echo $this->Form->end('検索'); ?>
