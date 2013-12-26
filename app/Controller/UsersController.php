@@ -27,7 +27,6 @@ class UsersController extends AppController {
 	 * アクター:大学 ユーザー検索
 	 */
 	public function index(){
-		pr($this->request->data);
 		/* チェックbox用 */
 		/* 検索するgroup名 */
 		$searchlist = array('generals','students','graduates');
@@ -51,10 +50,6 @@ class UsersController extends AppController {
 			$groups[$key]=$wordlist[$datas];
 		}
 		$this->set('groups',$groups);
-
-		/* if (!empty($this->request->data['User']['group_id']) and array_diff(array_keys($groups), $this->request->data['User']['group_id']) == false) {
-    unset($this->request->data['User']['group_id']);
-    } */
 
 		/* Searchプラグインのリダイレクト？？ */
 		$this->Prg->commonProcess();
@@ -82,6 +77,10 @@ class UsersController extends AppController {
 		}
 		$this->Paginator->settings = $this->paginate;
 		$this->set('users',$this->Paginator->paginate());
+
+		/* 検索の内容をフォームに残す */
+		$data=array('User'=>$this->passedArgs);
+		$this->request->data=$data;
 	}
 
 	

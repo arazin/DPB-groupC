@@ -7,7 +7,7 @@
 		'wrapInput' => false,
 		'class' => 'form-control',
 	),
-	'url' => '/users/index',
+	'url' => '/users/',
 	'class' => 'well',
 ));?>
 
