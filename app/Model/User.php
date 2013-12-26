@@ -16,8 +16,24 @@ class User extends AppModel {
 		'Search.Searchable',
 		'Acl' => array('type' => 'requester'),
 	);
+
+	/* 検索条件 */
 	public $filterArgs = array(
-		'User.name' => array('type' => 'like','field' => 'User.name','name' => 'name'),
+		'User.name' => array(
+			'type' => 'like',
+			'field' => 'User.name',
+			'name' => 'name',
+		),
+		/* 'User.group_id' => array(
+		'type' => 'subquery',
+		'method' => 'findByGroups',
+		'field' => 'User.group_id',
+		) */
+		'User.group_id' => array(
+			'type' => 'value',
+			'field' => 'User.group_id',
+			'name' => 'group_id',
+		)
 	);
 
 	/*

@@ -17,13 +17,44 @@ class UsersController extends AppController {
 	//Component:paginatorのoption
 	public $paginate;
 	//Searchの変数
-	public $presetVars = true;
+	public $presetVars = array(
+		'group_id' => array('type' => 'checkbox'),
+	);
 
+
+	/*
+	 * アクター:大学 ユーザー検索
+	 */
 	public function index(){
 		$this->Prg->commonProcess();
 		pr($this->passedArgs);
 		pr($this->User->parseCriteria($this->passedArgs));
 
+		/* チェックbox用 */
+		/* 検索するgroup名 */
+		$searchlist = array('generals','students','graduates');
+
+		/* チェックboxで対応する名前 */
+		$wordlist = array(
+			'generals' => '一般参加者',
+			'students' => '学生',
+			'graduates' => '修了生');
+
+		/* Groupテーブルを検索 */
+		$findoption=array(
+			'conditions' => array('Group.name' => $searchlist),
+			'recursive' => 0,
+		);
+		$groups = $this->User->Group->find('list',$findoption);
+
+		/* 検索結果を、対応する名前で置換 */
+		foreach($searchlist as $datas){
+			$key=array_search($datas,$groups);
+			$groups[$key]=$wordlist[$datas];
+		}
+		$this->set('groups',$groups);
+		
+		/* 検索条件 */
 		$this->paginate = array(
 			//'conditions' => $this->passedArgs,
 			'conditions' => $this->User->parseCriteria($this->passedArgs),
