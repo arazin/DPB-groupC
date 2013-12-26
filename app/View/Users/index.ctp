@@ -7,18 +7,21 @@
 		'wrapInput' => false,
 		'class' => 'form-control',
 	),
+	'url' => '/users/index',
 	'class' => 'well',
 ));?>
+
+
+<?php echo $this->Form->input('User.group_id',array(
+	'label' => 'ロール',
+	'multiple' => 'checkbox',
+)); ?>
 
 <?php echo $this->Form->input('User.name',array(
 	'label' => '名前',
 	'required' => false,
 ));?>
 
-<?php echo $this->Form->input('User.group_id',array(
-	'label' => 'ロール',
-	'multiple' => 'checkbox',
-)); ?>
 <?php echo $this->Form->end('検索'); ?>
 
 

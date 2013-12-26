@@ -23,16 +23,13 @@ class User extends AppModel {
 			'type' => 'like',
 			'field' => 'User.name',
 			'name' => 'name',
+			'empty' => true,
 		),
-		/* 'User.group_id' => array(
-		'type' => 'subquery',
-		'method' => 'findByGroups',
-		'field' => 'User.group_id',
-		) */
 		'User.group_id' => array(
 			'type' => 'value',
 			'field' => 'User.group_id',
 			'name' => 'group_id',
+			'empty' => true,
 		)
 	);
 

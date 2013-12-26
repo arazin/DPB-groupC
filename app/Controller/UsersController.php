@@ -18,7 +18,8 @@ class UsersController extends AppController {
 	public $paginate;
 	//Searchの変数
 	public $presetVars = array(
-		'group_id' => array('type' => 'checkbox'),
+		'name' => array('type'=>'like'),
+		'group_id' => array('type'=>'checkbox','empty'=>true),
 	);
 
 
@@ -26,10 +27,7 @@ class UsersController extends AppController {
 	 * アクター:大学 ユーザー検索
 	 */
 	public function index(){
-		$this->Prg->commonProcess();
-		pr($this->passedArgs);
-		pr($this->User->parseCriteria($this->passedArgs));
-
+		pr($this->request->data);
 		/* チェックbox用 */
 		/* 検索するgroup名 */
 		$searchlist = array('generals','students','graduates');
@@ -53,16 +51,39 @@ class UsersController extends AppController {
 			$groups[$key]=$wordlist[$datas];
 		}
 		$this->set('groups',$groups);
-		
+
+		/* if (!empty($this->request->data['User']['group_id']) and array_diff(array_keys($groups), $this->request->data['User']['group_id']) == false) {
+    unset($this->request->data['User']['group_id']);
+    } */
+
+		/* Searchプラグインのリダイレクト？？ */
+		$this->Prg->commonProcess();
+		//pr($this->passedArgs);
+		pr($this->User->parseCriteria($this->passedArgs));
+
 		/* 検索条件 */
 		$this->paginate = array(
 			//'conditions' => $this->passedArgs,
 			'conditions' => $this->User->parseCriteria($this->passedArgs),
 			'recursive' => 0,
 		);
+
+		/* 検索条件が指定されない場合 */
+		if(empty($this->paginate['conditions'])){
+			$i=0;
+			$keys=array();
+			foreach($wordlist as $datas){
+				$keys[$i]=array_search($datas,$groups);
+				$i++;
+			}
+			$this->paginate['conditions']=array(
+				'User.group_id' => $keys,
+				);
+		}
 		$this->Paginator->settings = $this->paginate;
 		$this->set('users',$this->Paginator->paginate());
 	}
+
 	
 	public function login() {
 		if($this->Session->read('Auth.User')){
