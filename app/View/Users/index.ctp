@@ -1,4 +1,49 @@
-﻿<h2>ユーザー情報一覧</h2>
+﻿<h2>ユーザー情報検索</h2>
+
+<legend>検索</legend>
+<?php echo $this->Form->create('User',array(
+	'inputDefaults' => array(
+		'div' => 'form-group',
+		'wrapInput' => false,
+		'class' => 'form-control',
+	),
+	'url' => '/users/',
+	'class' => 'well',
+));?>
+
+
+<?php echo $this->Form->input('User.group_id',array(
+	'label' => 'グループ',
+	'multiple' => 'checkbox',
+	'class' => 'checkbox-inline',
+	'required' => false,
+)); ?>
+
+<?php echo $this->Form->input('User.name',array(
+	'label' => '名前',
+	'required' => false,
+));?>
+
+<?php echo $this->Form->input('User.nationarity',array(
+	'label' => '国籍',
+	'required' => false,
+));?>
+
+<?php echo $this->Form->input('User.prefecture',array(
+	'label' => '都道府県',
+	'required' => false,
+));?>
+
+<?php echo $this->Form->input('User.remain',array(
+	'label' => '市区町村',
+	'required' => false,
+));?>
+
+
+
+<?php echo $this->Form->end('検索'); ?>
+
+
 <table>
 <tr>
 	<th>ID</th>
