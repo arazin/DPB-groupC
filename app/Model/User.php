@@ -30,7 +30,20 @@ class User extends AppModel {
 			'field' => 'User.group_id',
 			'name' => 'group_id',
 			'empty' => true,
-		)
+		),
+		'User.prefecture' => array(
+			'type' => 'like',
+			'field' => 'User.prefecture',
+			'name' => 'prefecture',
+			'empty' => true,
+		),
+		'User.birthday' => array(
+			'type' => 'value',
+			'field' => 'User.birthday',
+			'name' => 'birthday',
+			'empty' => true,
+		),
+			
 	);
 
 	/*
