@@ -76,4 +76,5 @@
 		echo "<td>{$arr['sex']}</td>";
 	}
  ?>
+<?php echo $this->paginator->counter(array('format' => "%count%件ヒットしました")) ?>
 </table>
