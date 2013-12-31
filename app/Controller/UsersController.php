@@ -83,6 +83,19 @@ class UsersController extends AppController {
 		$this->request->data=$data;
 	}
 
+	/*
+	 * アクター:大学 個人情報を表示
+   */
+	public function view($id = null){
+		if(!$id){
+			throw new NotFoundException(__('無効なリクエスト'));
+		}
+		$oneuser = $this->User->findById($id);
+		if(!$oneuser){
+			throw new NotFoundException(__('無効なリクエスト'));
+		}
+		$this->set('oneuser',$oneuser);
+	}
 	
 	public function login() {
 		if($this->Session->read('Auth.User')){
@@ -142,9 +155,7 @@ class UsersController extends AppController {
     if (!$this->User->exists()) {
       throw new NotFoundException(__('Invalid user'));
     }
-		/*
-		 * 参加者のグループidをセット
-		 */
+		/* 参加者のグループidをセット */
 		$findoption = array(
 			'conditions' => array('Group.name'=>'generals'),
 			'fields' => array('id'),
