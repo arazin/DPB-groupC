@@ -49,5 +49,7 @@ echo $this->Html->link('学生情報編集', '/students/editone',array('class' =
 
 /* 学部情報とか希望学部とか進路とかも表示。空っぽなら表示させない */
 /* $data : 学生の情報(ユーザー情報)が入ってます */
-pr($data);
+pr($userdata);
+pr($studentdata);
+
 ?>
