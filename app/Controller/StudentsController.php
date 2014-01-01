@@ -127,12 +127,11 @@ class StudentsController extends AppController{
 			unset($this->request->data['User']['password']);			
 		}
 	}
-	
-	public function compadd(){
 		/*
 		 * アクター:学生 ユースケース:修了生を登録する
 		 * 
 		 */
+	public function compadd(){
 		//ここは仮 ACLが動くまでの辛抱
 		if($this->request->is('post')){
 			if($this->Auth->user('Group.name')!='students'){

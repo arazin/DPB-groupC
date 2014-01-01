@@ -46,12 +46,12 @@
 個人情報詳細用テストリンク
 
 <p><?php
-echo $this->Html->link($users[0]['User']['name'],array(
-	'controller' => 'users',
-	'action' => 'view',
-	$users[0]['User']['id'],
-)
-); ?></p>
+	 echo $this->Html->link($users[0]['User']['name'],array(
+		 'controller' => 'users',
+		 'action' => 'view',
+		 $users[0]['User']['id'],
+	 )
+	 ); ?></p>
 <table>
 <tr>
 	<th>ID</th>
