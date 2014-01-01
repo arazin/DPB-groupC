@@ -112,6 +112,20 @@ class UsersController extends AppController {
     }
 	}
 
+	public function delete($id = null){
+		$this->request->onlyAllow('post');
+		$this->User->id = $id;
+		if(!$this->User->exists()){
+			throw new NotFoundException(__('無効なリクエスト'));
+		}
+		if($this->User->delete()){
+			$this->Session->setFlash(__('ユーザーが削除されました'));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('ユーザーを削除できませんでした'));
+    $this->redirect(array('action' => 'index'));
+	}
+
 	public function logout() {
     $this->redirect($this->Auth->logout());
 	}

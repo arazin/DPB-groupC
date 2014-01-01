@@ -43,15 +43,30 @@
 
 <?php echo $this->Form->end('検索'); ?>
 
-個人情報詳細用テストリンク
+個人情報操作用テストリンク
 
-<p><?php
-	 echo $this->Html->link($users[0]['User']['name'],array(
-		 'controller' => 'users',
-		 'action' => 'view',
-		 $users[0]['User']['id'],
-	 )
-	 ); ?></p>
+<p>
+	<?php
+	/* $usersの添字0をfor文に組込めばよい */
+echo $this->Form->postLink(
+	$users[0]['User']['name'] .'を削除',
+	array('action' => 'delete',$users[0]['User']['id']),
+	array('confirm' => $users[0]['User']['name'] . 'さんを削除しますか？'));
+?>
+</p>
+
+<p>
+<?php
+echo $this->Html->link($users[0]['User']['name'],array(
+	'controller' => 'users',
+	'action' => 'view',
+	$users[0]['User']['id'],
+));
+?>
+</p>
+	
+
+
 <table>
 <tr>
 	<th>ID</th>
