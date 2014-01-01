@@ -51,7 +51,9 @@
 echo $this->Form->postLink(
 	$users[0]['User']['name'] .'を削除',
 	array('action' => 'delete',$users[0]['User']['id']),
-	array('confirm' => $users[0]['User']['name'] . 'さんを削除しますか？'));
+	array('confirm' => $users[0]['User']['name'] . 'さんを削除しますか？',
+				'class' => 'btn btn-danger',)
+	);
 ?>
 </p>
 
