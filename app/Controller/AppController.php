@@ -51,7 +51,7 @@ class AppController extends Controller {
       //'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
     ),
 		'Security',
-		'Captcha'=> array('className'=>'Kcaptcha.Captcha'),
+		'Kcaptcha.Captcha',
   );
 
 	public function isAuthorized($user) {
