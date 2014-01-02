@@ -1,9 +1,83 @@
+<<<<<<< HEAD
 ﻿<div class="container"> 
 <div class="row">  
 <div class="col-md-9 col-md-offset-1">
 
 
 <h2>ユーザー情報一覧</h2>
+=======
+﻿<h2>ユーザー情報検索</h2>
+
+<legend>検索</legend>
+<?php echo $this->Form->create('User',array(
+	'inputDefaults' => array(
+		'div' => 'form-group',
+		'wrapInput' => false,
+		'class' => 'form-control',
+	),
+	'url' => '/users/',
+	'class' => 'well',
+));?>
+
+
+<?php echo $this->Form->input('User.group_id',array(
+	'label' => 'グループ',
+	'multiple' => 'checkbox',
+	'class' => 'checkbox-inline',
+	'required' => false,
+)); ?>
+
+<?php echo $this->Form->input('User.name',array(
+	'label' => '名前',
+	'required' => false,
+));?>
+
+<?php echo $this->Form->input('User.nationarity',array(
+	'label' => '国籍',
+	'required' => false,
+));?>
+
+<?php echo $this->Form->input('User.prefecture',array(
+	'label' => '都道府県',
+	'required' => false,
+));?>
+
+<?php echo $this->Form->input('User.remain',array(
+	'label' => '市区町村',
+	'required' => false,
+));?>
+
+
+
+<?php echo $this->Form->end('検索'); ?>
+
+個人情報操作用テストリンク
+
+<p>
+	<?php
+	/* $usersの添字0をfor文に組込めばよい */
+echo $this->Form->postLink(
+	$users[0]['User']['name'] .'を削除',
+	array('action' => 'delete',$users[0]['User']['id']),
+	array('confirm' => $users[0]['User']['name'] . 'さんを削除しますか？',
+				'class' => 'btn btn-danger',)
+	);
+?>
+</p>
+
+<p>
+<?php
+echo $this->Html->link($users[0]['User']['name'],array(
+	'controller' => 'users',
+	'action' => 'view',
+	$users[0]['User']['id'],
+));
+?>
+</p>
+	
+
+
+>>>>>>> origin/master
 <table>
 <tr>
 	<th>ID</th>
@@ -36,6 +110,7 @@
 		echo "<td>{$arr['sex']}</td>";
 	}
  ?>
+<?php echo $this->paginator->counter(array('format' => "%count%件ヒットしました")) ?>
 </table>
 
 </div></div></div>

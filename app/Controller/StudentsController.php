@@ -66,6 +66,7 @@ class StudentsController extends AppController{
 			'recursive' => 0,
 		);
 		$this->set('departments',$this->Student->Department->find('list',$findoption));
+
 		
 		//研究室
 		$findoption = array(
@@ -119,19 +120,18 @@ class StudentsController extends AppController{
 			}
 			pr($this->Student->invalidFields());
 			pr($this->Student->User->invalidFields());
-		}else{
+		}else{ //通常アクセス 
 			pr('5\n');
-			//通常アクセス フォームにdataをセット
+			//フォームにdataをセット
 			$this->request->data=$editdata;
 			unset($this->request->data['User']['password']);			
 		}
 	}
-	
-	public function compadd(){
 		/*
 		 * アクター:学生 ユースケース:修了生を登録する
 		 * 
 		 */
+	public function compadd(){
 		//ここは仮 ACLが動くまでの辛抱
 		if($this->request->is('post')){
 			if($this->Auth->user('Group.name')!='students'){
@@ -188,12 +188,26 @@ class StudentsController extends AppController{
 		);
 		$this->set('departments',$this->Student->Department->find('list',$findoption));
 
+		//学科(動的select用)
+		$findoption = array(
+			'fields' => array('id','Department.department_name','Faculty.id'),
+			'recursive' => 2,
+			);
+		$this->set('depSets',$this->Student->Department->find('list',$findoption));
+
 		//研究室
 		$findoption = array(
 			'fields' => array('id','labo_name'),
 			'recursive' => 0,
 		);
 		$this->set('labos',$this->Student->Labo->find('list',$findoption));
+
+		//研究室(動的select用)
+		$findoption = array(
+			'fields' => array('id','Labo.labo_name','Department.id'),
+			'recursive' => 2,
+			);
+		$this->set('labSets',$this->Student->Labo->find('list',$findoption));
 
 		//性別
 		$this->set('sexes',array(0=>'男',1=>'女'));//viewでselectフォームにする
