@@ -49,7 +49,9 @@ class AppController extends Controller {
       /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
       'logoutRedirect'=>array('controller'=>'users','action'=>'top'),
       //'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
-    )
+    ),
+		'Security',
+		'Captcha'=> array('className'=>'Kcaptcha.Captcha'),
   );
 
 	public function isAuthorized($user) {

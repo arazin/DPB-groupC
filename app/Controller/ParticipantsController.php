@@ -5,7 +5,7 @@ class ParticipantsController extends AppController{
 	 * public $component
 	 * Security:悪質なリクエストを防ぐ Paginator:便利な一覧表示
 	 */
-	public $components = array('Security','Paginator');
+	//public $components = array('Security','Paginator','Kcaptcha.Captcha');
 
 	public function beforeFilter() {
     parent::beforeFilter();
