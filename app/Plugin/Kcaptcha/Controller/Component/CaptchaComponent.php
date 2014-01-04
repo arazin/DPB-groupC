@@ -32,11 +32,12 @@ class CaptchaComponent extends Component {
 		$this->Session->delete($this->sessionKey);
 	}
 
-	public function render() { 
+	public function render() {
 		if (!App::import('Vendor', 'Kcaptcha' . DS . 'Kcaptcha')) {
 			App::import('Vendor', 'Kcaptcha.Kcaptcha' . DS . 'Kcaptcha');
 		}
-		$kcaptcha = new KCAPTCHA(); 
+		
+		$kcaptcha = new KCAPTCHA();
 		$this->Session->write($this->sessionKey, $kcaptcha->getKeyString());
 	} 
 }
