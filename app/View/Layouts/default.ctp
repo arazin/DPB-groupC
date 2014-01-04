@@ -16,8 +16,8 @@
 
     // Twitter Bootstrap 3.0 CDN
 		echo $this->Html->css('cake.must');
-    echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css');
-    echo $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
+    echo $this->Html->css('bootstrap.min.css');
+    echo $this->Html->script('bootstrap.min.js');
   	echo $this->Html->css('bootstrap');
 		
 		
