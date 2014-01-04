@@ -5,6 +5,7 @@
 <h2>情報一覧・検索</h2>
 
 <p>
+	<?php echo $this->paginator->counter(array('format' => "%count%件ヒットしました")) ?>
 	<table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th>#</th>
@@ -16,7 +17,7 @@
 	/* usersの添字0をfor文に組込めばよい */
 	/* $k は結果の数 */
 	for($i=0, $k = 1; $i < count($users); $i++, $k++){
-		echo "<td>{$k}</td>";
+		echo "<tr><td>{$k}</td>";
 
 		echo "<td>{$this->Html->link($users[$i]['User']['name'],array(
 			'controller' => 'users',
@@ -31,7 +32,7 @@
 		array('action' => 'delete',$users[$i]['User']['id']),
 		array('confirm' => $users[$i]['User']['name'] . 'さんを削除しますか？',
 					'class' => 'btn btn-danger',)
-		)}</td>";
+		)}</td></tr>";
 */
 	}
 ?>
