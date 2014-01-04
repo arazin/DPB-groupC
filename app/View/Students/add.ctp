@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+
 ﻿<div class="container"> 
 <div class="row">  
 <div class="col-md-10 col-md-offset-1">
-=======
+
 <script type="text/javascript" >
  var jsDepartments = new Object();
  var jsLabos = new Object();
@@ -53,7 +53,7 @@
  }
 </script>
 
->>>>>>> origin/master
+
 
 <h1>新規登録</h1>
 <?php
@@ -142,7 +142,7 @@ echo $this->Form->input('Student.entrance_date',array(
 	'monthNames'=>false,
 	'label'=>'入学年',
 ));
-<<<<<<< HEAD
+
 
 echo $this->Form->submit('確 認', array(
 	'div' => 'form-group',
@@ -157,8 +157,3 @@ echo $this->Form->end();
 </div>
 </div>
 
-=======
-echo $this->Form->end('Add');
-?>
-
->>>>>>> origin/master

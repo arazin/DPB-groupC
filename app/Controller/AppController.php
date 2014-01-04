@@ -43,6 +43,8 @@ class AppController extends Controller {
 	public $components=array(
 		'Acl',
     'Session',
+		'Search.Prg',
+		'Paginator',
     'Auth'=>array(
 			'loginAction' => array('controller' => 'users', 'action' => 'login'),
       'loginRedirect'=>array('controller'=>'users','action'=>'top'),
