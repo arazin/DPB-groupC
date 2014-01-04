@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+﻿<div class="container"> 
+<div class="row">  
+<div class="col-md-9 col-md-offset-1">
+
+
+<h2>ユーザー情報一覧</h2>
+=======
 ﻿<h2>ユーザー情報検索</h2>
 
 <legend>検索</legend>
@@ -69,6 +77,7 @@ echo $this->Html->link($users[0]['User']['name'],array(
 	
 
 
+>>>>>>> origin/master
 <table>
 <tr>
 	<th>ID</th>
@@ -103,3 +112,6 @@ echo $this->Html->link($users[0]['User']['name'],array(
  ?>
 <?php echo $this->paginator->counter(array('format' => "%count%件ヒットしました")) ?>
 </table>
+
+</div></div></div>
+
