@@ -54,7 +54,13 @@ echo $this->Form->input('Participant.teacher_name',array(
 echo $this->Form->input('Participant.entranced',array(
 	'label'=>'入学',
 ));
+
+
+echo $this->Captcha->render();
+echo $this->Form->input('captcha');
+
 echo $this->Form->end('Add');
 
 
 ?>
+

@@ -16,3 +16,5 @@ class CaptchaController extends KcaptchaAppController {
 		$this->_stop();
 	}
 }
+
+
