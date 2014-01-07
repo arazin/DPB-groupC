@@ -1,10 +1,10 @@
-﻿<div class="container"> 
+<div class="container"> 
 <div class="row">  
 <div class="col-md-10 col-md-offset-1">
 
-<h1>参加者登録フォーム</h1>
+<h1>修了生登録フォーム</h1>
 <?php
-echo $this->Form->create('Participant',array(
+echo $this->Form->create('Student',array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
 		'wrapInput' => false,
@@ -43,23 +43,16 @@ echo $this->Form->input('User.sex',array(
 	'empty' => '--性別を選んで下さい--',
 	'label' => '性別'
 ));
-echo $this->Form->input('Participant.curriculum_id',array(
-	'empty' => '--課程を選んで下さい--',
-	'label' => '志望課程'
+
+echo $this->Form->input('Graduate.garaduation_date',array(
+	'dateFormat'=>'YMD',
+	'minYear'=>date('Y')-70,
+	'maxYear'=>date('Y')+1,
+	'monthNames'=>false,
+	'label'=>'修了日',
 ));
-echo $this->Form->input('Participant.course_id',array(
-	'label'=>'志望コース',
-	'empty'=>'--コースを選んで下さい--'
-));
-echo $this->Form->input('Participant.teacher_name',array(
-	'label'=>'志望指導教員名',
-));
-echo $this->Form->input('Participant.entranced',array(
-	'label'=>'入学',
-));
+
 echo $this->Form->end('Add');
-
-
 ?>
 </div>
 </div>
