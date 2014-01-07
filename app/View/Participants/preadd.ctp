@@ -56,8 +56,6 @@ echo $this->Form->input('Participant.entranced',array(
 ));
 
 
-echo $this->Captcha->render();
-echo $this->Form->input('captcha');
 
 echo $this->Form->end('Add');
 
