@@ -51,9 +51,7 @@
 							<?php echo $this->Html->link('イベント', '/events/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('修了生認証', '/users/gapplist/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('学生新規登録','/students/add/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('参加者新規登録','/students/add/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('修了生新規登録','/students/add/',array('class' => 'list-group-item')); ?>
+							<?php echo $this->Html->link('ユーザー登録','/pages/addhome/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('統計分析', '/users/research',array('class' => 'list-group-item')); ?>
 
 						<?php endif; ?>
