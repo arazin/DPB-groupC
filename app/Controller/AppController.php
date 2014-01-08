@@ -43,13 +43,16 @@ class AppController extends Controller {
 	public $components=array(
 		'Acl',
     'Session',
+		'Search.Prg',
+		'Paginator',
     'Auth'=>array(
 			'loginAction' => array('controller' => 'users', 'action' => 'login'),
       'loginRedirect'=>array('controller'=>'users','action'=>'top'),
       /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
       'logoutRedirect'=>array('controller'=>'users','action'=>'top'),
       //'authorize'=>array('Actions'=>array('actionPath'=>'controllers')),
-    )
+    ),
+		'Security',
   );
 
 	public function isAuthorized($user) {

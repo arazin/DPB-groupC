@@ -1,3 +1,8 @@
+<div class="container"> 
+<div class="row">  
+<div class="col-md-10 col-md-offset-1">
+
+<h1>修了生仮登録フォーム</h1>
 <?php
 echo $this->Form->create('Student',array(
 	'inputDefaults' => array(
@@ -48,4 +53,7 @@ echo $this->Form->input('Graduate.garaduation_date',array(
 ));
 
 echo $this->Form->end('Add');
-
+?>
+</div>
+</div>
+</div>

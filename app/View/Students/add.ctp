@@ -1,14 +1,71 @@
 
-<h1>Add student</h1>
+﻿<div class="container"> 
+<div class="row">  
+<div class="col-md-10 col-md-offset-1">
+
+<script type="text/javascript" >
+ var jsDepartments = new Object();
+ var jsLabos = new Object();
+ var noneKey = <?php echo array_search('なし',$labSets['0'])?>;
+ 
+ <?php
+ foreach($faculties as $fKey => $fValue){
+	 if(isset($depSets[$fKey])){
+		 echo "jsDepartments[$fKey] = new Object();\n";
+		 foreach($depSets[$fKey] as $dKey => $dValue){
+			 echo "jsDepartments[$fKey][$dKey] = '$dValue';\n";
+		 }
+	 }
+ }
+
+ foreach($departments as $dKey => $dValue){
+	 echo "jsLabos[$dKey] = new Object();\n";
+	 if(isset($labSets[$dKey])){
+		 foreach($labSets[$dKey] as $lKey => $lValue){
+			 echo "jsLabos[$dKey][$lKey] = '$lValue';\n";
+		 }
+	 }
+	 echo "jsLabos[$dKey][noneKey] = 'なし';\n";
+ }
+ ?>
+
+ function depSet(fObj){
+	 dObj = document.StudentAddForm.elements['StudentDepartmentId'];
+	 dObj.length = 1;
+	 dObj.options[dObj.length-1].text = "--学科を選んでください--";
+	 
+	 for(var key in jsDepartments[fObj.value]){
+		 dObj.options.length++;
+		 dObj.options[dObj.options.length-1].value = key;
+		 dObj.options[dObj.options.length-1].text = jsDepartments[fObj.value][key];
+	 }
+ }
+
+ function labSet(dObj){
+	 lObj = document.StudentAddForm.elements['StudentLaboId'];
+	 lObj.length = 1;
+	 lObj.options[lObj.length-1].text = "--研究室を選んでください--";
+	 for(var key in jsLabos[dObj.value]){
+		 lObj.options.length++;
+		 lObj.options[lObj.options.length-1].value = key;
+		 lObj.options[lObj.options.length-1].text = jsLabos[dObj.value][key];
+	 }
+ }
+</script>
+
+
+
+<h1>新規登録</h1>
 <?php
 echo $this->Form->create('Student',array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
-		'wrapInput' => false,
 		'class' => 'form-control',
 	),
 	'class' => 'well',
+	'name' => 'StudentAddForm',
 ));
+
 echo $this->Form->input('User.username',array('label'=>'ユーザーID'));
 echo $this->Form->input('User.password',array('label'=>'パスワード'));
 echo $this->Form->input('User.password2',array('type'=>'password','label'=>'パスワード再入力'));
@@ -40,19 +97,24 @@ echo $this->Form->input('User.sex',array(
 ));
 echo $this->Form->input('Student.grade',array(
 	'empty' => '--学年を選んで下さい--',
-	'label' => '学年'
+	'label' => '学年',
 ));
 echo $this->Form->input('Student.faculty_id',array(
 	'label'=>'学部',
-	'empty'=>'--学部を選んで下さい--'
+	'empty'=>'--学部を選んで下さい--',
+	'onchange' => 'depSet(this)',
 ));
+
+
 echo $this->Form->input('Student.department_id',array(
 	'label'=>'学科',
-	'empty'=>'--学科を選んで下さい--'
+	'empty'=>'--学科を選んで下さい--',
+	'onchange' => 'labSet(this)',
+
 ));
 echo $this->Form->input('Student.labo_id',array(
 	'label'=>'研究室',
-	'empty'=>'--研究室を選んで下さい--'
+	'empty'=>'--研究室を選んで下さい--',
 ));
 echo $this->Form->input('Student.student_id',array(
 	'type' => 'text',
@@ -82,8 +144,16 @@ echo $this->Form->input('Student.entrance_date',array(
 ));
 
 
+echo $this->Form->submit('確 認', array(
+	'div' => 'form-group',
+	'class' => 'btn btn-default'
+));
 
-echo $this->Form->end('Add');
-
+echo $this->Form->end();
 
 ?>
+
+</div>
+</div>
+</div>
+
