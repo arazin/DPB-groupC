@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 App::uses('AppModel', 'Model');
 /**
  * EventsParticipant Model
