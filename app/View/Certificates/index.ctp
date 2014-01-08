@@ -19,6 +19,7 @@
 	<th>発行枚数</th>
 	<th>目的</th>
 	<th>住所</th>
+	<th>消去</th>
 </tr>
 <?php
 	for($i=0; $i<count($certificates);$i++){
@@ -32,6 +33,12 @@
 		echo "<td>{$arr['issue_num']}</td>";
 		echo "<td>{$arr['purpose']}</td>";
 		echo "<td>{$arr['address']}</td>";
+		 echo "<td>{$this->Form->postLink('削除',
+		array('action' => 'delete',$arr['id']),
+		array('confirm' => '本当に削除しますか？',
+					'class' => 'btn btn-danger',)
+					)}</td>";
+
 	}
  ?>
 </table>

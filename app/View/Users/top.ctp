@@ -50,16 +50,12 @@
 							<?php echo $this->Html->link('ユーザー一覧', '/users/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('イベント', '/events/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
-<<<<<<< HEAD
 							<?php echo $this->Html->link('学生新規登録','/students/add/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('進路変更情報','/careers/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('証明書発行新生','/certificates/index',array('class' => 'list-group-item')); ?>
-=======
+							<?php echo $this->Html->link('証明書発行申請','/certificates/index',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('修了生認証', '/users/gapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('ユーザー登録','/pages/addhome/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('統計分析', '/users/research',array('class' => 'list-group-item')); ?>
 
->>>>>>> origin/master
 						<?php endif; ?>
 						
 						<?php if($acllist[$groupId]=='generals'): ?>
@@ -78,7 +74,8 @@
 						<?php if($acllist[$groupId]=='graduates'): ?>
 							<?php echo $this->Html->link('修了生TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
 							<?php echo $this->Html->link('修了生情報参照', '/graduates/index',array('class' => 'list-group-item')); ?>
-
+							<?php echo $this->Html->link('進路編集','/careers/add',array('class' => 'list-group-item')); ?>
+							<?php echo $this->Html->link('証明書発行申請','/certificates/add',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
           </div>
         </div><!--/span-->

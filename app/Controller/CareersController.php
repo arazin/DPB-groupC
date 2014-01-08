@@ -17,22 +17,22 @@ class CareersController extends AppController {
 			$this->request->data['Career']['graduate_id']=$userId;
 
  	  $findoption = array(
-                       // 'conditions'=> array('industry_name' => 'Œö–±ˆõ'),
-                        'fields' => array('id','industry_name'),//Žæ‚èo‚·‘®«
-                        'recursive' => 0,//ŠÖ˜Aƒe[ƒuƒ‹‚©‚ç‚ÍŒŸõ‚µ‚È‚¢
+                       // 'conditions'=> array('industry_name' => '? o'),
+                        'fields' => array('id','industry_name'),//?a?e?o?ãƒ»?R?â‰ª
+                        'recursive' => 0,//??A?e?[?u???c?c???? ?ï¿ 
                 );
                 $this->set('industries',$this->Career->Industry->find('list',$findoption));
         if ($this->request->is('post')) {
             $this->Career->create();
             if ($this->Career->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => '/'));
+                $this->Session->setFlash(__('é€²è·¯å¤‰æ›´ã‚’è¨˜éŒ²ã—ã¾ã—ãŸ'));
+                $this->redirect('/');
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('ä¸è¶³ã—ã¦ã„ã‚‹é …ç›®ãŒå­˜åœ¨ã—ã¾ã™'));
             }
         }
     }
-	
+
 	
 }
 ?>

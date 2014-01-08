@@ -29,14 +29,27 @@ class CertificatesController extends AppController {
         if ($this->request->is('post')) {
             $this->Certificate->create();
             if ($this->Certificate->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => '/'));
+                $this->Session->setFlash(__('修了証明書発行を受け付けました'));
+                $this->redirect('/');
             } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('入力内容を確認してください'));
             }
         }
     }
-	
+		public function delete($id = null){
+		$this->request->onlyAllow('post');
+		$this->Certificate->id = $id;
+		if(!$this->Certificate->exists()){
+			throw new NotFoundException(__('無効なリクエスト'));
+		}
+		if($this->Certificate->delete()){
+			$this->Session->setFlash(__('申請を削除しました'));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('申請を削除できませんでした'));
+    $this->redirect(array('action' => 'index'));
+	}
+
 	
 }
 ?>
