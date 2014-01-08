@@ -1,8 +1,11 @@
 ﻿<h1>イベント一覧</h1>
+
+
 <?php echo $this->Html->link(
     'イベントを追加する',
     array('controller' => 'gevents', 'action' => 'add')
 ); ?>
+
 
 
 <table>
@@ -39,3 +42,12 @@ array('controller' => 'gevents', 'action' => 'view', $gevent['Gevent']['id'])); 
     <?php endforeach; ?>
     <?php unset($gevent); ?>
 </table>
+
+<?php
+    echo $this->Paginator->first('最初 ');
+    echo $this->Paginator->prev('前 ');
+    echo $this->Paginator->numbers(
+        array('separator' => '/','modulus'=>2));
+    echo $this->Paginator->next(' 次');
+    echo $this->Paginator->last(' 最後');
+  ?>

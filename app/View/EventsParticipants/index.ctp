@@ -1,28 +1,28 @@
-﻿<h1>参加イベント一覧</h1>
-<?php if ($myparticipants != NULL): ?>
+﻿<h1>イベント一覧</h1>
+<?php if ($events != NULL): ?>
 
 <table>
     <tr>
         <th>id</th>
-        <th>participant_id</th>
- 				<th>event_id</th>
-
+        <th>event_date</th>
+ 		<th>place</th>
+        <th>type</th>
     </tr>
     
-       <?php foreach ($myparticipants as $myparticipant): ?>
+       <?php foreach ($events as $event): ?>
         
     <tr>
         <td>
 
-            <?php echo $this->Html->link($myparticipant['EventsParticipant']['id'],
-array('controller' => 'eventsparticipants', 'action' => 'view', $myparticipant['EventsParticipant']['id'])); ?>
+            <?php echo $this->Html->link($event['Event']['id'],
+array('controller' => 'EventsParticipants', 'action' => 'view', $event['Event']['id'])); ?>
         </td>
-        <td><?php echo $myparticipant['EventsParticipant']['participant_id']; ?></td>
-        <td><?php echo $myparticipant['EventsParticipant']['event_id']; ?></td>
+        <td><?php echo $event['Event']['event_date']; ?></td>
+        <td><?php echo $event['Event']['place']; ?></td>
+        <td><?php echo $event['Type']['type_name']; ?></td>
+        <td><?php echo $this->Html->link('追加', array('action' => 'search', $event['Event']['id'])); ?></td>
 
     </tr>
 <?php endforeach; ?>
 </table>
 <?php endif; ?>
-
-

@@ -8,119 +8,90 @@ class EventsParticipantsController extends AppController{
   public $components = array('Session');
 
 
+  //イベント一覧表示
   public function index() {
+    
+  	$events = $this -> EventsParticipant -> Event -> find('all');
+  	$this -> set('events', $events);
 
-  	$eventsparticipants = $this->EventsParticipant->find('all');
-
-  	$user_id = $this->Auth->user('id');
-  	//$user_id = 5; //実験用
-  	$myparticipants = NULL;
-
-
-   $myparticipants = $this -> EventsParticipant -> find('all',array(
- 'fields'=>array('id', 'participant_id','event_id'),
- 'conditions'=>array('participant_id' => $user_id),
- ));
-
-   $this -> set('myparticipants', $myparticipants);
-}
+	}
 
 
+	//大学がeventsparticipants追加
+	public function add($dataaa = null, $eveid = null) {
 
-	public function form() {
-    $this->set('eventsparticipants', $this->EventsParticipant->find('all'));
+    $data = array('EventsParticipant' => array('participant_id' => $dataaa, 'event_id' => $eveid));
+ 		$fields = array('participant_id', 'event_id');
+ 
+ 		if ($this->EventsParticipant->save($data, false, $fields)) {
+            $this->Session->setFlash(__('追加しました'));
+            return $this->redirect(array('action' => 'index'));
+        }
+        $this->Session->setFlash(__('追加できませんでした'));
   }
 
 
+  // event_idをクリックするとそのイベントに参加している人の一覧を表示
   public function view($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid'));
     }
-    $eventsparticipant = $this->EventsParticipant->findById($id);
-    if (!$eventsparticipant) {
+  	$participant_ids = $this -> EventsParticipant -> findAllByEvent_id($id);
+  	$ids = NULL;
+  	foreach ($participant_ids as $participant_id) {
+  		$ids[] = $participant_id['EventsParticipant']['participant_id'];
+  	}
+
+  	$this->loadmodel('User');
+		$participants = NULL;
+
+  	foreach($ids as $idd){
+  		$participants[] = $this -> User -> findById($idd);
+  	}
+  	//$this->set('participants', $participants);
+  	$this -> set('participants', Sanitize::clean($participants, array('encode' => false)));
+  }
+
+
+  //大学が参加者情報をもとに検索
+  public function search($id = null) {
+  	if (!$id) {
       throw new NotFoundException(__('Invalid'));
     }
-    $this->set('eventsparticipant', $eventsparticipant);
-  }
+    $this->set('eveid', $id);
+  	$data = NULL;
+  	$this->set('data', $data);
+  	$this->loadmodel('User');
 
 
-    public function add() {
+  	if($this->request->is('post')){
+  		$name = $this->request->data['Search']['name'];
+  		$nationarity = $this->request->data['Search']['nationarity'];
+  		$prefecture = $this->request->data['Search']['prefecture'];
+  		$remain = $this->request->data['Search']['remain'];
+  		$postcord = $this->request->data['Search']['postcord'];
+  		$phonenumber = $this->request->data['Search']['phonenumber'];
+  		$job = $this->request->data['Search']['job'];
+  		$birthday = $this->request->data['Search']['birthday'];
+  		$sex = $this->request->data['Search']['sex'];
 
-    $findoption = array(
-			'fields' => array('user_id'),
-			'recursive' => 0,
-		);
-		$this->set('participant_ids',$this->EventsParticipant->Participant->find('list',$findoption));
+  		$opt = array("AND" => array (
+  	  	'User.name like' => '%'.$name.'%',
+    		'User.nationarity like' => '%'.$nationarity.'%',
+ 	  		'User.prefecture like' => '%'.$prefecture.'%',
+    		'User.remain like' => '%'.$remain.'%',
+    		'User.postcord like' => '%'.$postcord.'%',
+    		'User.phonenumber like' => '%'.$phonenumber.'%',
+    		'User.job like' => '%'.$job.'%',
+    		'User.birthday like' => '%'.$birthday.'%',
+    		'User.sex like' => '%'.$sex.'%',
+  		)); 
 
-		$findoption = array(
-			'fields' => array('id'),
-			'recursive' => 0,
-		);
-		$this->set('event_ids',$this->EventsParticipant->Event->find('list',$findoption));
+  		$data = $this -> User -> find('all', array('conditions' => $opt));
+  		$this->set('data', $data);
+		}
+	}
 
-
-
-        if ($this->request->is('post')) {
-            $this->EventsParticipant->create();
-            if ($this->EventsParticipant->save($this->request->data)) {
-                $this->Session->setFlash(__('保存しました'));
-                return $this->redirect(array('action' => 'form'));
-            }
-            $this->Session->setFlash(__('保存できませんでした'));
-        }
-   }
-
-
-   public function edit($id = null) {
-
-   	    $findoption = array(
-			'fields' => array('user_id'),
-			'recursive' => 0,
-		);
-		$this->set('participant_ids',$this->EventsParticipant->Participant->find('list',$findoption));
-
-		$findoption = array(
-			'fields' => array('id'),
-			'recursive' => 0,
-		);
-		$this->set('event_ids',$this->EventsParticipant->Event->find('list',$findoption));
-
-   	
-    if (!$id) {
-        throw new NotFoundException(__('Invalid post'));
-    }
-
-    $eventsparticipant = $this->EventsParticipant->findById($id);
-    if (!$eventsparticipant) {
-        throw new NotFoundException(__('Invalid post'));
-    }
-
-    if ($this->request->is('post') || $this->request->is('put')) {
-    /*if ($this->request->is(array('post', 'put'))) {*/
-        $this->EventsParticipant->id = $id;
-        if ($this->EventsParticipant->save($this->request->data)) {
-            $this->Session->setFlash(__('保存しました'));
-            return $this->redirect(array('action' => 'form'));
-        }
-        $this->Session->setFlash(__('保存できませんでした'));
-    }
-
-    if (!$this->request->data) {
-        $this->request->data = $eventsparticipant;
-    }
-  }
-
-
-  public function delete($id) {
-    if ($this->request->is('get')) {
-        throw new MethodNotAllowedException();
-    }
-
-    if ($this->EventsParticipant->delete($id)) {
-        $this->Session->setFlash(__('The gevent with id: %s has been deleted.', h($id)));
-        return $this->redirect(array('action' => 'form'));
-    }
-  }
 
 }
 ?>
