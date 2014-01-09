@@ -74,7 +74,12 @@ Cache::config('default', array('engine' => 'File'));
 CakePlugin::load('Acl', array('bootstrap' => true));
 CakePlugin::load('BoostCake');
 CakePlugin::load('Search');
-//CakePlugin::load('Kcaptcha');
+CakePlugin::load('Recaptcha',array('bootstrap' => true));
+
+Configure::write('Recaptcha.publicKey', '6Lfkx-wSAAAAAM0isZC6vV6Kqv2YWl3xizvXZ4Kf');
+Configure::write('Recaptcha.privateKey', '6Lfkx-wSAAAAAIFnpkcmeKOeQsCFt-PefmeLXMLJ');
+//Configure::write('Recaptcha.publicKey', '6Lflx-wSAAAAAFIHFWjZYbg7CDzOnt4QI09wrgCx');
+//Configure::write('Recaptcha.privateKey', '6Lflx-wSAAAAAHuvs13fcdEO_UeBnxnajwBw5iIC');
 
 //CakePlugin::loadAll();
 

@@ -8,6 +8,7 @@ class StudentsController extends AppController{
   //public $components = array('Security');//悪質なポストを防ぐ
 	public $scaffold;
 
+	
 	/*
 	 * アクター:学生 学生本人の情報を参照
 	 */
@@ -83,6 +84,7 @@ class StudentsController extends AppController{
 		//更新ロジック
 		$flag=false;
 		if($this->request->is('put')){
+			$this->Student->recaptcha = true;
 			pr('0\n');
 			//データ送信時
 			//値の正当性のみチェック

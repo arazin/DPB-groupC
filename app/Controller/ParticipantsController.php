@@ -1,11 +1,13 @@
 <?php
 class ParticipantsController extends AppController{
-	public $scaffold;
 	/*
 	 * public $component
 	 * Security:悪質なリクエストを防ぐ Paginator:便利な一覧表示
 	 */
-	//public $components = array('Security','Paginator','Kcaptcha.Captcha');
+	public $components = array(
+		'Recaptcha.Recaptcha' => array('actions' => array('preadd'))
+	);
+
 
 	public function beforeFilter() {
     parent::beforeFilter();

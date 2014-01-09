@@ -149,6 +149,8 @@ echo $this->Form->submit('確 認', array(
 	'class' => 'btn btn-default'
 ));
 
+
+
 echo $this->Form->end();
 
 ?>

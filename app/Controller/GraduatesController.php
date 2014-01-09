@@ -1,6 +1,10 @@
 <?php
 class GraduatesController extends AppController{
-	public $scaffold;
+	public $components = array(
+		'Recaptcha.Recaptcha' => array('actions' => array('preadd'))
+	);
+
+	
 	public function beforeFilter() {
     parent::beforeFilter();
 		$this->Auth->allow('preadd'); // ユーザーに自身で登録させる 

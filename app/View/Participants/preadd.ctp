@@ -58,7 +58,7 @@ echo $this->Form->input('Participant.entranced',array(
 	'label'=>'入学',
 ));
 
-
+echo $this->Recaptcha->display();
 
 echo $this->Form->end('Add');
 

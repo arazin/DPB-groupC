@@ -52,6 +52,8 @@ echo $this->Form->input('Graduate.garaduation_date',array(
 	'label'=>'修了日',
 ));
 
+echo $this->Recaptcha->display();
+
 echo $this->Form->end('Add');
 ?>
 </div>
