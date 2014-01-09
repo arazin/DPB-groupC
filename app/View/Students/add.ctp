@@ -55,7 +55,7 @@
 
 
 
-<h1>新規登録</h1>
+<h1>学生新規登録</h1>
 <?php
 echo $this->Form->create('Student',array(
 	'inputDefaults' => array(
