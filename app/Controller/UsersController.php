@@ -99,14 +99,14 @@ class UsersController extends AppController {
 	
 	public function login() {
 		if($this->Session->read('Auth.User')){
-			$this->Session->setFlash('あなたは既にログイン済です');
+			$this->Session->setFlash('Why!?');
 			$this->redirect('/',null,false);
 		}
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->redirect($this->Auth->redirect());
       } else {
-        $this->Session->setFlash(__('Invalid username or password, try again'));
+        $this->Session->setFlash(__('ID または パスワード が 間違っています'));
 
       }
     }

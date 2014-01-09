@@ -44,7 +44,7 @@
 						<li><?php echo $this->Html->link('信州大学', 'http://www.shinshu-u.ac.jp/'); ?></li>
 						<li><?php echo $this->Html->link('ACSU', 'https://acsu.shinshu-u.ac.jp'); ?></li>
 						<li><?php echo $this->Html->link('キャンパス', 'https://campus.shinshu-u.ac.jp/'); ?></li>
-						<li><?php echo $this->Html->link('logout', array('controller'=>'users','action'=>'logout')); ?></li>
+						<li><?php echo $this->Html->link('Logout', array('controller'=>'users','action'=>'logout')); ?></li>
 					</ul>
 				</div><!--/.nav-collapse -->
       </div>

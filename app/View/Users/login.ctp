@@ -27,7 +27,6 @@
   <body>
     <div class="container">
       <div class="starter-template">
-        <h1>Login Form</h1>
         <p class="lead">
 						<?php echo $this->Session->flash('auth'); ?>
 						<?php echo $this->Form->create('User',array(
@@ -39,14 +38,15 @@
 							'class' => 'well',
 						)); ?>
 					  <fieldset>
-					    <legend><?php echo __('Please enter your username and password'); ?></legend>
-					    <?php echo $this->Form->input('username');
-					    echo $this->Form->input('password');
+					    <legend><?php echo __('Login Form'); ?></legend>
+					    <?php echo $this->Form->input('ID');
+					    echo $this->Form->input('パスワード');
 					    ?>
 					  </fieldset>
-						<?php echo $this->Form->end(__('Login')); ?>
 						<?php echo $this->Html->link('一般新規登録','/participants/preadd/') ?>
 						<?php echo $this->Html->link('修了生新規登録','/graduates/preadd/') ?>
+
+						<?php echo $this->Form->end(__('Login')); ?>
 				</p>
       </div>
     </div><!-- /.container -->
