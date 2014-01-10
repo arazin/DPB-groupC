@@ -39,14 +39,15 @@
 						)); ?>
 					  <fieldset>
 					    <legend><?php echo __('Login Form'); ?></legend>
-					    <?php echo $this->Form->input('ID');
-					    echo $this->Form->input('パスワード');
+					    <?php echo $this->Form->input('username');
+					    echo $this->Form->input('password');
 					    ?>
 					  </fieldset>
 						<?php echo $this->Html->link('一般新規登録','/participants/preadd/') ?>
 						<?php echo $this->Html->link('修了生新規登録','/graduates/preadd/') ?>
 
 						<?php echo $this->Form->end(__('Login')); ?>
+
 				</p>
       </div>
     </div><!-- /.container -->
