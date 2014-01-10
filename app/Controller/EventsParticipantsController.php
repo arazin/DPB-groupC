@@ -58,10 +58,10 @@ class EventsParticipantsController extends AppController{
 
   	$this->loadmodel('User');
 		$participants = NULL;
-
+		if($ids != null){
   	foreach($ids as $idd){
   		$participants[] = $this -> User -> findById($idd);
-  	}
+  	}}
   	//$this->set('participants', $participants);
   	$this -> set('participants', Sanitize::clean($participants, array('remove_html' => true)));
   }

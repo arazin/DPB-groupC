@@ -9,7 +9,9 @@
  				<th>詳細</th>
  				<th>作成日</th>
  				<th>更新日</th>
-    </tr> <?php $i = 0;?> 
+    </tr> <?php $i = 0;?>
+		<?php $user_gevents = array_reverse($user_gevents);?>
+		<?php $newflag = array_reverse($newflag);?>
     <?php foreach ($user_gevents as $user_gevent): ?>
 
     <tr> 
