@@ -1,12 +1,12 @@
 ﻿<div class="container"> 
 <div class="row">  
-<div class="col-md-7">
+<div class="col-md-8">
 
-<h2>情報一覧・検索</h2>
-
+<h2>アカウント一覧・検索</h2>
+<br>
 <p>
 	<?php echo $this->paginator->counter(array('format' => "%count%件ヒットしました")) ?>
-	<table class="table table-striped table-bordered table-condensed">
+	<table cellpadding="0" cellspacing="0" class="table table-striped table-condensed">
 	<tr>
 		<th>#</th>
 		<th>名前</th>
@@ -25,23 +25,15 @@
 			$users[$i]['User']['id'],
 		))}</td>";
 
-		echo "<td>{$users[$i]['Industry']['industry_name']}</td>";
-/*
-		echo "<td>{$this->Form->postLink(
-		$users[$i]['User']['name'] .'を削除',
-		array('action' => 'delete',$users[$i]['User']['id']),
-		array('confirm' => $users[$i]['User']['name'] . 'さんを削除しますか？',
-					'class' => 'btn btn-danger',)
-		)}</td></tr>";
-*/
+		echo "<td>{$users[$i]['Group']['name']}</td>";
 	}
 ?>
 </table>
 </p>
 </div>
 
-<div class="col-md-5">
-
+<div class="col-md-4">
+<br><br><br>
 <legend>検索</legend>
 <?php echo $this->Form->create('User',array(
 	'inputDefaults' => array(
@@ -81,7 +73,13 @@
 	'required' => false,
 ));?>
 
-<?php echo $this->Form->end('検索'); ?>
+<?php echo $this->Form->submit('検 索', array(
+	'div' => 'form-group',
+	'class' => 'btn btn-default'
+));?>
+
+
+<?php echo $this->Form->end(); ?>
 
 </div></div></div>
 
