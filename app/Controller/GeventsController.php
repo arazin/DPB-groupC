@@ -18,49 +18,66 @@ class GeventsController extends AppController {
     $graduates = $this->Graduate->find('all');
     $newgevents = NULL;
     $oldgevents = NULL;
-
+		$this->set('newgevents', $newgevents);
+		$this->set('oldgevents', $oldgevents);
 		//ログインしている人のID
 		$user_id = $this->Auth->user('id');
     //$user_id = 4; //実験用
-	
-	$login_graduate = $this -> Graduate-> findByUser_id($user_id);
-
-
-if($login_graduate != NULL){
-
-	//geventsを見た修了生のlasteventviewを更新
-	$data = array('Graduate' => array('user_id' => $user_id, 'lasteventview' => date('Y-m-d H:i:s'), 'modified' => false));
-	$fields = array('lasteventview');
-	$this -> Graduate -> save($data, false, $fields);
-
-	//新着記事と既読記事を$newgeventsと$oldGeventsへ
-  $newgevents = $this -> Gevent -> find('all',array(
- 'fields'=>array('id', 'title','gevent_date','place', 'detail', 'created', 'modified'),
- 'conditions'=>array('created >' => $login_graduate['Graduate']['lasteventview']),
- ));
-
-  $oldgevents = $this -> Gevent -> find('all',array(
-  'fields'=>array('id','title','gevent_date','place', 'detail', 'created', 'modified'),
-  'conditions'=>array('created <=' => $login_graduate['Graduate']['lasteventview']),
- ));
-
-	}
-
-/*  $this -> set('gevents', $this->Gevent->find('all'));*/
+		$i = 0;
+		$newflag = array();
 		
-    	$this -> set('newgevents', Sanitize::clean($newgevents, array('remove_html' => true)));		
-   		$this -> set('oldgevents', Sanitize::clean($oldgevents,array('remove_html' => true)));
-		/**********新着と既読イベントわけるとpaginateがうまくいかない**********/
+		$login_graduate = $this -> Graduate-> findByUser_id($user_id);
+
+
+		if($login_graduate != NULL){
+
+			//geventsを見た修了生のlasteventviewを更新
+			$data = array('Graduate' => array('user_id' => $user_id, 'lasteventview' => date('Y-m-d H:i:s'), 'modified' => false));
+			$fields = array('lasteventview');
+			$this -> Graduate -> save($data, false, $fields);
+
+			//イベント開催日が現在の日付より古いものは排除
+
+			$this->paginate=array(
+  	  	'conditions' => array('gevent_date >' => date('Y-m-d')),
+   			'fields' => array('id', 'title','gevent_date','place', 'detail', 'created', 'modified'),
+ 			);
+			
+			$newgevents = $this->paginate();
+			$user_gevents = $newgevents;	
+	
+			if($login_graduate['Graduate']['lasteventview'] == NULL){
+				foreach($user_gevents as $user_gevent){
+					$newflag[] = 1;
+				}
+				$this -> set('newflag', $newflag);
+				$this -> set('user_gevents', Sanitize::clean($user_gevents,array('remove_html' => true)));
+			}
+			else{
+				foreach($user_gevents as $user_gevent){
+					if($user_gevent['Gevent']['created'] > $login_graduate['Graduate']['lasteventview']){
+						$newflag[] = 1;
+					}
+					else{
+						$newflag[] = 0;
+					}
+				}
+				$this -> set('newflag', $newflag);
+				$this -> set('user_gevents', Sanitize::clean($user_gevents,array('remove_html' => true)));
+			}
+
+
+
+		}	
   }
 
 	//大学用	修了生用イベント一覧表示
   public function form() {
 		$gevents = $this->Gevent->find('all');
     $this->set('gevents', $this -> paginate(), Sanitize::clean($gevents, array('remove_html' => true)));
-		
   }
 
-	//修了生向けイベント詳細表示
+ 
   public function view($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid'));
@@ -69,10 +86,9 @@ if($login_graduate != NULL){
     if (!$gevent) {
       throw new NotFoundException(__('Invalid'));
     }
-		 	//$this -> set('gevent', Sanitize::clean($gevent, array('encode' => false)));
-			$this -> set('gevent', Sanitize::clean($gevent, array('remove_html' => true)));
-			//Sanitize::clean($this->data, array('remove_html' => true));
+		 	$this -> set('gevent', Sanitize::clean($gevent, array('remove_html' => true)));	
   }
+
 
 	//大学用	修了生向けイベント追加
   public function add() {
