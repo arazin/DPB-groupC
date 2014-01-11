@@ -139,15 +139,50 @@ class EventsParticipantsController extends AppController{
 
   	$this->loadmodel('Event');
 		$events = NULL;
-
-  	foreach($ids as $idd){
-  		$events[] = $this -> Event -> findById($idd);
-  	}
-
+		if($ids != null){
+  		foreach($ids as $idd){
+  			$events[] = $this -> Event -> findById($idd);
+  		}
+		}
   	$this -> set('events', Sanitize::clean($events, array('remove_html' => true)));
 		
 			
 	}
+
+	
+		//大学用	説明会追加
+  public function eventadd() {
+		$this -> loadmodel('Event');
+		$findoption = array(
+			'fields' => array('id','type_name'),
+			'recursive' => 0,
+		);
+		$this->set('types',$this->Event->Type->find('list',$findoption));
+    if ($this->request->is('post')) {
+      $this->Event->create();
+      if ($this->Event->save($this->request->data)) {
+        $this->Session->setFlash(__('保存しました'));
+        return $this->redirect(array('action' => 'index'));
+      }
+      $this->Session->setFlash(__('保存できませんでした'));
+    }
+  }
+
+
+		//説明会削除
+	public function delete($id) {
+		$this -> loadmodel('Event');
+    if ($this->request->is('get')) {
+      throw new MethodNotAllowedException();
+    }
+
+    if ($this->Event->delete($id)) {
+      $this->Session->setFlash(__('The gevent with id: %s has been deleted.', h($id)));
+      return $this->redirect(array('action' => 'index'));
+    }
+  }
+
+
 
 }
 ?>
