@@ -3,7 +3,6 @@
 <div class="col-md-10 col-md-offset-1">
 
 <h2>学生情報</h2>
-
 <table class="table table-striped table-bordered">
 <tr>
 	<th> 氏名</th>
@@ -46,4 +45,6 @@
 <?php
 echo $this->Html->link('学生情報編集', '/students/editone',array('class' => 'btn btn-primary')); 
 ?>
+
+</div></div></div>
 
