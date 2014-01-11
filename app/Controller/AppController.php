@@ -46,6 +46,15 @@ class AppController extends Controller {
 		'Search.Prg',
 		'Paginator',
     'Auth'=>array(
+			'flash' => array(
+				'element' => 'alert',
+				'key' => 'auth',
+				'params' => array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				),
+			),
+			'authError' => 'システムを利用するためにログインしてください',
 			'loginAction' => array('controller' => 'users', 'action' => 'login'),
       'loginRedirect'=>array('controller'=>'users','action'=>'top'),
       /* 'logoutRedirect'=>array('controller'=>'pages','action'=>'display','home'), */
