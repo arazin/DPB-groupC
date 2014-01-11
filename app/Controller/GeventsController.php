@@ -23,7 +23,6 @@ class GeventsController extends AppController {
 		//ログインしている人のID
 		$user_id = $this->Auth->user('id');
     //$user_id = 4; //実験用
-
 		$i = 0;
 		$newflag = array();
 		
