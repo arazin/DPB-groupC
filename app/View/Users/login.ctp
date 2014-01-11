@@ -39,8 +39,12 @@
 						)); ?>
 					  <fieldset>
 					    <legend><?php echo __('Login Form'); ?></legend>
-					    <?php echo $this->Form->input('username');
-					    echo $this->Form->input('password');
+					    <?php echo $this->Form->input('username',array(
+								'label' => 'ID',
+							));
+					    echo $this->Form->input('password',array(
+								'label' => 'パスワード'
+							));
 					    ?>
 					  </fieldset>
 						<?php echo $this->Html->link('一般新規登録','/participants/preadd/') ?>

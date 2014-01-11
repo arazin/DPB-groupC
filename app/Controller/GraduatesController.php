@@ -17,6 +17,12 @@ class GraduatesController extends AppController{
 	public function index(){
 		$id=$this->Auth->user('id');
 		$this->set('data',$this->Graduate->User->findById($id));
+		$findoption = array(
+			'conditions' => array('Career.graduate_id' => $id),
+			'contain' => array('Industry'),
+			'order' => array('Career.modified' => 'desc'),
+		);
+		$this->set('data2',$this->Graduate->Career->find('first',$findoption));
 	}
 	
 	/*

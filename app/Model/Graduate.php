@@ -17,6 +17,7 @@ class Graduate extends AppModel {
 	 */
 	public $primaryKey = 'user_id';
 
+
 	/**
 	 * Validation rules
 	 *
