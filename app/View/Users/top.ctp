@@ -48,11 +48,8 @@
 						<?php if($acllist[$groupId]=='administrators'): ?>
 							<?php echo $this->Html->link('大学TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
 							<?php echo $this->Html->link('アカウント一覧', '/users/',array('class' => 'list-group-item')); ?>
-<<<<<<< HEAD
+
 							<?php echo $this->Html->link('イベント', '/events_participants/',array('class' => 'list-group-item')); ?>
-=======
-							<?php echo $this->Html->link('イベント', '/eventsparticipants/',array('class' => 'list-group-item')); ?>
->>>>>>> master
 							<?php echo $this->Html->link('修了生向けイベント', '/gevents/form/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('修了生認証', '/users/gapplist/',array('class' => 'list-group-item')); ?>
