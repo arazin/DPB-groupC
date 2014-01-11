@@ -43,6 +43,7 @@
         						echo ("男");}
         					else{echo ("女");}
         					 ?></td>
+
         <td><?php echo $this->Html->link('追加', array('action' => 'add', $dataaa['User']['id'], $eveid)); ?></td>
 
 
@@ -50,3 +51,5 @@
 <?php endforeach; ?>
 </table>
 <?php endif; ?>
+
+

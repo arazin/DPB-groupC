@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 App::uses('AppModel', 'Model');
 /**
  * Event Model
@@ -27,14 +27,23 @@ class Event extends AppModel {
 		'place' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Your custom message here',
+				),
+			'maxlength' => array(
+				'rule' => array('maxLength', '50'),
+				'message' => '場所は50文字以内にしてください。'
+				),
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			
 		),
 		'type_id' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Your custom message here',
+				),
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',

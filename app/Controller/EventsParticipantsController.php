@@ -22,8 +22,22 @@ class EventsParticipantsController extends AppController{
 
     $data = array('EventsParticipant' => array('participant_id' => $dataaa, 'event_id' => $eveid));
  		$fields = array('participant_id', 'event_id');
+
+
+		//すでに追加済みの人は登録できないようにする
+		$eventsparticipants = $this -> EventsParticipant -> find('all');
+		$this->loadmodel('User');
  
+		foreach($eventsparticipants as $eventsparticipant){
+				if($eventsparticipant['EventsParticipant']['event_id'] == $eveid && $eventsparticipant['EventsParticipant']['participant_id'] == $dataaa){
+					$this->Session->setFlash(__('この人は追加済みです'));
+					return $this->redirect(array('action' => 'index'));
+				}
+		}
+
+
  		if ($this->EventsParticipant->save($data, false, $fields)) {
+					
             $this->Session->setFlash(__('追加しました'));
             return $this->redirect(array('action' => 'index'));
         }
@@ -31,7 +45,7 @@ class EventsParticipantsController extends AppController{
   }
 
 
-  // event_idをクリックするとそのイベントに参加している人の一覧を表示
+  // event_idをクリックするとそのイベントに参加している人の一覧を表示（大学が過去の参加履歴を参照）
   public function view($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid'));
@@ -44,12 +58,12 @@ class EventsParticipantsController extends AppController{
 
   	$this->loadmodel('User');
 		$participants = NULL;
-
+		if($ids != null){
   	foreach($ids as $idd){
   		$participants[] = $this -> User -> findById($idd);
-  	}
+  	}}
   	//$this->set('participants', $participants);
-  	$this -> set('participants', Sanitize::clean($participants, array('encode' => false)));
+  	$this -> set('participants', Sanitize::clean($participants, array('remove_html' => true)));
   }
 
 
@@ -86,12 +100,54 @@ class EventsParticipantsController extends AppController{
     		'User.birthday like' => '%'.$birthday.'%',
     		'User.sex like' => '%'.$sex.'%',
   		)); 
+		//検索に当てはまった人の情報
+  	$data = $this -> User -> find('all', array('conditions' => $opt));
 
-  		$data = $this -> User -> find('all', array('conditions' => $opt));
-  		$this->set('data', $data);
+//array_splice
+		
+/*
+ //うまくいかない
+		$eventsparticipant = $this -> EventsParticipant -> find('all');
+
+		foreach($eventsparticipant as $ep){
+			foreach($data as $dataa){
+				if($ep['EventsParticipant']['event_id'] == $id && $ep['EventsParticipant']['participant_id'] == $dataa['User']['id']){
+					$data2[] = $dataa;
+				}
+			}
+		}
+		$data = array_diff($data, $data2);*/
+  	$this->set('data', $data);
 		}
 	}
 
+	//参加者が過去の参加履歴を参照する
+	public function reference(){
+		
+		$this->loadmodel('Participant');
+		$user_id = $this->Auth->user('id');
+		//$user_id = 5; //実験用
+		$login_user = $this -> Participant -> findByUser_id($user_id);
+
+		$event_ids = $this -> EventsParticipant -> findAllByParticipant_id($user_id);
+		
+		
+		$ids = NULL;
+  	foreach ($event_ids as $event_id) {
+  		$ids[] = $event_id['EventsParticipant']['event_id'];
+  	}
+
+  	$this->loadmodel('Event');
+		$events = NULL;
+
+  	foreach($ids as $idd){
+  		$events[] = $this -> Event -> findById($idd);
+  	}
+
+  	$this -> set('events', Sanitize::clean($events, array('remove_html' => true)));
+		
+			
+	}
 
 }
 ?>
