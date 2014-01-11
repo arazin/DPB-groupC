@@ -1,7 +1,7 @@
-﻿<h1>イベント一覧</h1>
+﻿<h1>説明会一覧</h1>
 
 <?php echo $this->Html->link(
-    'イベントを追加する',
+    '説明会を追加する',
     array('controller' => 'events', 'action' => 'add')
 ); ?>
 
@@ -10,9 +10,9 @@
 <table>
     <tr>
         <th>id</th>
-        <th>event_date</th>
- 		<th>place</th>
-        <th>type</th>
+        <th>日時</th>
+ 		<th>開催場所</th>
+        <th>種類</th>
     </tr>
     
        <?php foreach ($events as $event): ?>
@@ -23,9 +23,9 @@
         <td><?php echo $event['Event']['place']; ?></td>
         <td><?php echo $event['Type']['type_name']; ?></td>
 				<td><?php echo $this->Form->postLink(
-                '削除',
-                array('action' => 'delete', $event['Event']['id']),
-                array('confirm' => '本当に削除してもいいですか？'));
+              '削除',
+              array('action' => 'delete', $event['Event']['id']),
+              array('confirm' => '本当に削除してもいいですか？'));
             ?></td>
     </tr>
 <?php endforeach; ?>

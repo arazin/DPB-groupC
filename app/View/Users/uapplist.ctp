@@ -2,11 +2,6 @@
 <?php pr($data);?>
 <table>
 	<?php echo $this->Paginator->pager(); ?>
-<?php 
-echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
-echo $this->Paginator->numbers(array('separator' => ''));
-echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
-?>
 <tr>
 	<th><?php echo "名前";?></th>
 	<th><?php echo "国籍";?></th>

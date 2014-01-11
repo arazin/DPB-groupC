@@ -1,3 +1,7 @@
+<div class="container"> 
+<div class="row">  
+<div class="col-md-10 col-md-offset-1">
+
 <h1>編集</h1>
 <?php
 echo $this->Form->create('Student',array(
@@ -91,5 +95,5 @@ echo $this->Form->input('Student.entrance_date',array(
 
 
 
-echo $this->Form->end('Edit');
+echo $this->Form->end('更新');
 ?>

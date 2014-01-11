@@ -1,7 +1,10 @@
+﻿<div class="container"> 
+<div class="row">  
+<div class="col-md-10 col-md-offset-1">
 
-<h1>Add participant</h1>
+<h1>参加者登録フォーム</h1>
 <?php
-echo $this->Form->create('Student',array(
+echo $this->Form->create('Participant',array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
 		'wrapInput' => false,
@@ -58,3 +61,6 @@ echo $this->Form->end('Add');
 
 
 ?>
+</div>
+</div>
+</div>

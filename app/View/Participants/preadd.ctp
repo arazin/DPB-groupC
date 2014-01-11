@@ -1,7 +1,10 @@
+﻿<div class="container"> 
+<div class="row">  
+<div class="col-md-10 col-md-offset-1">
 
-<h1>Add participant</h1>
+<h1>参加者仮登録フォーム</h1>
 <?php
-echo $this->Form->create('Student',array(
+echo $this->Form->create('Participant',array(
 	'inputDefaults' => array(
 		'div' => 'form-group',
 		'wrapInput' => false,
@@ -54,7 +57,11 @@ echo $this->Form->input('Participant.teacher_name',array(
 echo $this->Form->input('Participant.entranced',array(
 	'label'=>'入学',
 ));
+
+echo $this->Recaptcha->display();
+
 echo $this->Form->end('Add');
 
 
 ?>
+

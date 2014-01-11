@@ -12,6 +12,53 @@ App::uses('AppModel', 'Model');
  */
 class User extends AppModel {
 	public $name = 'User';
+	public $actsAs = array(
+		'Search.Searchable',
+		'Containable',
+		'Acl' => array('type' => 'requester'),
+	);
+
+	/* 検索条件 */
+	public $filterArgs = array(
+		'User.name' => array(
+			'type' => 'like',
+			'field' => 'User.name',
+			'name' => 'name',
+			'empty' => true,
+		),
+		'User.group_id' => array(
+			'type' => 'value',
+			'field' => 'User.group_id',
+			'name' => 'group_id',
+			'empty' => true,
+		),
+		'User.nationarity' => array(
+			'type' => 'like',
+			'field' => 'User.nationarity',
+			'name' => 'nationarity',
+			'empty' => true,
+		),
+		'User.prefecture' => array(
+			'type' => 'like',
+			'field' => 'User.prefecture',
+			'name' => 'prefecture',
+			'empty' => true,
+		),
+		'User.remain' => array(
+			'type' => 'like',
+			'field' => 'User.remain',
+			'name' => 'remain',
+			'empty' => true,
+		),
+
+		'User.birthday' => array(
+			'type' => 'between',
+			'field' => 'User.birthday',
+			'name' => 'birthday',
+			'empty' => true,
+		),
+			
+	);
 
 	/*
 	 * Hash化
@@ -26,7 +73,6 @@ class User extends AppModel {
 	/*
 	 * ACL
 	 */
-  public $actsAs = array('Acl' => array('type' => 'requester'));
   public function parentNode() {
     if (!$this->id && empty($this->data)) {
       return null;

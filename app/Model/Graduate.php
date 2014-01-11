@@ -17,6 +17,7 @@ class Graduate extends AppModel {
 	 */
 	public $primaryKey = 'user_id';
 
+
 	/**
 	 * Validation rules
 	 *
@@ -95,7 +96,7 @@ class Graduate extends AppModel {
 		'Career' => array(
 			'className' => 'Career',
 			'foreignKey' => 'graduate_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -108,7 +109,7 @@ class Graduate extends AppModel {
 		'Certificate' => array(
 			'className' => 'Certificate',
 			'foreignKey' => 'graduate_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

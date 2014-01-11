@@ -16,16 +16,28 @@
 
     // Twitter Bootstrap 3.0 CDN
 		echo $this->Html->css('cake.must');
-    echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css');
-    echo $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
+    echo $this->Html->css('bootstrap.min.css');
+    echo $this->Html->script('bootstrap.min.js');
   	echo $this->Html->css('bootstrap');
-		
+		echo $this->Html->css('starter-template'); 		
 		
     echo $this->fetch('meta');
     echo $this->fetch('css');
     echo $this->fetch('script');
     ?>
+		<style>
+		 body {
+			 padding-top: 70px; /* 70px to make the container go all the way to the bottom of the topbar */
+		 }
+		 .affix {
+			 position: fixed;
+			 top: 60px;
+			 width: 220px;
+		 }
+	</style>
+
 	</head>
+
 	<body>
 
 		<!-- <div class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
@@ -44,7 +56,7 @@
 						<li><?php echo $this->Html->link('信州大学', 'http://www.shinshu-u.ac.jp/'); ?></li>
 						<li><?php echo $this->Html->link('ACSU', 'https://acsu.shinshu-u.ac.jp'); ?></li>
 						<li><?php echo $this->Html->link('キャンパス', 'https://campus.shinshu-u.ac.jp/'); ?></li>
-						<li><?php echo $this->Html->link('logout', array('controller'=>'users','action'=>'logout')); ?></li>
+						<li><?php echo $this->Html->link('Logout', array('controller'=>'users','action'=>'logout')); ?></li>
 					</ul>
 				</div><!--/.nav-collapse -->
       </div>
@@ -56,7 +68,8 @@
 
 				<?php echo $this->Session->flash(); ?>
 				<?php echo $this->fetch('content'); ?>
-			</div>	</div>
+			</div>
+		</div>
 			<?php echo $this->element('sql_dump'); ?>
 	</body>
 </html>
