@@ -29,7 +29,6 @@ class EventsController extends AppController {
       $this->Session->setFlash(__('保存できませんでした'));
     }
   }
-
 	//イベント削除
 	public function delete($id) {
     if ($this->request->is('get')) {
