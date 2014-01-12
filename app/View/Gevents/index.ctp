@@ -10,9 +10,9 @@
  				<th>作成日</th>
  				<th>更新日</th>
     </tr> <?php $i = 0;?>
-		<?php $user_gevents = array_reverse($user_gevents);?>
-		<?php $newflag = array_reverse($newflag);?>
-    <?php foreach ($user_gevents as $user_gevent): ?>
+		
+
+    <?php foreach($user_gevents as $user_gevent): ?>
 
     <tr> 
 				<td><?php if($newflag[$i] == 1){echo "new";} ?></td>
@@ -33,10 +33,11 @@ array('controller' => 'gevents', 'action' => 'view', $user_gevent['Gevent']['id'
 <?php endif; ?>
 
 
- <?php
-    echo $this->Paginator->first('<< ');
-    echo $this->Paginator->prev('< ');
-    echo $this->Paginator->next(' >');
-    echo $this->Paginator->last(' >>');
+<?php
+    echo $this->Paginator->first('最初 ');
+    echo $this->Paginator->prev('前 ');
+    echo $this->Paginator->numbers(
+        array('separator' => '/','modulus'=>2));
+    echo $this->Paginator->next(' 次');
+    echo $this->Paginator->last(' 最後');
   ?>
-

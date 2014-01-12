@@ -10,8 +10,11 @@ class EventsParticipantsController extends AppController{
 
   //イベント一覧表示
   public function index() {
-    
-  	$events = $this -> EventsParticipant -> Event -> find('all');
+    $this -> loadmodel('Event');
+  	//$events = $this -> EventsParticipant -> Event -> find('all');
+
+		$events = $this -> paginate('Event');
+
   	$this -> set('events', $events);
 
 	}
@@ -56,12 +59,17 @@ class EventsParticipantsController extends AppController{
   		$ids[] = $participant_id['EventsParticipant']['participant_id'];
   	}
 
-  	$this->loadmodel('User');
+  	$this -> loadmodel('User');
 		$participants = NULL;
 		if($ids != null){
-  	foreach($ids as $idd){
+  		/*foreach($ids as $idd){
   		$participants[] = $this -> User -> findById($idd);
-  	}}
+  		}*/
+
+			$conditions = array('User.id'=>$ids);	
+			$participants = $this -> paginate('User', $conditions);
+
+		}
   	//$this->set('participants', $participants);
   	$this -> set('participants', Sanitize::clean($participants, array('remove_html' => true)));
   }
@@ -166,9 +174,12 @@ class EventsParticipantsController extends AppController{
   	$this->loadmodel('Event');
 		$events = NULL;
 		if($ids != null){
-  		foreach($ids as $idd){
+  		/*foreach($ids as $idd){
   			$events[] = $this -> Event -> findById($idd);
-  		}
+  		}*/
+			$conditions = array('Event.id'=>$ids);	
+			$events = $this -> paginate('Event', $conditions);
+
 		}
   	$this -> set('events', Sanitize::clean($events, array('remove_html' => true)));
 		

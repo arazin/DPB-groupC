@@ -39,8 +39,11 @@ class GeventsController extends AppController {
 			//イベント開催日が現在の日付より古いものは排除
 
 			$this->paginate=array(
-  	  	'conditions' => array('gevent_date >' => date('Y-m-d')),
+  	  	'conditions' => array('gevent_date >=' => date('Y-m-d')),
    			'fields' => array('id', 'title','gevent_date','place', 'detail', 'created', 'modified'),
+				'order' => array(
+            'Gevent.created' => 'desc'
+        )
  			);
 			
 			$newgevents = $this->paginate();
@@ -50,6 +53,7 @@ class GeventsController extends AppController {
 				foreach($user_gevents as $user_gevent){
 					$newflag[] = 1;
 				}
+				
 				$this -> set('newflag', $newflag);
 				$this -> set('user_gevents', Sanitize::clean($user_gevents,array('remove_html' => true)));
 			}
@@ -62,6 +66,7 @@ class GeventsController extends AppController {
 						$newflag[] = 0;
 					}
 				}
+				
 				$this -> set('newflag', $newflag);
 				$this -> set('user_gevents', Sanitize::clean($user_gevents,array('remove_html' => true)));
 			}

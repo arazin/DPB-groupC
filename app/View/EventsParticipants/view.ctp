@@ -35,3 +35,12 @@
 <?php endforeach; ?>
 </table>
 <?php endif; ?>
+
+<?php
+    echo $this->Paginator->first('最初 ');
+    echo $this->Paginator->prev('前 ');
+    echo $this->Paginator->numbers(
+        array('separator' => '/','modulus'=>2));
+    echo $this->Paginator->next(' 次');
+    echo $this->Paginator->last(' 最後');
+  ?>
