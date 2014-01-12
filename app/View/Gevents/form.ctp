@@ -6,7 +6,7 @@
     array('controller' => 'gevents', 'action' => 'add')
 ); ?>
 
-
+<?php if ($gevents != NULL): ?>
 
 <table>
     <tr>
@@ -51,3 +51,5 @@ array('controller' => 'gevents', 'action' => 'view', $gevent['Gevent']['id'])); 
     echo $this->Paginator->next(' 次');
     echo $this->Paginator->last(' 最後');
   ?>
+
+<?php endif; ?>

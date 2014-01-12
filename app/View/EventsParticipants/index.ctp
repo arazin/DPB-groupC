@@ -36,7 +36,7 @@ array('controller' => 'events_participants', 'action' => 'view', $event['Event']
     </tr>
 <?php endforeach; ?>
 </table>
-<?php endif; ?>
+
 
 <?php
     echo $this->Paginator->first('最初 ');
@@ -46,3 +46,5 @@ array('controller' => 'events_participants', 'action' => 'view', $event['Event']
     echo $this->Paginator->next(' 次');
     echo $this->Paginator->last(' 最後');
   ?>
+
+<?php endif; ?>

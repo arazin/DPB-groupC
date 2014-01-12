@@ -1,5 +1,10 @@
 ﻿<h1>イベント一覧</h1>
 <?php if ($user_gevents != NULL): ?>
+
+<div style="height:100%; width:100%; overflow-y:scroll;">
+<table border=1 height="100" width="300" bgcolor="#9999ff"><tr><td>
+
+
 <table>
     <tr>
 				<th>新着情報</th>
@@ -11,6 +16,7 @@
  				<th>更新日</th>
     </tr> <?php $i = 0;?>
 		
+
 
     <?php foreach($user_gevents as $user_gevent): ?>
 
@@ -33,11 +39,5 @@ array('controller' => 'gevents', 'action' => 'view', $user_gevent['Gevent']['id'
 <?php endif; ?>
 
 
-<?php
-    echo $this->Paginator->first('最初 ');
-    echo $this->Paginator->prev('前 ');
-    echo $this->Paginator->numbers(
-        array('separator' => '/','modulus'=>2));
-    echo $this->Paginator->next(' 次');
-    echo $this->Paginator->last(' 最後');
-  ?>
+</td></tr></table>
+</div>

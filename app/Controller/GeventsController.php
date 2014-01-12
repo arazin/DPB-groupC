@@ -22,7 +22,7 @@ class GeventsController extends AppController {
 		$this->set('oldgevents', $oldgevents);
 		//ログインしている人のID
 		$user_id = $this->Auth->user('id');
-    $user_id = 4; //実験用
+    //$user_id = 4; //実験用
 		$i = 0;
 		$newflag = array();
 		
@@ -45,8 +45,17 @@ class GeventsController extends AppController {
             'Gevent.created' => 'desc'
         )
  			);
+
+			$newgevents = $this->Gevent->find('all', array(
+
+   			'conditions' => array('gevent_date >=' => date('Y-m-d')),
+   			'fields' => array('id', 'title','gevent_date','place', 'detail', 'created', 'modified'),
+				'order' => array('Gevent.created' => 'desc'),
+			));
+
 			
-			$newgevents = $this->paginate();
+			
+			//$newgevents = $this->paginate();
 			$user_gevents = $newgevents;	
 	
 			if($login_graduate['Graduate']['lasteventview'] == NULL){
