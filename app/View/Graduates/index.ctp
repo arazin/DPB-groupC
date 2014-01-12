@@ -30,7 +30,7 @@
 				</tr>
 			</table>
 
-			<h3>希望進路</h3>
+			<h3>卒業後進路</h3>
 			<?php if(!empty($data2)){ ?>
 				<table class="table table-striped table-bordered">
 					<tr>
