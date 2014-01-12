@@ -234,6 +234,61 @@ class UsersController extends AppController {
 		}
 	}
 
+	/*
+	 * 大学のアカウント管理
+	 */
+	public function edit(){
+		$id = $this->Auth->user('id');
+		$this->User->id = $id;
+		$editdata = $this->User->findById($id);
+
+		if (!$editdata){
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$flag = false;
+		if($this->request->is('put')){
+			if($this->User->save($this->request->data,array('validate' => 'only'))){
+				if(!empty($this->request->data['User']['new_password'])){
+					$this->request->data['User']['password']=$this->request->data['User']['new_password'];
+					$flag=true;
+				}
+				
+				if($this->User->save($this->request->data)){
+					if($flag){
+						$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-danger',
+							)
+																		 );
+						$this->redirect('/users/logout');
+					} else {
+						$this->Session->setFlash(__('情報が更新されました'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-danger',
+							)
+																		 
+																		 );
+						$this->redirect('/');
+					}
+				}
+				$this->Session->setFlash(__('更新されませんでした'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger',
+					)
+																 );
+			}
+		} else {
+			$this->request->data=$editdata;
+			unset($this->request->data['User']['password']);			
+		}
+	}
 
 	
 	

@@ -113,36 +113,26 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				'message' => 'error:alphaNumeric',
-			),
 			'between' => array(
 				'rule' => array('between',5,15),
-				'message' => 'error:between',
+				'message' => 'IDは5文字以上20文字以内で入力してください',
 			),
 			'isUnique' => array(
 				'rule' => array('isUnique'),
-				'message' => 'error:isUnique',
+				'message' => 'そのIDは使用できません',
 				'on' => 'create', // Limit validation to 'create' or 'update' operations
 
 			),
 		),
 		
 		'new_username' => array(
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
-				'message' => 'error:alphaNumeric',
-				'allowEmpty' => true,
-				'required' => false,
-			),
 			'between' => array(
-				'rule' => array('between',5,15),
-				'message' => 'error:between',
+				'rule' => array('between',5,20),
+				'message' => 'IDは5文字以上20文字以内で入力してください',
 			),
 			'isUnique' => array(
 				'rule' => array('isUnique'),
-				'message' => 'error:isUnique',
+				'message' => 'そのIDは使用できません',
 				'on' => 'create',
 			),
 		),
@@ -158,11 +148,11 @@ class User extends AppModel {
 			),
 			'minLength' => array(
 				'rule' => array('minLength',8),
-				'message' => 'error:minlength',
+				'message' => 'パスワードが短すぎます',
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength',50),
-				'message' => 'error:maxlength',
+				'message' => 'error:入力が長すぎます',
 			),
 		),
 		
@@ -176,13 +166,20 @@ class User extends AppModel {
 		'new_password' => array(
 			'minLength' => array(
 				'rule' => array('minLength',8),
-				'message' => 'error:minlength',
+				'message' => 'パスワードが短すぎます',
 				'allowEmpty' => true,
 				'required' => false,
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength',50),
-				'message' => 'error:maxlength',
+				'message' => '入力が長すぎます',
+			),
+		),
+		
+		'password3' => array(
+			'sameCheck' => array(
+				'rule' => array('sameCheck','new_password'),
+				'message' => 'パスワードが一致しません'
 			),
 		),
 

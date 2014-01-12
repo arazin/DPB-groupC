@@ -55,7 +55,7 @@
 							<?php echo $this->Html->link('修了生認証', '/users/gapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('証明書申請一覧','/certificates/index',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('ユーザー登録','/pages/addhome/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('大学アカウント管理', '/users/research',array('class' => 'list-group-item')); ?>
+							<?php echo $this->Html->link('大学アカウント管理', '/users/edit',array('class' => 'list-group-item')); ?>
 
 						<?php endif; ?>
 						
