@@ -283,7 +283,7 @@ class User extends AppModel {
 			),
 			'phone' => array(
 				'rule' => array('phone','/\d{2,4}-\d{2,4}-\d{4}/','all'),
-				'message' => 'error:phone',
+				'message' => '電話番号は"-"で区切ってください',
 			),
 		),
 		
@@ -313,7 +313,7 @@ class User extends AppModel {
 			),
 			'numeric' => array(
 				'rule' => array('numeric'),
-				'message' => 'error:numeric',
+				'message' => '',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

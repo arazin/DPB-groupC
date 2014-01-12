@@ -4,7 +4,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
     parent::beforeFilter();
-		 $this->Auth->allow('login','logout'); 
+		$this->Auth->allow('login','logout'); 
 	}
 	public function isAuthorized($user) {
     if ($this->action === 'login'||$this->action ==='logout') {
@@ -73,7 +73,7 @@ class UsersController extends AppController {
 			}
 			$this->paginate['conditions']=array(
 				'User.group_id' => $keys,
-				);
+			);
 		}
 		$this->Paginator->settings = $this->paginate;
 		$this->set('users',$this->Paginator->paginate());
@@ -99,15 +99,24 @@ class UsersController extends AppController {
 	
 	public function login() {
 		if($this->Session->read('Auth.User')){
-			$this->Session->setFlash('Why!?');
+			$this->Session->setFlash('無効なログイン',
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
 			$this->redirect('/',null,false);
 		}
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->redirect($this->Auth->redirect());
       } else {
-        $this->Session->setFlash(__('ID または パスワード が 間違っています'));
-
+        $this->Session->setFlash(__('ID または パスワード が 間違っています'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger',
+					));
       }
     }
 	}
@@ -119,10 +128,20 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('無効なリクエスト'));
 		}
 		if($this->User->delete()){
-			$this->Session->setFlash(__('ユーザーが削除されました'));
+			$this->Session->setFlash(__('ユーザーが削除されました'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('ユーザーを削除できませんでした'));
+		$this->Session->setFlash(__('ユーザーを削除できませんでした'),
+														 'alert',
+														 array(
+				'plugin' => 'BoostCake',
+				'class' => 'alert-danger',
+			));
     $this->redirect(array('action' => 'index'));
 	}
 
@@ -150,10 +169,10 @@ class UsersController extends AppController {
 		$tmp=$this->User->Group->find('first',$findoption);
 		//paginatorの検索オプション
 		$this->paginate=array(
-		'conditions' => array('User.group_id'=>$tmp['Group']['id']),
-		'limit' => 25,
-		'order' => array('User.created'=>'asc'),
-		'recursive' => '-1',
+			'conditions' => array('User.group_id'=>$tmp['Group']['id']),
+			'limit' => 25,
+			'order' => array('User.created'=>'asc'),
+			'recursive' => '-1',
 		);
 		$this->Paginator->settings = $this->paginate;
 		$this->set('data',$this->Paginator->paginate());
@@ -198,10 +217,10 @@ class UsersController extends AppController {
 		$tmp=$this->User->Group->find('first',$findoption);
 		//paginatorの検索オプション
 		$this->paginate=array(
-		'conditions' => array('User.group_id'=>$tmp['Group']['id']),
-		'limit' => 25,
-		'order' => array('User.created'=>'asc'),
-		'recursive' => '-1',
+			'conditions' => array('User.group_id'=>$tmp['Group']['id']),
+			'limit' => 25,
+			'order' => array('User.created'=>'asc'),
+			'recursive' => '-1',
 		);
 		$this->Paginator->settings = $this->paginate;
 		$this->set('data',$this->Paginator->paginate());

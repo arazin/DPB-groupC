@@ -11,8 +11,9 @@ class ParticipantsController extends AppController{
 
 	public function beforeFilter() {
     parent::beforeFilter();
-		 $this->Auth->allow('preadd'); // ユーザーに自身で登録させる 
+		$this->Auth->allow('preadd'); // ユーザーに自身で登録させる 
 	}
+
 
 	/*
 	 * アクター:参加者 自身の情報を参照
@@ -22,7 +23,35 @@ class ParticipantsController extends AppController{
 		$this->set('data',$this->Participant->User->findById($id));
 	}
 
-		/*
+	/*
+	 * アクター:参加者 本人の情報を削除
+   */
+	public function deleteone(){
+		$id = $this->Auth->user('id');
+		$this->Participant->User->id = $id;
+		if(!$this->Participant->User->exists()){
+			throw new NotFoundException(__('無効なリクエスト'));
+		}
+		if($this->Participant->User->delete()){
+			$this->Session->setFlash(__('ユーザーが削除されました'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-danger',
+									));
+			$this->redirect('/users/logout');
+		}
+		$this->Session->setFlash(__('ユーザーを削除できませんでした'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-danger',
+									));
+    $this->redirect(array('action' => 'index'));
+	}
+
+
+	/*
 	 * アクター:参加者 本人の情報を編集
    */
 	public function editone(){
@@ -173,7 +202,7 @@ class ParticipantsController extends AppController{
 
 
 	public function add(){
-				//業種
+		//業種
 		$findoption = array(
 			'fields' => array('id','industry_name'),//取り出す属性
 			'recursive' => 0,//関連テーブルからは検索しない

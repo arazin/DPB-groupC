@@ -68,7 +68,6 @@
 							<?php echo $this->Html->link('証明書申請一覧','/certificates/index',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('ユーザー登録','/pages/addhome/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('大学アカウント管理', '/users/edit',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('色変更テスト', array('action' => 'top'),array('class' => 'list-group-item-new')); ?>
 
 						<?php endif; ?>
 						
@@ -103,10 +102,10 @@
       </div><!--/row-->
 
       <hr>
+					<footer>
+						<p>&copy; DesignProjectB 2013 GroupC</p>
+					</footer>
 
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
 
     </div><!--/.container-->
 
@@ -118,5 +117,4 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="offcanvas.js"></script>
-  </body>
-</html>
+

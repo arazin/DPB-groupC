@@ -40,7 +40,23 @@ class EventsController extends AppController {
       return $this->redirect(array('action' => 'index'));
     }
   }
+	
+	public function events() {
+		$this->set('events', $this->Event->find('all'));
+	}
 
+	//studentsがイベント情報を見るための部分
+	public function view($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+
+		$event = $this->Event->findById($id);
+		if (!$event) {
+			throw new NotFoundException(__('Invalid event'));
+		}
+		$this->set('event', $event);
+	}
 
 }
 ?>

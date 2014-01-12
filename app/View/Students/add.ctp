@@ -1,4 +1,9 @@
 
+<<<<<<< HEAD
+?<div class="container"> 
+<div class="row">  
+<div class="col-md-10 col-md-offset-1">
+=======
 <div class="container"> 
 	<div class="row">  
 		<div class="col-md-10 col-md-offset-1">
@@ -109,6 +114,7 @@
 		</div>
 	</div>
 </div>
+>>>>>>> origin/master
 
 <script type="text/javascript" >
  window.onload = function(){document.getElementById('UserUsername').focus();}
