@@ -82,5 +82,12 @@
 
 			<?php echo $this->Form->end(); ?>
 
-		</div></div></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	window.onload = function(){document.getElementById('UserName').focus();}
+</script>
+
 

@@ -59,3 +59,7 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	window.onload = function(){document.getElementById('UserUsername').focus();}
+</script>
+
