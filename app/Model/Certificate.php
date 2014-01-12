@@ -87,6 +87,6 @@ class Certificate extends AppModel {
 			'fields' => '',
 			'order' => ''
 		)*/
-
 	);
+
 }
