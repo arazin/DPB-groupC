@@ -133,6 +133,7 @@ class UsersController extends AppController {
 	public function top() {
 		$this->set('acllist',$this->User->Group->find('list',array('recursive'=> -1)));
 		$this->set('groupId',$this->Auth->user('group_id'));
+		$this->set('user',$this->Auth->user('username'));
 	}
 
 	

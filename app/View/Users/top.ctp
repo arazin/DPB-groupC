@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
     <title>TOP</title>
 
@@ -15,6 +14,9 @@
 
     <!-- Custom styles for this template -->
 		<?php echo $this->Html->css('offcanvas'); ?> 
+
+		<!-- Fetch Javascript -->
+		<?php echo $this->Html->script('tokei'); ?> 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -36,10 +38,21 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-						<h1>ここに</h1>
-						<h1>なにか</h1>
-						<h1>欲しい</h1>
-						<h1>かな</h1>
+							<p>ようこそ<?php echo $user; ?>さん</p>
+							本日は<br>
+								<script type="text/JavaScript">
+								<!--
+								date();
+								//-->
+								</script>
+							<br>現在時刻は<br>
+							<div class="box1">
+								<script type="text/JavaScript">
+								<!--
+								sinpletokei();
+								//-->
+								</script>
+							</div>
           </div>
         </div><!--/span-->
 				
@@ -48,7 +61,6 @@
 						<?php if($acllist[$groupId]=='administrators'): ?>
 							<?php echo $this->Html->link('大学TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
 							<?php echo $this->Html->link('アカウント一覧', '/users/',array('class' => 'list-group-item')); ?>
-
 							<?php echo $this->Html->link('イベント', '/events_participants/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('修了生向けイベント', '/gevents/form/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
@@ -71,6 +83,7 @@
 
 							<?php echo $this->Html->link('学生情報参照', '/students/index',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('学生情報編集', '/students/editone',array('class' => 'list-group-item')); ?>
+							<?php echo $this->Html->link('イベント情報', '/events/events',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
 
 						<?php if($acllist[$groupId]=='graduates'): ?>
