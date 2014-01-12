@@ -2,7 +2,7 @@
 
 <?php echo $this->Html->link(
     '説明会を追加する',
-    array('controller' => 'eventsparticipants', 'action' => 'eventadd')
+    array('controller' => 'events_participants', 'action' => 'eventadd')
 ); ?>
 
 <?php if ($events != NULL): ?>
@@ -21,7 +21,7 @@
         <td>
 
             <?php echo $this->Html->link($event['Event']['id'],
-array('controller' => 'EventsParticipants', 'action' => 'view', $event['Event']['id'])); ?>
+array('controller' => 'events_participants', 'action' => 'view', $event['Event']['id'])); ?>
         </td>
         <td><?php echo $event['Event']['event_date']; ?></td>
         <td><?php echo $event['Event']['place']; ?></td>

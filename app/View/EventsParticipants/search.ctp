@@ -17,6 +17,7 @@
 <h1>検索結果</h1>
 <table>
     <tr>
+				<th>追加済み情報</th>
         <th>名前</th>
         <th>国名</th>
  				<th>県名</th>
@@ -31,6 +32,14 @@
        <?php foreach ($data as $dataaa): ?>
         
     <tr>
+				<td><?php if($eps_ids != NULL){
+										foreach ($eps_ids as $eps_id){
+											if($eps_id == $dataaa['User']['id']){
+												echo "追加済み";
+											}
+										}
+									}
+				?></td>
         <td><?php echo $dataaa['User']['name']; ?></td>
         <td><?php echo $dataaa['User']['nationarity']; ?></td>
         <td><?php echo $dataaa['User']['prefecture']; ?></td>
@@ -51,4 +60,3 @@
 <?php endforeach; ?>
 </table>
 <?php endif; ?>
-

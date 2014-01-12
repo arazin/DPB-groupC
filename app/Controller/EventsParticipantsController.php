@@ -77,6 +77,10 @@ class EventsParticipantsController extends AppController{
   	$this->set('data', $data);
   	$this->loadmodel('User');
 		$this->loadmodel('Participant');
+		$pdata = NULL;
+		$participant_ids = NULL;
+		$participants = NULL;
+		$eps = NULL;
 
   	if($this->request->is('post')){
   		$name = $this->request->data['Search']['name'];
@@ -102,6 +106,7 @@ class EventsParticipantsController extends AppController{
   		)); 
 		//検索に当てはまった人の情報
   	$data = $this -> User -> find('all', array('conditions' => $opt));
+
 		$participants = $this -> Participant -> find('all');
 		foreach($participants as $participant){
 			$participant_ids[] = $participant['Participant']['user_id'];
@@ -114,7 +119,15 @@ class EventsParticipantsController extends AppController{
 			}
 		}
 
-
+		//選択されたイベントに参加している人を探す
+		$eps = $this -> EventsParticipant -> find('all', array('conditions' => array('event_id' => $id)));
+		$eps_ids = NULL;
+		foreach ($eps as $ep) {
+  		$eps_ids[] = $ep['EventsParticipant']['participant_id'];
+  	}
+		
+		$this -> set('eps_ids', $eps_ids);
+	
 //array_splice
 		
 /*
@@ -130,6 +143,7 @@ class EventsParticipantsController extends AppController{
 		}
 		$data = array_diff($data, $data2);*/
   	$this->set('data', $pdata);
+
 		}
 	}
 
