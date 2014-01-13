@@ -1,6 +1,6 @@
 <?php
 class CoursesController extends AppController{
-	public $scaffold;
+	//public $scaffold;
 }
 
 ?>

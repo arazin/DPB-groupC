@@ -43,7 +43,6 @@ class AppController extends Controller {
 	public $components=array(
 		'Acl',
     'Session',
-		'Search.Prg',
 		'Paginator',
     'Auth'=>array(
 			'flash' => array(

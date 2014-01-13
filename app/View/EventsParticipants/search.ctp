@@ -9,15 +9,11 @@
 	<table cellpadding="0" cellspacing="0" class="table  table-condensed">
 		<thead>
     <tr>
-				<th>追加済み情報</th>
+				<th>追加情報</th>
         <th>名前</th>
-        <th>国名</th>
+        <th>国籍</th>
  				<th>県名</th>
- 				<th>住所</th>
  				<th>郵便番号</th>
- 				<th>電話番号</th>
- 				<th>仕事</th>
- 				<th>誕生日</th>
  				<th>性別</th>
     </tr>
     
@@ -36,11 +32,7 @@
         <td><?php echo $dataaa['User']['name']; ?></td>
         <td><?php echo $dataaa['User']['nationarity']; ?></td>
         <td><?php echo $dataaa['User']['prefecture']; ?></td>
-        <td><?php echo $dataaa['User']['remain']; ?></td>
         <td><?php echo $dataaa['User']['postcord']; ?></td>
-        <td><?php echo $dataaa['User']['phonenumber']; ?></td>
-        <td><?php echo $dataaa['User']['job']; ?></td>
-        <td><?php echo $dataaa['User']['birthday']; ?></td>
         <td><?php if($dataaa['User']['sex'] == 1){
         			echo ("男");}
         		else{echo ("女");}
@@ -65,7 +57,6 @@
 					'wrapInput' => false,
 					'class' => 'form-control',
 				),
-				'url' => '/users/',
 				'class' => 'well',
 			));
 			echo $this->Form->input('name', array('label'=>'名前'));
@@ -74,7 +65,6 @@
 			echo $this->Form->input('remain', array('label'=>'残りの住所'));
 			echo $this->Form->input('postcord', array('label'=>'郵便番号'));
 			echo $this->Form->input('phonenumber', array('label'=>'電話番号'));
-			echo $this->Form->input('job', array('label'=>'仕事'));
 			echo $this->Form->input('birthday', array('label'=>'誕生日（xxxx-xx-xxの形式で入力）'));
 			echo $this->Form->input('sex', array('label'=>'性別（男なら1を、女なら0を入力）'));
 			echo $this->Form->end('検索');

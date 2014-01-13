@@ -97,7 +97,6 @@ class EventsParticipantsController extends AppController{
   		$remain = $this->request->data['Search']['remain'];
   		$postcord = $this->request->data['Search']['postcord'];
   		$phonenumber = $this->request->data['Search']['phonenumber'];
-  		$job = $this->request->data['Search']['job'];
   		$birthday = $this->request->data['Search']['birthday'];
   		$sex = $this->request->data['Search']['sex'];
 
@@ -108,7 +107,6 @@ class EventsParticipantsController extends AppController{
     		'User.remain like' => '%'.$remain.'%',
     		'User.postcord like' => '%'.$postcord.'%',
     		'User.phonenumber like' => '%'.$phonenumber.'%',
-    		'User.job like' => '%'.$job.'%',
     		'User.birthday like' => '%'.$birthday.'%',
     		'User.sex like' => '%'.$sex.'%',
   		)); 

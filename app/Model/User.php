@@ -208,7 +208,7 @@ class User extends AppModel {
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength',100),
-				'message' => 'error:maxlength',
+				'message' =>'内容が長過ぎます',
 			),
 		),
 		'nationarity' => array(

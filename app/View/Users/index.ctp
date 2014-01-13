@@ -1,36 +1,48 @@
 ﻿<div class="container"> 
-	<div class="row">  
+	<div class="row">
 		<div class="col-md-8">
-
-			<h2>アカウント一覧・検索</h2>
-			<br>
-			<p>
-				<?php echo $this->paginator->counter(array('format' => "%count%件ヒットしました")) ?>
-			</p>
-			<table cellpadding="0" cellspacing="0" class="table  table-condensed">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>名前</th>
-						<th>グループ</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					/* usersの添字0をfor文に組込めばよい */
-					/* $k は結果の数 */
-					for($i=0, $k = 1; $i < count($users); $i++, $k++){
-						echo "<tr>\n<td>{$k}</td>\n";
-						echo "<td>{$this->Html->link($users[$i]['User']['name'],array(
+			<div class="certificates index">
+				<h2>アカウント一覧</h2>
+				<br>
+				<table cellpadding="0" cellspacing="0" class="table  table-condensed">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>名前</th>
+							<th>グループ</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						/* usersの添字0をfor文に組込めばよい */
+						/* $k は結果の数 */
+						for($i=0, $k = 1; $i < count($users); $i++, $k++){
+							echo "<tr>\n<td>{$k}</td>\n";
+							echo "<td>{$this->Html->link($users[$i]['User']['name'],array(
 			'controller' => 'users',
 			'action' => 'view',
 			$users[$i]['User']['id'],
 		))}</td>\n";
-						echo "<td>{$users[$i]['Group']['name']}</td>\n</tr>\n";
-					}
-					?>
-				</tbody>
-			</table>
+							echo "<td>{$users[$i]['Group']['name']}</td>\n</tr>\n";
+						}
+						?>
+					</tbody>
+				</table>
+				<p>
+
+						<?php
+						echo $this->Paginator->counter(
+							array(
+								'format' => __(' ページ {:page} / {:pages}、  {:count} 件中 {:current} 件 表示しています。')));?>
+				</p>
+				<div class="paging">
+				<?php
+				echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+				echo $this->Paginator->numbers(array('separator' => ''));
+				echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+				?>
+					</div>
+			</div>
 		</div>
 
 		<div class="col-md-4">
@@ -87,7 +99,7 @@
 </div>
 
 <script type="text/javascript">
-	window.onload = function(){document.getElementById('UserName').focus();}
+ window.onload = function(){document.getElementById('UserName').focus();}
 </script>
 
 

@@ -2,7 +2,7 @@
 App::uses('Sanitize', 'Utility');
 
 class UsersController extends AppController {
-	public $scaffold;
+	//public $scaffold;
 
 	public function beforeFilter() {
     parent::beforeFilter();
@@ -14,8 +14,10 @@ class UsersController extends AppController {
     }
 	}
 
+
+
 	
-	//public $components = array('Security','Paginator','Search.Prg');
+	public $components = array('Search.Prg');
 	//Component:paginatorのoption
 	public $paginate;
 	//Searchの変数
