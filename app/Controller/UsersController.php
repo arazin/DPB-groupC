@@ -2,7 +2,7 @@
 App::uses('Sanitize', 'Utility');
 
 class UsersController extends AppController {
-	public $scaffold;
+	//public $scaffold;
 
 	public function beforeFilter() {
     parent::beforeFilter();
