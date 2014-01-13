@@ -65,7 +65,6 @@
 					'wrapInput' => false,
 					'class' => 'form-control',
 				),
-				'url' => '/users/',
 				'class' => 'well',
 			));
 			echo $this->Form->input('name', array('label'=>'名前'));
