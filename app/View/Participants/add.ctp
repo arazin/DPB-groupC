@@ -1,6 +1,6 @@
 ﻿<div class="container"> 
 	<div class="row">  
-		<div class="col-md-10 col-md-offset-1">
+		<div class="col-md-8 col-md-offset-2">
 
 			<h1>参加者登録フォーム</h1>
 			<?php
