@@ -1,4 +1,6 @@
 ﻿<?php
+App::uses('Sanitize', 'Utility');
+
 class UsersController extends AppController {
 	public $scaffold;
 
@@ -80,7 +82,7 @@ class UsersController extends AppController {
 
 		/* 検索の内容をフォームに残す */
 		$data=array('User'=>$this->passedArgs);
-		$this->request->data=$data;
+		$this->request->data=($data);
 	}
 
 	/*
@@ -90,10 +92,23 @@ class UsersController extends AppController {
 		if(!$id){
 			throw new NotFoundException(__('無効なリクエスト'));
 		}
+		
 		$oneuser = $this->User->findById($id);
+
+		
 		if(!$oneuser){
 			throw new NotFoundException(__('無効なリクエスト'));
 		}
+
+
+		if(!empty($oneuser['Participant']['user_id'])){
+			$this->set('participantuser',$this->User->Participant->findByUser_id($id));
+		}
+		
+		if(!empty($oneuser['Student']['user_id'])){
+			$this->set('studentuser',$this->User->Student->findByUser_id($id));
+		}
+
 		$this->set('oneuser',$oneuser);
 	}
 	

@@ -1,4 +1,6 @@
 <?php
+App::uses('Sanitize', 'Utility');
+
 class StudentsController extends AppController{
 	/**
 	 * Components
