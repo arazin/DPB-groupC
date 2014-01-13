@@ -150,6 +150,7 @@ class EventsParticipantsController extends AppController{
 			}
 		}
 		$data = array_diff($data, $data2);*/
+		$pdata = Sanitize::clean($pdata, array('remove_html' => true));
   	$this->set('data', $pdata);
 
 		}
