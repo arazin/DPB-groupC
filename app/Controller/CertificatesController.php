@@ -1,4 +1,5 @@
 <?php
+App::uses('Sanitize', 'Utility');
 class CertificatesController extends AppController {
 	//	public $scaffold;
 	
@@ -7,7 +8,10 @@ class CertificatesController extends AppController {
 	}
   public function index() {
     $this->Certificate->recursive = 0;
-    $this->set('certificates', $this->paginate());
+		$this->paginate = array(
+			'recursive' => 2,
+		);
+    $this->set('certificates', Sanitize::clean($this->paginate()));
   }
 
   public function view($id = null) {
@@ -16,7 +20,7 @@ class CertificatesController extends AppController {
       throw new NotFoundException(__('Invalid certificate'));
     }
 		$options = array('conditions' => array('Certificate.' . $this->Certificate->primarykey => id));
-		$this -> set('certificate',$this->Certificate->find('first',$options));
+		$this -> set('certificate',Sanitize::clean($this->Certificate->find('first',$options)));
     // $this->set(certificate', $this->Certificate->read(null, $id));
   }
 
@@ -30,10 +34,20 @@ class CertificatesController extends AppController {
     if ($this->request->is('post')) {
       $this->Certificate->create();
       if ($this->Certificate->save($this->request->data)) {
-        $this->Session->setFlash(__('修了証明書発行を受け付けました'));
+        $this->Session->setFlash(__('修了証明書発行を受け付けました'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger',
+					));
         $this->redirect('/');
       } else {
-        $this->Session->setFlash(__('入力内容を確認してください'));
+        $this->Session->setFlash(__('入力内容を確認してください'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger',
+					));
       }
     }
   }
@@ -44,10 +58,20 @@ class CertificatesController extends AppController {
 			throw new NotFoundException(__('無効なリクエスト'));
 		}
 		if($this->Certificate->delete()){
-			$this->Session->setFlash(__('申請を削除しました'));
+			$this->Session->setFlash(__('申請を削除しました'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('申請を削除できませんでした'));
+		$this->Session->setFlash(__('申請を削除できませんでした'),
+														 'alert',
+														 array(
+				'plugin' => 'BoostCake',
+				'class' => 'alert-danger',
+			));
     $this->redirect(array('action' => 'index'));
 	}
 
