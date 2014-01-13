@@ -2,7 +2,7 @@
 
 <?php echo $this->Html->link(
     '説明会を追加する',
-    array('controller' => 'eventsparticipants', 'action' => 'eventadd')
+    array('controller' => 'EventsParticipants', 'action' => 'eventadd')
 ); ?>
 
 <?php if ($events != NULL): ?>
