@@ -4,7 +4,7 @@
 		<div class="col-md-8 col-md-offset-2" >
 
 			<div class="certificatsr form">
-				
+				<fieldset>				
 				<?php echo $this->Form->create('Certificate',array(
 				'inputDefaults' => array(
 					'div' => 'form-group',
@@ -12,7 +12,7 @@
 				),
 				'class' => 'well',
 			));?>
-				<fieldset>
+
 					<legend><?php echo __('修了書発行'); ?></legend>
 					<?php echo $this->Form->input('certificate_type',array(
 						'options' => array('学士' => '学士','博士前期' => '博士前期', '博士後期' => '博士後期'),
@@ -29,11 +29,13 @@
 						'label' => '使用目的'
 					));
 					echo $this->Form->input('address',array(
-						'label' => '送り先(登録住所と異なる場合)'
+						'label' => '送り先(登録住所と異なる場合)',
+						'required' => false,
 					));
 					?>
-				</fieldset>
+
 				<?php echo $this->Form->end(__('発行')); ?>
+				</fieldset>
 			</div>
 
 		</div>
