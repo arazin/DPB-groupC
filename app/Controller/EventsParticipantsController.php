@@ -71,7 +71,9 @@ class EventsParticipantsController extends AppController{
 
 		}
   	//$this->set('participants', $participants);
-  	$this -> set('participants', Sanitize::clean($participants, array('remove_html' => true)));
+		Sanitize::clean($participants,array('remove_html' => true));
+		$this -> set('participants', $participants);
+  	//$this -> set('participants', Sanitize::clean($participants, array('remove_html' => true)));
   }
 
 
@@ -181,7 +183,9 @@ class EventsParticipantsController extends AppController{
 			$events = $this -> paginate('Event', $conditions);
 
 		}
-  	$this -> set('events', Sanitize::clean($events, array('remove_html' => true)));
+		Sanitize::clean($events,array('remove_html' => true));
+		$this -> set('events', $events);
+  	//$this -> set('events', Sanitize::clean($events, array('remove_html' => true)));
 		
 			
 	}
