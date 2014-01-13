@@ -45,7 +45,7 @@
 								date();
 								//-->
 								</script>
-							<br>現在時刻は<br>
+							<br>時刻は<br>
 							<div class="box1">
 								<script type="text/JavaScript">
 								<!--
@@ -61,12 +61,13 @@
 						<?php if($acllist[$groupId]=='administrators'): ?>
 							<?php echo $this->Html->link('大学TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
 							<?php echo $this->Html->link('アカウント一覧', '/users/',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('イベント', '/events_participants/',array('class' => 'list-group-item')); ?>
+							<?php echo $this->Html->link('ユーザー登録','/pages/addhome/',array('class' => 'list-group-item')); ?>
+							<?php echo $this->Html->link('説明会情報', '/events_participants/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('修了生向けイベント', '/gevents/form/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('参加者認証', '/users/uapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('修了生認証', '/users/gapplist/',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('証明書申請一覧','/certificates/index',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('ユーザー登録','/pages/addhome/',array('class' => 'list-group-item')); ?>
+
 							<?php echo $this->Html->link('大学アカウント管理', '/users/edit',array('class' => 'list-group-item')); ?>
 
 						<?php endif; ?>
