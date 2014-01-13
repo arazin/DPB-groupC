@@ -1,10 +1,12 @@
 ﻿<?php
+App::uses('Sanitize', 'Utility');
+
 class UsersController extends AppController {
 	public $scaffold;
 
 	public function beforeFilter() {
     parent::beforeFilter();
-		 $this->Auth->allow('login','logout'); 
+		$this->Auth->allow('login','logout'); 
 	}
 	public function isAuthorized($user) {
     if ($this->action === 'login'||$this->action ==='logout') {
@@ -73,14 +75,14 @@ class UsersController extends AppController {
 			}
 			$this->paginate['conditions']=array(
 				'User.group_id' => $keys,
-				);
+			);
 		}
 		$this->Paginator->settings = $this->paginate;
 		$this->set('users',$this->Paginator->paginate());
 
 		/* 検索の内容をフォームに残す */
 		$data=array('User'=>$this->passedArgs);
-		$this->request->data=$data;
+		$this->request->data=($data);
 	}
 
 	/*
@@ -90,24 +92,46 @@ class UsersController extends AppController {
 		if(!$id){
 			throw new NotFoundException(__('無効なリクエスト'));
 		}
+		
 		$oneuser = $this->User->findById($id);
+
+		
 		if(!$oneuser){
 			throw new NotFoundException(__('無効なリクエスト'));
 		}
+
+
+		if(!empty($oneuser['Participant']['user_id'])){
+			$this->set('participantuser',$this->User->Participant->findByUser_id($id));
+		}
+		
+		if(!empty($oneuser['Student']['user_id'])){
+			$this->set('studentuser',$this->User->Student->findByUser_id($id));
+		}
+
 		$this->set('oneuser',$oneuser);
 	}
 	
 	public function login() {
 		if($this->Session->read('Auth.User')){
-			$this->Session->setFlash('Why!?');
+			$this->Session->setFlash('無効なログイン',
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
 			$this->redirect('/',null,false);
 		}
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         $this->redirect($this->Auth->redirect());
       } else {
-        $this->Session->setFlash(__('ID または パスワード が 間違っています'));
-
+        $this->Session->setFlash(__('ID または パスワード が 間違っています'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger',
+					));
       }
     }
 	}
@@ -119,10 +143,20 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('無効なリクエスト'));
 		}
 		if($this->User->delete()){
-			$this->Session->setFlash(__('ユーザーが削除されました'));
+			$this->Session->setFlash(__('ユーザーが削除されました'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('ユーザーを削除できませんでした'));
+		$this->Session->setFlash(__('ユーザーを削除できませんでした'),
+														 'alert',
+														 array(
+				'plugin' => 'BoostCake',
+				'class' => 'alert-danger',
+			));
     $this->redirect(array('action' => 'index'));
 	}
 
@@ -133,6 +167,7 @@ class UsersController extends AppController {
 	public function top() {
 		$this->set('acllist',$this->User->Group->find('list',array('recursive'=> -1)));
 		$this->set('groupId',$this->Auth->user('group_id'));
+		$this->set('user',$this->Auth->user('username'));
 	}
 
 	
@@ -149,10 +184,10 @@ class UsersController extends AppController {
 		$tmp=$this->User->Group->find('first',$findoption);
 		//paginatorの検索オプション
 		$this->paginate=array(
-		'conditions' => array('User.group_id'=>$tmp['Group']['id']),
-		'limit' => 25,
-		'order' => array('User.created'=>'asc'),
-		'recursive' => '-1',
+			'conditions' => array('User.group_id'=>$tmp['Group']['id']),
+			'limit' => 25,
+			'order' => array('User.created'=>'asc'),
+			'recursive' => '-1',
 		);
 		$this->Paginator->settings = $this->paginate;
 		$this->set('data',$this->Paginator->paginate());
@@ -197,10 +232,10 @@ class UsersController extends AppController {
 		$tmp=$this->User->Group->find('first',$findoption);
 		//paginatorの検索オプション
 		$this->paginate=array(
-		'conditions' => array('User.group_id'=>$tmp['Group']['id']),
-		'limit' => 25,
-		'order' => array('User.created'=>'asc'),
-		'recursive' => '-1',
+			'conditions' => array('User.group_id'=>$tmp['Group']['id']),
+			'limit' => 25,
+			'order' => array('User.created'=>'asc'),
+			'recursive' => '-1',
 		);
 		$this->Paginator->settings = $this->paginate;
 		$this->set('data',$this->Paginator->paginate());
@@ -234,6 +269,61 @@ class UsersController extends AppController {
 		}
 	}
 
+	/*
+	 * 大学のアカウント管理
+	 */
+	public function edit(){
+		$id = $this->Auth->user('id');
+		$this->User->id = $id;
+		$editdata = $this->User->findById($id);
+
+		if (!$editdata){
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$flag = false;
+		if($this->request->is('put')){
+			if($this->User->save($this->request->data,array('validate' => 'only'))){
+				if(!empty($this->request->data['User']['new_password'])){
+					$this->request->data['User']['password']=$this->request->data['User']['new_password'];
+					$flag=true;
+				}
+				
+				if($this->User->save($this->request->data)){
+					if($flag){
+						$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-danger',
+							)
+																		 );
+						$this->redirect('/users/logout');
+					} else {
+						$this->Session->setFlash(__('情報が更新されました'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-danger',
+							)
+																		 
+																		 );
+						$this->redirect('/');
+					}
+				}
+				$this->Session->setFlash(__('更新されませんでした'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger',
+					)
+																 );
+			}
+		} else {
+			$this->request->data=$editdata;
+			unset($this->request->data['User']['password']);			
+		}
+	}
 
 	
 	

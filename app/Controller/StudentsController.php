@@ -1,4 +1,6 @@
 <?php
+App::uses('Sanitize', 'Utility');
+
 class StudentsController extends AppController{
 	/**
 	 * Components
@@ -109,15 +111,33 @@ class StudentsController extends AppController{
 						if($this->Student->save($this->request->data)){
 							pr('4\n');
 							if($flag){
-								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'));
+								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-danger',
+									)
+																				 );
 								$this->redirect('/users/logout');
 							} else {
-								$this->Session->setFlash(__('情報が更新されました。'));
+								$this->Session->setFlash(__('情報が更新されました。'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-danger',
+									)
+																				 );
 								$this->redirect('/');
 							}
 						}
 					}
-					$this->Session->setFlash(__('更新されませんでした'));
+					$this->Session->setFlash(__('更新されませんでした'),
+																	 'alert',
+																	 array(
+							'plugin' => 'BoostCake',
+							'class' => 'alert-danger',
+						)
+																	 );
 				}
 			}
 			pr($this->Student->invalidFields());

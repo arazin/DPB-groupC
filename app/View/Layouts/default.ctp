@@ -20,10 +20,12 @@
     echo $this->Html->script('bootstrap.min.js');
   	echo $this->Html->css('bootstrap');
 		echo $this->Html->css('starter-template'); 		
-		
+		echo $this->Html->css('offcanvas'); 
+
     echo $this->fetch('meta');
     echo $this->fetch('css');
     echo $this->fetch('script');
+
     ?>
 		<style>
 		 body {
@@ -63,13 +65,16 @@
 			<!-- </div> -->
 
 
-		<div id="container">
-			<div id="content">
+				<div id="container">
+					<div id="content">
+						
+						<?php echo $this->Session->flash(); ?>
+						<?php echo $this->fetch('content'); ?>
+						
+					</div>			
+					
+				</div>
 
-				<?php echo $this->Session->flash(); ?>
-				<?php echo $this->fetch('content'); ?>
-			</div>
-		</div>
-			<?php echo $this->element('sql_dump'); ?>
+
 	</body>
 </html>

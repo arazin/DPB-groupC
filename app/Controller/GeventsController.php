@@ -1,7 +1,7 @@
 ﻿<?php
 App::uses('AppController', 'Controller');
 App::uses('Sanitize', 'Utility');
- 
+
 class GeventsController extends AppController {
   
   public $helpers = array('Html', 'Form', 'Session');
@@ -57,7 +57,7 @@ class GeventsController extends AppController {
 			
 			//$newgevents = $this->paginate();
 			$user_gevents = $newgevents;	
-	
+			
 			if($login_graduate['Graduate']['lasteventview'] == NULL){
 				foreach($user_gevents as $user_gevent){
 					$newflag[] = 1;
@@ -100,7 +100,7 @@ class GeventsController extends AppController {
 		//$this->set('gevents', $this -> paginate(), Sanitize::clean($gevents, array('remove_html' => true)));
   }
 
- 
+	
   public function view($id = null) {
     if (!$id) {
       throw new NotFoundException(__('Invalid'));
@@ -109,58 +109,57 @@ class GeventsController extends AppController {
     if (!$gevent) {
       throw new NotFoundException(__('Invalid'));
     }
-			
-		 	$this -> set('gevent', Sanitize::clean($gevent, array('remove_html' => true)));	
+		$this -> set('gevent', Sanitize::clean($gevent, array('remove_html' => true)));	
   }
 
 
 	//大学用	修了生向けイベント追加
   public function add() {
-        if ($this->request->is('post')) {
-            $this->Gevent->create();
-            if ($this->Gevent->save($this->request->data)) {
-                $this->Session->setFlash(__('保存しました'));
-                return $this->redirect(array('action' => 'form'));
-            }
-            $this->Session->setFlash(__('保存できませんでした'));
-        }
-   }
+    if ($this->request->is('post')) {
+      $this->Gevent->create();
+      if ($this->Gevent->save($this->request->data)) {
+        $this->Session->setFlash(__('保存しました'));
+        return $this->redirect(array('action' => 'form'));
+      }
+      $this->Session->setFlash(__('保存できませんでした'));
+    }
+  }
 
 	//大学用	修了生向けイベント編集
-   public function edit($id = null) {
+  public function edit($id = null) {
     if (!$id) {
-        throw new NotFoundException(__('Invalid post'));
+      throw new NotFoundException(__('Invalid post'));
     }
 
     $gevent = $this->Gevent->findById($id);
     if (!$gevent) {
-        throw new NotFoundException(__('Invalid post'));
+      throw new NotFoundException(__('Invalid post'));
     }
 
     if ($this->request->is('post') || $this->request->is('put')) {
-    /*if ($this->request->is(array('post', 'put'))) {*/
-        $this->Gevent->id = $id;
-        if ($this->Gevent->save($this->request->data)) {
-            $this->Session->setFlash(__('保存しました'));
-            return $this->redirect(array('action' => 'form'));
-        }
-        $this->Session->setFlash(__('保存できませんでした'));
+			/*if ($this->request->is(array('post', 'put'))) {*/
+      $this->Gevent->id = $id;
+      if ($this->Gevent->save($this->request->data)) {
+        $this->Session->setFlash(__('保存しました'));
+        return $this->redirect(array('action' => 'form'));
+      }
+      $this->Session->setFlash(__('保存できませんでした'));
     }
 
     if (!$this->request->data) {
-        $this->request->data = $gevent;
+      $this->request->data = $gevent;
     }
   }
 
 	//大学用	修了生向けイベント削除
   public function delete($id) {
     if ($this->request->is('get')) {
-        throw new MethodNotAllowedException();
+      throw new MethodNotAllowedException();
     }
 
     if ($this->Gevent->delete($id)) {
-        $this->Session->setFlash(__('The gevent with id: %s has been deleted.', h($id)));
-        return $this->redirect(array('action' => 'form'));
+      $this->Session->setFlash(__('The gevent with id: %s has been deleted.', h($id)));
+      return $this->redirect(array('action' => 'form'));
     }
   }
 
