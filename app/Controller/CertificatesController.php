@@ -26,13 +26,13 @@ class CertificatesController extends AppController {
 
 	
   public function add() {
-    $userId=$this->Auth->user('id');
-		$this->request->data['Certificate']['graduate_id']=$userId;
-		$Issue=0;
-		$this->request->data['Certificate']['issued']=$Issue;
 
     if ($this->request->is('post')) {
-      $this->Certificate->create();
+			$this->Certificate->create();
+			$userId=$this->Auth->user('id');
+			$this->request->data['Certificate']['graduate_id']=$userId;
+			$Issue=0;
+			$this->request->data['Certificate']['issued']=$Issue;
       if ($this->Certificate->save($this->request->data)) {
         $this->Session->setFlash(__('修了証明書発行を受け付けました'),
 																 'alert',
@@ -41,16 +41,15 @@ class CertificatesController extends AppController {
 						'class' => 'alert-danger',
 					));
         $this->redirect('/');
-      } else {
-        $this->Session->setFlash(__('入力内容を確認してください'),
-																 'alert',
-																 array(
-						'plugin' => 'BoostCake',
-						'class' => 'alert-danger',
-					));
-      }
+      } 
+      $this->Session->setFlash(__('入力内容を確認してください'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
     }
-  }
+}
 	public function delete($id = null){
 		$this->request->onlyAllow('post');
 		$this->Certificate->id = $id;

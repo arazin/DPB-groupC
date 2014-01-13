@@ -7,11 +7,11 @@ App::uses('AppModel', 'Model');
  */
 class Certificate extends AppModel {
 
-/**
- * Validation rules
- *
- * @var array
- */
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
 	public $validate = array(
 		'graduate_id' => array(
 			'numeric' => array(
@@ -42,6 +42,11 @@ class Certificate extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'maxlength' => array(
+				'rule' => array('maxLength', '20'),
+				'message' => '内容が長過ぎます'
+			),
+
 		),
 		'graduate_year' => array(
 			'date' => array(
@@ -56,22 +61,42 @@ class Certificate extends AppModel {
 		'issue_num' => array(
 			'numeric' => array(
 				'rule' => array('range',0,15),
-				'message' => '15���ȉ��͈̔͂̎��R������͂��Ă�������',
+				'message' => '15枚以下の範囲の自然数を入力してください',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'purpose' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'maxlength' => array(
+				'rule' => array('maxLength', '200'),
+				'message' => '内容が長過ぎます'
+			),
+		),
+		'address' => array(
+			'maxlength' => array(
+				'rule' => array('maxLength', '200'),
+				'message' => '内容が長過ぎます',
+			),
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'Graduate' => array(
 			'className' => 'Graduate',
@@ -80,12 +105,12 @@ class Certificate extends AppModel {
 			'fields' => '',
 			'order' => ''
 		)
-/*		'Graduate' => array(
-			'className' => 'Graduate',
-			'foreignKey' => 'graduate_date',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+		/*		'Graduate' => array(
+		'className' => 'Graduate',
+		'foreignKey' => 'graduate_date',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		)*/
 	);
 
