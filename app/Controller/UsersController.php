@@ -14,8 +14,10 @@ class UsersController extends AppController {
     }
 	}
 
+
+
 	
-	//public $components = array('Security','Paginator','Search.Prg');
+	public $components = array('Search.Prg');
 	//Component:paginatorのoption
 	public $paginate;
 	//Searchの変数
