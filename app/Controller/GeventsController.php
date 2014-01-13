@@ -64,9 +64,8 @@ class GeventsController extends AppController {
 				}
 				
 				$this -> set('newflag', $newflag);
-				Sanitize::clean($user_gevents,array('remove_html' => true));
-				$this -> set('user_gevents', $user_gevents);
-				//$this -> set('user_gevents', Sanitize::clean($user_gevents,array('remove_html' => true)));
+				
+				$this -> set('user_gevents', Sanitize::clean($user_gevents,array('remove_html' => true)));
 			}
 			else{
 				foreach($user_gevents as $user_gevent){
@@ -79,9 +78,11 @@ class GeventsController extends AppController {
 				}
 				
 				$this -> set('newflag', $newflag);
-				Sanitize::clean($user_gevents,array('remove_html' => true));
+				$user_gevents = Sanitize::clean($user_gevents,array('remove_html' => true));
+				//$user_gevents = $this -> HtmlDecode -> nlCheck($user_gevents, true);
+
 				$this -> set('user_gevents', $user_gevents);
-				//$this -> set('user_gevents', Sanitize::clean($user_gevents,array('remove_html' => true)));
+				//$this -> set('user_gevents',Sanitize::clean($user_gevents,array('remove_html' => true)));
 			}
 
 
@@ -92,8 +93,9 @@ class GeventsController extends AppController {
 	//大学用	修了生用イベント一覧表示
   public function form() {
 		$gevents = $this->Gevent->find('all');
-    Sanitize::clean($gevents,array('remove_html' => true));
 		$gevents = $this -> paginate();
+    $gevents = Sanitize::clean($gevents,array('remove_html' => true));
+		
 		$this -> set('gevents', $gevents);
 		//$this->set('gevents', $this -> paginate(), Sanitize::clean($gevents, array('remove_html' => true)));
   }
@@ -107,9 +109,8 @@ class GeventsController extends AppController {
     if (!$gevent) {
       throw new NotFoundException(__('Invalid'));
     }
-			Sanitize::clean($gevent,array('remove_html' => true));
-			$this -> set('gevent', $gevent);
-		 	//$this -> set('gevent', Sanitize::clean($gevent, array('remove_html' => true)));	
+			
+		 	$this -> set('gevent', Sanitize::clean($gevent, array('remove_html' => true)));	
   }
 
 
