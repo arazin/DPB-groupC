@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -83,7 +83,6 @@
 
 							<?php echo $this->Html->link('学生情報参照', '/students/index',array('class' => 'list-group-item')); ?>
 							<?php echo $this->Html->link('学生情報編集', '/students/editone',array('class' => 'list-group-item')); ?>
-							<?php echo $this->Html->link('イベント情報', '/events/events',array('class' => 'list-group-item')); ?>
 						<?php endif; ?>
 
 						<?php if($acllist[$groupId]=='graduates'): ?>

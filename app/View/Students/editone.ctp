@@ -14,11 +14,6 @@
 			));
 
 
-			echo $this->Form->input('User.new_username',array(
-				'label'=>'新しいユーザーID',
-				'required' => false,
-			));
-
 			echo $this->Form->input('User.new_password',array(
 				'type' => 'password',
 				'label'=>'新しいパスワード',
