@@ -22,10 +22,10 @@
 		echo $this->Html->css('starter-template'); 		
 		echo $this->Html->css('offcanvas'); 
 
-		
     echo $this->fetch('meta');
     echo $this->fetch('css');
     echo $this->fetch('script');
+
     ?>
 		<style>
 		 body {
