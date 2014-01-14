@@ -64,6 +64,15 @@
 							<?php echo h($participantuser['Participant']['teacher_name']) ?>
 						</td>
 					</tr>
+/* 上手く作れないから保留
+					<?php for($i = 0; count($Event); $i++){ ?>
+					<tr>
+						<th> 参加イベント</th>
+						<td>
+							<?php echo h($participantuser['Event']['$i'][id]) ?>
+						</td>
+					</tr>
+*/
 				<?php } ?>
 			</table>
 
