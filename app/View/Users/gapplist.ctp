@@ -11,7 +11,12 @@
 </tr>
 <?php foreach($data as $row):?>
 	<tr>
-		<td><?php echo h($row['User']['name']); ?></td>
+		<!-- <td><?php echo h($row['User']['name']); ?></td> -->
+		<td><?php echo $this->Html->link($row['User']['name'],array(
+					'controller' => 'users',
+					'action' => 'view',
+					$row['User']['id'],)
+																		 ); ?></td>
 		<td><?php echo h($row['User']['nationarity']); ?></td>
 		<td><?php echo h($row['User']['sex']); ?></td>
 		<td><?php echo h($row['User']['created']); ?></td>

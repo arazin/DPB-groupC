@@ -32,8 +32,8 @@
 									<td><?php echo $participant['User']['job']; ?></td>
 									<td><?php echo $participant['User']['birthday']; ?></td>
 									<td><?php if($participant['User']['sex'] == 1){
-        								echo ("男");}
-        							else{echo ("女");}
+        								echo ("女");}
+        							else{echo ("男");}
         							?></td>
 								</tr>
 							</tbody>
