@@ -32,11 +32,11 @@
 </tr>
 <tr>
 	<th> 志望課程</th>
-	<td>カリキュラム<?php echo h($data['Participant']['curriculum_id']) ?></td>
+	<td><?php echo h($pdata['Curriculum']['curriculum_name']) ?></td>
 </tr>
 <tr>	
 <th> 志望コース</th>
-	<td>コース<?php echo h($data['Participant']['course_id']) ?></td>
+	<td><?php echo h($pdata['Course']['course_name']) ?></td>
 </tr>
 <tr>	
 <th> 志望指導教員</th>
