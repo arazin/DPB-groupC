@@ -31,7 +31,7 @@
 				<div class="list-group">
 					<?php if($acllist[$groupId]=='administrators'): ?>
 						<?php echo $this->Html->link('大学TOP', array('action' => 'top'),array('class' => 'list-group-item active')); ?>
-						<?php echo $this->Html->link('アカウント一覧', '/users/',array('class' => 'list-group-item')); ?>
+						<?php echo $this->Html->link('アカウント一覧', '/users/index/group_id:2%7C4%7C3/name:/nationarity:/prefecture:/remain:',array('class' => 'list-group-item')); ?>
 						<?php echo $this->Html->link('ユーザー登録','/pages/addhome/',array('class' => 'list-group-item')); ?>
 						<?php echo $this->Html->link('説明会情報', '/events_participants/',array('class' => 'list-group-item')); ?>
 						<?php echo $this->Html->link('修了生向けイベント', '/gevents/form/',array('class' => 'list-group-item')); ?>
