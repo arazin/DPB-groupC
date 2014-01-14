@@ -277,7 +277,7 @@ class ParticipantsController extends AppController{
 																		 'alert',
 																		 array(
 								'plugin' => 'BoostCake',
-								'class' => 'alert-succsess',
+								'class' => 'alert-success',
 							));
 						return $this->redirect('/participants/add');
 					}

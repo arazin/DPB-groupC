@@ -221,7 +221,7 @@ class GraduatesController extends AppController{
 																		 'alert',
 																		 array(
 								'plugin' => 'BoostCake',
-								'class' => 'alert-succsess',
+								'class' => 'alert-success',
 							));
 						return $this->redirect('/graduates/add');
 					}
