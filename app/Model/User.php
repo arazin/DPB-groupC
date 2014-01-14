@@ -149,7 +149,7 @@ class User extends AppModel {
 			),
 			'minLength' => array(
 				'rule' => array('minLength',8),
-				'message' => 'パスワードが短すぎます',
+				'message' => 'パスワードは8文字以上入力してください',
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength',50),
@@ -167,7 +167,7 @@ class User extends AppModel {
 		'new_password' => array(
 			'minLength' => array(
 				'rule' => array('minLength',8),
-				'message' => 'パスワードが短すぎます',
+				'message' => 'パスワードは8文字以上入力してください',
 				'allowEmpty' => true,
 				'required' => false,
 			),
@@ -236,7 +236,7 @@ class User extends AppModel {
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength',50),
-				'message' => 'error:maxlength',
+				'message' => '入力が長過ぎます',
 			),
 		),
 		'remain' => array(
@@ -250,7 +250,7 @@ class User extends AppModel {
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength',100),
-				'message' => 'error:maxlength',
+				'message' => '入力が長過ぎます',
 			),	
 		),
 		
@@ -265,11 +265,11 @@ class User extends AppModel {
 			),
 			'custom' => array(
 				'rule' => array('custom','/^[0-9]{3}\-[0-9]{4}$/'),
-				'messeage' => 'error:please NNN-NNNN',
+				'message' => 'NNN-NNNNの形式で入力してください',
 			),
 			'maxLength' => array(
 				'rule' => array('maxLength',20),
-				'message' => 'error:maxlength',
+				'message' => '入力が長過ぎます',
 			),	
 		),
 		
