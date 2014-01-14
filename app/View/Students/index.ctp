@@ -2,7 +2,7 @@
 	<div class="row">  
 		<div class="col-md-10 col-md-offset-1">
 
-			<h2>学生情報</h2>
+			<h2><?php echo h($userdata['User']['username']) ?>さんの情報</h2>
 			<table class="table table-striped table-bordered">
 				<tr>
 					<th> 氏名</th>
