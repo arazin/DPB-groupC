@@ -60,6 +60,10 @@ class UsersController extends AppController {
 		//pr($this->passedArgs);
 		pr($this->User->parseCriteria($this->passedArgs));
 
+		
+		if(!empty($this->data)){
+
+			
 		/* 検索条件 */
 		$this->paginate = array(
 			//'conditions' => $this->passedArgs,
@@ -79,7 +83,15 @@ class UsersController extends AppController {
 				'User.group_id' => $keys,
 			);
 		}
-		//$this->Paginator->settings = $this->paginate;
+		// パラメータをセッション変数に保存
+    $this->Session->write('params', $this->paginate);
+		}else{
+		if($this->Session->check('params')) {
+      $params = $this->Session->read('params');
+    }
+			
+		}
+		$this->Paginator->settings = $this->paginate;
 		$this->set('users',$this->Paginator->paginate());
 
 		/* 検索の内容をフォームに残す */
