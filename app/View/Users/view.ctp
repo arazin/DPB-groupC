@@ -3,7 +3,7 @@
 		<div class="col-md-10 col-md-offset-1">
 
 			<h2><?php echo h($oneuser['User']['name']) ?>さんの情報</h2>
-			<h3>基本情報</h3>
+
 			<table class="table table-striped table-bordered">
 				<tr>
 					<th> 氏名</th>
@@ -31,9 +31,48 @@
 					<th> 電話番号</th>
 					<td><?php echo h($oneuser['User']['phonenumber']) ?></td>
 				</tr>
-					<th> グループ</th>
-					<td><?php echo h($oneuser['Group']['name']) ?></td>
-				</tr>
+
+				<?php if(isset($studentuser)){ ?>
+					<tr>
+						<th> 学部</th>
+						<td><?php echo h($studentuser['Faculty']['faculty_name']) ?></td>
+					</tr>
+					<tr>
+						<th> 学科</th>
+						<td>
+							<?php echo h($studentuser['Department']['department_name']) ?>
+						</td>
+					</tr>
+					<tr>
+						<th> 研究室</th>
+						<td><?php echo h($studentuser['Labo']['labo_name']) ?></td>
+					</tr>
+
+				<?php }else if(isset($participantuser)){ ?>
+					<tr>
+						<th> 志望課程</th>
+						<td>
+							<?php echo h($participantuser['Curriculum']['curriculum_name']) ?>
+						</td>
+					</tr>
+					<tr>
+						<th> 志望コース</th>
+						<td><?php echo h($participantuser['Course']['course_name']) ?></td>
+					</tr>
+					<tr>
+						<th> 志望指導教員</th>
+						<td>
+							<?php echo h($participantuser['Participant']['teacher_name']) ?>
+						</td>
+					</tr>
+					<?php for($i = 0; $i < count($participantuser['Event']); $i++){ ?>
+					<tr>
+						<th> 参加イベント<?php echo h($i + 1); ?></th>
+						<td>
+							イベント <?php echo h($participantuser['Event'][$i]['id']) ?>
+						</td>
+					</tr>
+				<?php }} ?>
 			</table>
 
 			<?php echo $this->Form->postLink(
@@ -43,12 +82,6 @@
 					'class' => 'btn btn-danger',)
 				);
 			?>
-
-
-
-<?php
-pr($oneuser);
-?>
 
 		</div>
 	</div>
