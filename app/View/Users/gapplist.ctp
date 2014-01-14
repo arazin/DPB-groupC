@@ -24,7 +24,8 @@
 		<?php echo $this->Form->postLink(
 			'認証',
 			array('action' => 'gapprove', h($row['User']['id']),),
-			array('confirm' => 'この修了生を認証します。\nよろしいですか？')
+			array('confirm' => 'この修了生を認証します。\nよろしいですか？',
+						'class' => 'btn-sm btn-primary',)
 			);
 		?>
 		</td>
