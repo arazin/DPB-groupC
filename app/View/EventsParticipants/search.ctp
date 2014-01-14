@@ -4,46 +4,51 @@
 
 
 
-<?php if ($data != NULL): ?>
-	<h1>検索結果</h1>
-	<table cellpadding="0" cellspacing="0" class="table  table-condensed">
-		<thead>
-    <tr>
-				<th>追加情報</th>
-        <th>名前</th>
-        <th>国籍</th>
- 				<th>県名</th>
- 				<th>郵便番号</th>
- 				<th>性別</th>
-    </tr>
-    
-       <?php foreach ($data as $dataaa): ?>
-        
-    <tr>
-				<td><?php if($eps_ids != NULL){
-										foreach ($eps_ids as $eps_id){
-											if($eps_id == $dataaa['User']['id']){
-												echo "追加済み";
+			<?php if ($data != NULL): ?>
+				<h1>検索結果</h1>
+				<table cellpadding="0" cellspacing="0" class="table  table-condensed">
+					<thead>
+						<tr>
+							<th>追加情報</th>
+							<th>名前</th>
+							<th>国籍</th>
+ 							<th>県名</th>
+ 							<th>郵便番号</th>
+ 							<th>性別</th>
+						</tr>
+						
+						<?php foreach ($data as $dataaa): ?>
+							
+							<tr>
+								<td><?php if($eps_ids != NULL){
+											foreach ($eps_ids as $eps_id){
+												if($eps_id == $dataaa['User']['id']){
+													echo "追加済み";
+												}
 											}
 										}
-									}
-				?></td>
+										?></td>
 
-        <td><?php echo $dataaa['User']['name']; ?></td>
-        <td><?php echo $dataaa['User']['nationarity']; ?></td>
-        <td><?php echo $dataaa['User']['prefecture']; ?></td>
-        <td><?php echo $dataaa['User']['postcord']; ?></td>
-        <td><?php if($dataaa['User']['sex'] == 1){
-        			echo ("女");}
-        		else{echo ("男");}
-        		?></td>
+									<!-- <td><?php echo $dataaa['User']['name']; ?></td> -->
+									<td><?php echo $this->Html->link($dataaa['User']['name'],array(
+												'controller' => 'users',
+												'action' => 'view',
+												$dataaa['User']['id'],)
+																									 ); ?></td>
+									<td><?php echo $dataaa['User']['nationarity']; ?></td>
+									<td><?php echo $dataaa['User']['prefecture']; ?></td>
+									<td><?php echo $dataaa['User']['postcord']; ?></td>
+									<td><?php if($dataaa['User']['sex'] == 1){
+        								echo ("女");}
+        							else{echo ("男");}
+        							?></td>
 
-					<td><?php echo $this->Html->link('追加', array('action' => 'add', $dataaa['User']['id'], $eveid)); ?></td>
-			</tr>
-		<?php endforeach; ?>
+										<td><?php echo $this->Html->link('追加', array('action' => 'add', $dataaa['User']['id'], $eveid)); ?></td>
+							</tr>
+						<?php endforeach; ?>
 		</tbody>
-	</table>
-				<?php endif; ?>
+				</table>
+									<?php endif; ?>
 		</div>
 
 		<div class="col-md-4">
@@ -66,7 +71,7 @@
 			echo $this->Form->input('postcord', array('label'=>'郵便番号'));
 			echo $this->Form->input('phonenumber', array('label'=>'電話番号'));
 			echo $this->Form->input('birthday', array('label'=>'誕生日（xxxx-xx-xxの形式で入力）'));
-			echo $this->Form->input('sex', array('label'=>'性別（男なら1を、女なら0を入力）'));
+			echo $this->Form->input('sex', array('label'=>'性別（男なら0を、女なら1を入力）'));
 			echo $this->Form->end('検索');
 			?>
 		</div>
@@ -74,5 +79,5 @@
 </div>
 
 <script type="text/javascript">
-	window.onload = function(){document.getElementById('SearchName').focus();}
+ window.onload = function(){document.getElementById('SearchName').focus();}
 </script>
