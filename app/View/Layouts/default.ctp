@@ -11,7 +11,7 @@
 		echo $this->Html->charset();
 
 		//アイコンの設定部分
-		echo $this->Html->meta('icon','/favicon.ico');
+		echo $this->Html->meta('icon');
 
 		// jQuery CDN
 		echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
