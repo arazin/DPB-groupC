@@ -60,8 +60,8 @@ class UsersController extends AppController {
 		//pr($this->passedArgs);
 		pr($this->User->parseCriteria($this->passedArgs));
 
-		pr($this->data);
-		if(!empty($this->data)){
+		pr($this->request->data);
+		if(!empty($this->request->data)){
 
 			
 		/* 検索条件 */
