@@ -114,7 +114,7 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'between' => array(
-				'rule' => array('between',5,15),
+				'rule' => array('between',5,20),
 				'message' => 'IDは5文字以上20文字以内で入力してください',
 			),
 			'isUnique' => array(
