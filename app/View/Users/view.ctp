@@ -47,7 +47,8 @@
 						<th> 研究室</th>
 						<td><?php echo h($studentuser['Labo']['labo_name']) ?></td>
 					</tr>
-				<?php }else if(($participantuser)){ ?>
+
+				<?php }else if(isset($participantuser)){ ?>
 					<tr>
 						<th> 志望課程</th>
 						<td>
@@ -64,16 +65,14 @@
 							<?php echo h($participantuser['Participant']['teacher_name']) ?>
 						</td>
 					</tr>
-/* 上手く作れないから保留
-					<?php for($i = 0; count($Event); $i++){ ?>
+					<?php for($i = 0; $i < count($participantuser['Event']); $i++){ ?>
 					<tr>
-						<th> 参加イベント</th>
+						<th> 参加イベント<?php echo h($i + 1); ?></th>
 						<td>
-							<?php echo h($participantuser['Event']['$i'][id]) ?>
+							イベント <?php echo h($participantuser['Event'][$i]['id']) ?>
 						</td>
 					</tr>
-*/
-				<?php } ?>
+				<?php }} ?>
 			</table>
 
 			<?php echo $this->Form->postLink(
@@ -83,14 +82,6 @@
 					'class' => 'btn btn-danger',)
 				);
 			?>
-
-
-
-<?php
-pr($oneuser);
-pr($studentuser);
-pr($participantuser);
-?>
 
 		</div>
 	</div>
