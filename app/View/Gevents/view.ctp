@@ -1,8 +1,34 @@
-﻿<h1><?php echo h($gevent['Gevent']['title']); ?></h1>
+﻿<div class="container"> 
+	<div class="row">  
+		<div class="col-md-10 col-md-offset-1">
 
-<p><?php echo h($gevent['Gevent']['id']); ?></p>
-<p><?php echo h($gevent['Gevent']['gevent_date']); ?></p>
-<p><?php echo h($gevent['Gevent']['place']); ?></p>
-<p><?php echo h($gevent['Gevent']['detail']); ?></p>
-<p><?php echo h($gevent['Gevent']['created']); ?></p>
-<p><?php echo h($gevent['Gevent']['modified']); ?></p>
+			<h2><?php echo h($gevent['Gevent']['title']); ?>の詳細</h2>
+
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th>イベントID</th>
+					<td><?php echo h($gevent['Gevent']['id']); ?></td>
+				</tr>
+				<tr>
+					<th>日時</th>
+					<td><?php echo h($gevent['Gevent']['gevent_date']); ?></td>
+				</tr>
+				<tr>
+					<th>場所</th>
+					<td><?php echo h($gevent['Gevent']['place']); ?></td>
+				</tr>
+				<tr>
+					<th>詳細</th>
+					<td><?php echo h($gevent['Gevent']['detail']); ?></td>
+				</tr>
+					<th>作成日時</th>
+					<td><?php echo h($gevent['Gevent']['created']); ?></td>
+				</tr>
+					<th>更新日時</th>
+					<td><?php echo h($gevent['Gevent']['modified']); ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
