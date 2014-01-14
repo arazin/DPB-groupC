@@ -9,6 +9,7 @@
 					<th> 氏名</th>
 					<td><?php echo h($oneuser['User']['name']) ?></td>
 				</tr>
+				<tr>
 					<th> ID</th>
 					<td><?php echo h($oneuser['User']['username']) ?></td>
 				</tr>
@@ -72,7 +73,13 @@
 							イベント <?php echo h($participantuser['Event'][$i]['id']) ?>
 						</td>
 					</tr>
-				<?php }} ?>
+
+				<?php }} else if(isset($oneuser['Graduate'])){?>
+					<tr>
+						<th> 修了日</th>
+						<td><?php echo h($oneuser['Graduate']['garaduation_date']) ?></td>
+					</tr>
+				<?php } ?>
 			</table>
 
 			<?php echo $this->Form->postLink(

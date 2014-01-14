@@ -28,6 +28,10 @@
 					<th> 電話番号</th>
 					<td><?php echo h($data['User']['phonenumber']) ?></td>
 				</tr>
+				<tr>
+					<th> 修了日</th>
+					<td><?php echo h($data['Graduate']['garaduation_date']) ?></td>
+				</tr>
 			</table>
 
 			<h3>卒業後進路</h3>
