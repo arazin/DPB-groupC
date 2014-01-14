@@ -5,7 +5,6 @@
 <tr>
 	<th><?php echo "名前";?></th>
 	<th><?php echo "国籍";?></th>
-	<th><?php echo "性別";?></th>
 	<th><?php echo "作成日";?></th>
 	<th><?php echo "アクション";?></th>
 </tr>
@@ -13,7 +12,6 @@
 	<tr>
 		<td><?php echo h($row['User']['name']); ?></td>
 		<td><?php echo h($row['User']['nationarity']); ?></td>
-		<td><?php echo h($row['User']['sex']); ?></td>
 		<td><?php echo h($row['User']['created']); ?></td>
 		<td>
 		<?php echo $this->Form->postLink(
