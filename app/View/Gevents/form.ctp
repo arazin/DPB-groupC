@@ -1,55 +1,79 @@
-﻿<h1>イベント一覧</h1>
+﻿<div class="container"> 
+	<div class="row">  
+		<div class="col-md-10 col-md-offset-1">
+			<h1>修了生向けイベント</h1>
+			<div class="certificates index">
 
+				<table cellpadding="0" cellspacing="0" class="table  table-condensed">
 
-<?php echo $this->Html->link(
-    'イベントを追加する',
-    array('controller' => 'gevents', 'action' => 'add')
-); ?>
+					
 
-<?php if ($gevents != NULL): ?>
+					<div class="actions">
+						<h3><?php echo __('Actions'); ?></h3>
+						<ul>
+							<li>
+								<?php echo $this->Html->link(
+									'イベントを追加する',
+									array('controller' => 'gevents', 'action' => 'add')
+								); ?>
+							</li>
+						</ul>
+					</div>
 
-<table>
-    <tr>
-        <th>タイトル</th>
-        <th>日にち</th>
- 				<th>場所</th>
- 				<th>詳細</th>
- 				<th>作成日</th>
- 				<th>更新日</th>
-    </tr>
+					<h3>一覧</h3>
 
+					<?php if ($gevents != NULL): ?>
+						<thead>
 
-    <?php foreach ($gevents as $gevent): ?>
-    <tr>
-        <td>
-            <?php echo $this->Html->link($gevent['Gevent']['title'],
-array('controller' => 'gevents', 'action' => 'view', $gevent['Gevent']['id'])); ?>
-        </td>
-        <td><?php echo $gevent['Gevent']['gevent_date']; ?></td>
-        <td><?php echo $gevent['Gevent']['place']; ?></td>
-        <td><?php echo $gevent['Gevent']['detail']; ?></td>
-        <td><?php echo $gevent['Gevent']['created']; ?></td>
-        <td><?php echo $gevent['Gevent']['modified']; ?></td>
-        <td>
-            <?php echo $this->Html->link('編集', array('action' => 'edit', $gevent['Gevent']['id'])); ?>
-            <?php echo $this->Form->postLink(
-                '削除',
-                array('action' => 'delete', $gevent['Gevent']['id']),
-                array('confirm' => '本当に削除してもいいですか？'));
-            ?>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-    <?php unset($gevent); ?>
-</table>
+							<tr>
+								<th>タイトル</th>
+								<th>日時</th>
+ 								<th>場所</th>
+								<th>アクション</th>
+							</tr>
 
-<?php
-    echo $this->Paginator->first('最初 ');
-    echo $this->Paginator->prev('前 ');
-    echo $this->Paginator->numbers(
-        array('separator' => '/','modulus'=>2));
-    echo $this->Paginator->next(' 次');
-    echo $this->Paginator->last(' 最後');
-  ?>
+						</thead>
+						<?php foreach ($gevents as $gevent): ?>
+							<tr>
+								<td>
+									<?php echo $this->Html->link($gevent['Gevent']['title'],
+																							 array('controller' => 'gevents', 'action' => 'view', $gevent['Gevent']['id'])); ?>
+								</td>
+								<td><?php echo $gevent['Gevent']['gevent_date']; ?></td>
+								<td><?php echo $gevent['Gevent']['place']; ?></td>
+								<td>
+									<?php echo $this->Html->link('編集', array(
+										'action' => 'edit', $gevent['Gevent']['id']),
+																							 array('class' => 'btn-sm btn-primary')
+																							 ); ?>
+									<?php echo $this->Form->postLink(
+										'削除',
+										array('action' => 'delete', $gevent['Gevent']['id']),
+										array('confirm' => '本当に削除してもいいですか？',
+													'class' => 'btn-sm btn-danger'
+													));
+									?>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+						<?php unset($gevent); ?>
+				</table>
+				<p>
+					<?php
+					echo $this->Paginator->counter(array(
+						'format' => __(' ページ {:page} / {:pages}、  {:count} 件中 {:current} 件 表示しています。  {:start}から{:end}')
+					));
+					?>   </p>
+				<div class="paging">
+					<?php
+					echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+					echo $this->Paginator->numbers(array('separator' => ''));
+					echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+					?>
+				</div>
+					<?php endif; ?>
+			</div>
+		</div>
+	</div>
+</div>
 
-<?php endif; ?>
