@@ -19,9 +19,9 @@
  								<th>性別</th>
 							</tr>
 						</thead>
-						
+						<tbody>						
 						<?php foreach ($participants as $participant): ?>
-							<tbody>
+
 								<tr>
 									<td><?php echo $participant['User']['name']; ?></td>
 									<td><?php echo $participant['User']['nationarity']; ?></td>
@@ -36,8 +36,9 @@
         							else{echo ("男");}
         							?></td>
 								</tr>
-							</tbody>
+
 						<?php endforeach; ?>
+						</tbody>
 				</table>
 				<p>
 					<?php
@@ -45,11 +46,9 @@
 						'format' => __(' ページ {:page} / {:pages}、  {:count} 件中 {:current} 件 表示しています。  {:start}から{:end}')
 					));
 					?>   </p>
-				<div class="paging">
-					<?php
-					echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-					echo $this->Paginator->numbers(array('separator' => ''));
-					echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-					?>
+				<?php
+				echo $this->Paginator->pagination(array(
+					'ul' => 'pagination'));
+				?>
 				</div>
 									<?php endif; ?>

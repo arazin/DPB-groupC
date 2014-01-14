@@ -57,13 +57,10 @@
 							'format' => __(' ページ {:page} / {:pages}、  {:count} 件中 {:current} 件 表示しています。  {:start}から{:end}')
 						));
 						?>   </p>
-					<div class="paging">
-						<?php
-						echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-						echo $this->Paginator->numbers(array('separator' => ''));
-						echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-						?>
-					</div>
+					<?php
+					echo $this->Paginator->pagination(array(
+						'ul' => 'pagination'));
+					?>
 			</div>
 
 			<!-- <div class="actions">
