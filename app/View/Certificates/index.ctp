@@ -42,7 +42,7 @@
 							echo "<td>{$this->Form->postLink('削除',
 		array('action' => 'delete',$arr['id']),
 		array('confirm' => '本当に削除しますか？',
-					'class' => 'btn btn-danger',)
+					'class' => 'btn-sm btn-danger',)
 					)}</td>";
 					echo "</tr>";
 						}

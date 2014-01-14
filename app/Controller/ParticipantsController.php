@@ -20,7 +20,9 @@ class ParticipantsController extends AppController{
    */
 	public function index(){
 		$id=$this->Auth->user('id');
-		$this->set('data',$this->Participant->User->findById($id));
+		$this->set('pdata',$this->Participant->findByUserId($id));
+		$this->set('data',pr($this->Participant->User->findById($id)));
+
 	}
 
 	/*
@@ -34,19 +36,19 @@ class ParticipantsController extends AppController{
 		}
 		if($this->Participant->User->delete()){
 			$this->Session->setFlash(__('ユーザーが削除されました'),
-																				 'alert',
-																				 array(
-										'plugin' => 'BoostCake',
-										'class' => 'alert-danger',
-									));
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
 			$this->redirect('/users/logout');
 		}
 		$this->Session->setFlash(__('ユーザーを削除できませんでした'),
-																				 'alert',
-																				 array(
-										'plugin' => 'BoostCake',
-										'class' => 'alert-danger',
-									));
+														 'alert',
+														 array(
+				'plugin' => 'BoostCake',
+				'class' => 'alert-danger',
+			));
     $this->redirect(array('action' => 'index'));
 	}
 
@@ -118,15 +120,30 @@ class ParticipantsController extends AppController{
 						if($this->Participant->save($this->request->data)){
 							pr('4\n');
 							if($flag){
-								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'));
+								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-danger',
+									));
 								$this->redirect('/users/logout');
 							} else {
-								$this->Session->setFlash(__('情報が更新されました。'));
+								$this->Session->setFlash(__('情報が更新されました。'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-success',
+									));
 								$this->redirect('/');
 							}
 						}
 					}
-					$this->Session->setFlash(__('更新されませんでした'));
+					$this->Session->setFlash(__('更新できませんでした'),
+																	 'alert',
+																	 array(
+							'plugin' => 'BoostCake',
+							'class' => 'alert-danger',
+						));
 				}
 			}
 		}else{
@@ -191,7 +208,12 @@ class ParticipantsController extends AppController{
 					$this->request->data['Participant']['user_id']=$this->Participant->User->id;
 					$this->Participant->create();				
 					if($this->Participant->save($this->request->data)){
-						$this->Session->setFlash(__('保存されました。認証されるまでお待ちください。'));
+						$this->Session->setFlash(__('保存されました。認証されるまでお待ちください。'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-success',
+							));
 						return $this->redirect('/users/login');
 					}
 				}
@@ -251,7 +273,12 @@ class ParticipantsController extends AppController{
 					$this->request->data['Participant']['user_id']=$this->Participant->User->id;
 					$this->Participant->create();				
 					if($this->Participant->save($this->request->data)){
-						$this->Session->setFlash(__('登録されました。'));
+						$this->Session->setFlash(__('登録されました。'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-succsess',
+							));
 						return $this->redirect('/participants/add');
 					}
 				}

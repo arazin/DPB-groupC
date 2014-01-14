@@ -24,7 +24,7 @@ class StudentsController extends AppController{
 			'conditions' => array('Student.user_id' => $id),
 			'contain' => array('Faculty','Department','Labo',),
 		);
-			
+		
 		$this->set('userdata',$this->Student->User->find('first',$findoption1));
 		$this->set('studentdata',$this->Student->find('first',$findoption2));
 
@@ -115,7 +115,7 @@ class StudentsController extends AppController{
 																				 'alert',
 																				 array(
 										'plugin' => 'BoostCake',
-										'class' => 'alert-danger',
+										'class' => 'alert-info',
 									)
 																				 );
 								$this->redirect('/users/logout');
@@ -124,14 +124,14 @@ class StudentsController extends AppController{
 																				 'alert',
 																				 array(
 										'plugin' => 'BoostCake',
-										'class' => 'alert-danger',
+										'class' => 'alert-succsess',
 									)
 																				 );
 								$this->redirect('/');
 							}
 						}
 					}
-					$this->Session->setFlash(__('更新されませんでした'),
+					$this->Session->setFlash(__('更新できませんでした'),
 																	 'alert',
 																	 array(
 							'plugin' => 'BoostCake',
@@ -143,16 +143,16 @@ class StudentsController extends AppController{
 			pr($this->Student->invalidFields());
 			pr($this->Student->User->invalidFields());
 		}else{ //通常アクセス 
-			pr('5\n');
-			//フォームにdataをセット
-			$this->request->data=$editdata;
-			unset($this->request->data['User']['password']);			
-		}
+					pr('5\n');
+					//フォームにdataをセット
+					$this->request->data=$editdata;
+					unset($this->request->data['User']['password']);			
+					}
 	}
-		/*
-		 * アクター:学生 ユースケース:修了生を登録する
-		 * 
-		 */
+	/*
+	 * アクター:学生 ユースケース:修了生を登録する
+	 * 
+	 */
 	public function compadd(){
 		//ここは仮 ACLが動くまでの辛抱
 		if($this->request->is('post')){
@@ -183,10 +183,10 @@ class StudentsController extends AppController{
 
 
 	
-		/*
-		 * アクター:大学 ユースケース: 学生を登録する
-		 * findで検索し、viewでselectの選択肢とする
-		 */
+	/*
+	 * アクター:大学 ユースケース: 学生を登録する
+	 * findで検索し、viewでselectの選択肢とする
+	 */
 	public function add(){
 		//業種
 		$findoption = array(
@@ -214,7 +214,7 @@ class StudentsController extends AppController{
 		$findoption = array(
 			'fields' => array('id','Department.department_name','Faculty.id'),
 			'recursive' => 2,
-			);
+		);
 		$this->set('depSets',$this->Student->Department->find('list',$findoption));
 
 		//研究室
@@ -228,7 +228,7 @@ class StudentsController extends AppController{
 		$findoption = array(
 			'fields' => array('id','Labo.labo_name','Department.id'),
 			'recursive' => 2,
-			);
+		);
 		$this->set('labSets',$this->Student->Labo->find('list',$findoption));
 
 		//性別
@@ -248,7 +248,7 @@ class StudentsController extends AppController{
 			);
 			$tmp=$this->Student->User->Group->find('first',$findoption);
 			$this->request->data['User']['group_id']=$tmp['Group']['id'];
-						
+			
 			/*
 			 *登録ロジック
 			 */
@@ -261,12 +261,22 @@ class StudentsController extends AppController{
 					$this->request->data['Student']['user_id']=$this->Student->User->id;
 					$this->Student->create();				
 					if($this->Student->save($this->request->data)){
-						$this->Session->setFlash(__('保存されました'));
+						$this->Session->setFlash(__('保存されました'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-success',
+							));
 						return $this->redirect('/Students/add');
 					}
 				}
 			}
-			$this->Session->setFlash(__('記述に間違いがあります'));
+			$this->Session->setFlash(__('記述に間違いがあります'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
 		}
 	}
 }

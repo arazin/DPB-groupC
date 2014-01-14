@@ -42,7 +42,7 @@ class GeventsController extends AppController {
   	  	'conditions' => array('gevent_date >=' => date('Y-m-d')),
    			'fields' => array('id', 'title','gevent_date','place', 'detail', 'created', 'modified'),
 				'order' => array(
-            'Gevent.created' => 'desc'
+          'Gevent.created' => 'desc'
         )
  			);
 
@@ -118,10 +118,20 @@ class GeventsController extends AppController {
     if ($this->request->is('post')) {
       $this->Gevent->create();
       if ($this->Gevent->save($this->request->data)) {
-        $this->Session->setFlash(__('保存しました'));
+        $this->Session->setFlash(__('保存しました'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-succsess',
+					));
         return $this->redirect(array('action' => 'form'));
       }
-      $this->Session->setFlash(__('保存できませんでした'));
+      $this->Session->setFlash(__('保存できませんでした'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
     }
   }
 
@@ -140,10 +150,20 @@ class GeventsController extends AppController {
 			/*if ($this->request->is(array('post', 'put'))) {*/
       $this->Gevent->id = $id;
       if ($this->Gevent->save($this->request->data)) {
-        $this->Session->setFlash(__('保存しました'));
+        $this->Session->setFlash(__('保存しました'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-succsess',
+					));
         return $this->redirect(array('action' => 'form'));
       }
-      $this->Session->setFlash(__('保存できませんでした'));
+      $this->Session->setFlash(__('保存できませんでした'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
     }
 
     if (!$this->request->data) {
