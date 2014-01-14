@@ -10,10 +10,6 @@
 					<td><?php echo h($data['User']['name']) ?></td>
 				</tr>
 				<tr>
-					<th> 生年月日</th>
-					<td><?php echo h($data['User']['birthday']) ?></td>
-				</tr>
-				<tr>
 					<th> 郵便番号</th>
 					<td><?php echo h($data['User']['postcord']) ?></td>
 				</tr>
@@ -27,6 +23,18 @@
 				<tr>
 					<th> 電話番号</th>
 					<td><?php echo h($data['User']['phonenumber']) ?></td>
+				</tr>
+				<tr>
+					<th> 生年月日</th>
+					<td><?php echo h($data['User']['birthday']) ?></td>
+				</tr>
+				<tr>
+					<th>性別</th>
+					<?php if($data['User']['sex'] == 1){ ?>
+						<td><p>女</p></td>
+					<?php }else{ ?>
+						<td><p>男</p></td>
+					<?php } ?>
 				</tr>
 				<tr>
 					<th> 修了日</th>
