@@ -30,21 +30,36 @@ class EventsParticipantsController extends AppController{
 		//すでに追加済みの人は登録できないようにする
 		$eventsparticipants = $this -> EventsParticipant -> find('all');
 		$this->loadmodel('User');
- 
+		
 		foreach($eventsparticipants as $eventsparticipant){
-				if($eventsparticipant['EventsParticipant']['event_id'] == $eveid && $eventsparticipant['EventsParticipant']['participant_id'] == $dataaa){
-					$this->Session->setFlash(__('この人は追加済みです'));
-					return $this->redirect(array('action' => 'index'));
-				}
+			if($eventsparticipant['EventsParticipant']['event_id'] == $eveid && $eventsparticipant['EventsParticipant']['participant_id'] == $dataaa){
+				$this->Session->setFlash(__('この人は追加済みです'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-warning',
+					));
+				return $this->redirect(array('action' => 'index'));
+			}
 		}
 
 
  		if ($this->EventsParticipant->save($data, false, $fields)) {
-					
-            $this->Session->setFlash(__('追加しました'));
-            return $this->redirect(array('action' => 'index'));
-        }
-        $this->Session->setFlash(__('追加できませんでした'));
+			
+      $this->Session->setFlash(__('追加しました'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-success',
+				));
+      return $this->redirect(array('action' => 'index'));
+    }
+    $this->Session->setFlash(__('追加できませんでした'),
+														 'alert',
+														 array(
+				'plugin' => 'BoostCake',
+				'class' => 'alert-danger',
+			));
   }
 
 
@@ -70,7 +85,7 @@ class EventsParticipantsController extends AppController{
 			$participants = $this -> paginate('User', $conditions);
 
 		}
-  
+		
   	$this -> set('participants', Sanitize::clean($participants, array('remove_html' => true)));
   }
 
@@ -110,46 +125,46 @@ class EventsParticipantsController extends AppController{
     		'User.birthday like' => '%'.$birthday.'%',
     		'User.sex like' => '%'.$sex.'%',
   		)); 
-		//検索に当てはまった人の情報
-  	$data = $this -> User -> find('all', array('conditions' => $opt));
+			//検索に当てはまった人の情報
+  		$data = $this -> User -> find('all', array('conditions' => $opt));
 
-		$participants = $this -> Participant -> find('all');
-		foreach($participants as $participant){
-			$participant_ids[] = $participant['Participant']['user_id'];
-		}
-		foreach($data as $data2){
-			foreach($participant_ids as $participant_id){
-				if($data2['User']['id'] == $participant_id){
-					$pdata[] = $data2;
+			$participants = $this -> Participant -> find('all');
+			foreach($participants as $participant){
+				$participant_ids[] = $participant['Participant']['user_id'];
+			}
+			foreach($data as $data2){
+				foreach($participant_ids as $participant_id){
+					if($data2['User']['id'] == $participant_id){
+						$pdata[] = $data2;
+					}
 				}
 			}
-		}
 
-		//選択されたイベントに参加している人を探す
-		$eps = $this -> EventsParticipant -> find('all', array('conditions' => array('event_id' => $id)));
-		$eps_ids = NULL;
-		foreach ($eps as $ep) {
-  		$eps_ids[] = $ep['EventsParticipant']['participant_id'];
-  	}
-		
-		$this -> set('eps_ids', $eps_ids);
-	
-//array_splice
-		
-/*
- //うまくいかない
-		$eventsparticipant = $this -> EventsParticipant -> find('all');
+			//選択されたイベントに参加している人を探す
+			$eps = $this -> EventsParticipant -> find('all', array('conditions' => array('event_id' => $id)));
+			$eps_ids = NULL;
+			foreach ($eps as $ep) {
+  			$eps_ids[] = $ep['EventsParticipant']['participant_id'];
+  		}
+			
+			$this -> set('eps_ids', $eps_ids);
+			
+			//array_splice
+			
+			/*
+			//うまくいかない
+			$eventsparticipant = $this -> EventsParticipant -> find('all');
 
-		foreach($eventsparticipant as $ep){
+			foreach($eventsparticipant as $ep){
 			foreach($data as $dataa){
-				if($ep['EventsParticipant']['event_id'] == $id && $ep['EventsParticipant']['participant_id'] == $dataa['User']['id']){
-					$data2[] = $dataa;
-				}
+			if($ep['EventsParticipant']['event_id'] == $id && $ep['EventsParticipant']['participant_id'] == $dataa['User']['id']){
+			$data2[] = $dataa;
 			}
-		}
-		$data = array_diff($data, $data2);*/
-		$pdata = Sanitize::clean($pdata, array('remove_html' => true));
-  	$this->set('data', $pdata);
+			}
+			}
+			$data = array_diff($data, $data2);*/
+			$pdata = Sanitize::clean($pdata, array('remove_html' => true));
+  		$this->set('data', $pdata);
 
 		}
 	}
@@ -174,7 +189,7 @@ class EventsParticipantsController extends AppController{
 		$events = NULL;
 		if($ids != null){
   		/*foreach($ids as $idd){
-  			$events[] = $this -> Event -> findById($idd);
+  		$events[] = $this -> Event -> findById($idd);
   		}*/
 			$conditions = array('Event.id'=>$ids);	
 			$events = $this -> paginate('Event', $conditions);
@@ -183,11 +198,11 @@ class EventsParticipantsController extends AppController{
 		
   	$this -> set('events', Sanitize::clean($events, array('remove_html' => true)));
 		
-			
+		
 	}
 
 	
-		//大学用	説明会追加
+	//大学用	説明会追加
   public function eventadd() {
 		$this -> loadmodel('Event');
 		$findoption = array(
@@ -198,15 +213,25 @@ class EventsParticipantsController extends AppController{
     if ($this->request->is('post')) {
       $this->Event->create();
       if ($this->Event->save($this->request->data)) {
-        $this->Session->setFlash(__('保存しました'));
+        $this->Session->setFlash(__('保存しました'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-succsess',
+					));
         return $this->redirect(array('action' => 'index'));
       }
-      $this->Session->setFlash(__('保存できませんでした'));
+      $this->Session->setFlash(__('保存できませんでした'),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger',
+				));
     }
   }
 
 
-		//説明会削除
+	//説明会削除
 	public function delete($id) {
 		$this -> loadmodel('Event');
     if ($this->request->is('get')) {
@@ -214,7 +239,12 @@ class EventsParticipantsController extends AppController{
     }
 
     if ($this->Event->delete($id)) {
-      $this->Session->setFlash(__('The gevent with id: %s has been deleted.', h($id)));
+      $this->Session->setFlash(__('The gevent with id: %s has been deleted.', h($id)),
+															 'alert',
+															 array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-seccess',
+				));
       return $this->redirect(array('action' => 'index'));
     }
   }

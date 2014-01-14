@@ -27,10 +27,20 @@ class CareersController extends AppController {
     if ($this->request->is('post')) {
       $this->Career->create();
       if ($this->Career->save($this->request->data)) {
-        $this->Session->setFlash(__('進路変更を記録しました'));
+        $this->Session->setFlash(__('進路変更を記録しました'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-succsess',
+					));
         $this->redirect('/');
       } else {
-        $this->Session->setFlash(__('進路を保存できませんでした'));
+        $this->Session->setFlash(__('進路を保存できませんでした'),
+																 'alert',
+																 array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger',
+					));
       }
     }
   }
