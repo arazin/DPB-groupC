@@ -150,15 +150,15 @@ class GeventsController extends AppController {
 			/*if ($this->request->is(array('post', 'put'))) {*/
       $this->Gevent->id = $id;
       if ($this->Gevent->save($this->request->data)) {
-        $this->Session->setFlash(__('保存しました'),
+        $this->Session->setFlash(__('更新しました'),
 																 'alert',
 																 array(
 						'plugin' => 'BoostCake',
-						'class' => 'alert-succsess',
+						'class' => 'alert-success',
 					));
         return $this->redirect(array('action' => 'form'));
       }
-      $this->Session->setFlash(__('保存できませんでした'),
+      $this->Session->setFlash(__('更新できませんでした'),
 															 'alert',
 															 array(
 					'plugin' => 'BoostCake',
