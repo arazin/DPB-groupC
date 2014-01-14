@@ -216,7 +216,12 @@ class UsersController extends AppController {
 		pr($tmp);
 		$this->request->data['User']['group_id']=$tmp['Group']['id'];
 		if($this->User->save($this->request->data)){
-			$this->Session->setFlash(__('参加者が認証されました'));
+			$this->Session->setFlash(__('参加者が認証されました'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-success',
+							));
 			$this->redirect(array('action'=>'uapplist'));
 		}
 	}
@@ -266,7 +271,12 @@ class UsersController extends AppController {
 		pr($tmp);
 		$this->request->data['User']['group_id']=$tmp['Group']['id'];
 		if($this->User->save($this->request->data)){
-			$this->Session->setFlash(__('修了生が認証されました'));
+			$this->Session->setFlash(__('修了生が認証されました'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-success',
+							));
 			$this->redirect(array('action'=>'gapplist'));
 		}
 	}
@@ -297,7 +307,7 @@ class UsersController extends AppController {
 																		 'alert',
 																		 array(
 								'plugin' => 'BoostCake',
-								'class' => 'alert-danger',
+								'class' => 'alert-info',
 							)
 																		 );
 						$this->redirect('/users/logout');
