@@ -87,7 +87,7 @@ class UsersController extends AppController {
     $this->Session->write('params', $this->paginate);
 		}else{
 		if($this->Session->check('params')) {
-      $params = $this->Session->read('params');
+      $this->paginate = $this->Session->read('params');
     }
 			
 		}
