@@ -73,15 +73,30 @@ class GraduatesController extends AppController{
 					if($this->Graduate->User->save($this->request->data)){
 						if($this->Graduate->save($this->request->data)){
 							if($flag){
-								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'));
+								$this->Session->setFlash(__('ログイン情報が更新されました。認証しなおしてください'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-info',
+									));
 								$this->redirect('/users/logout');
 							} else {
-								$this->Session->setFlash(__('情報が更新されました。'));
+								$this->Session->setFlash(__('情報が更新されました。'),
+																				 'alert',
+																				 array(
+										'plugin' => 'BoostCake',
+										'class' => 'alert-success',
+									));
 								$this->redirect('/');
 							}
 						}
 					}
-					$this->Session->setFlash(__('更新されませんでした'));
+					$this->Session->setFlash(__('更新されませんでした'),
+																	 'alert',
+																	 array(
+							'plugin' => 'BoostCake',
+							'class' => 'alert-danger',
+						));
 				}
 			}
 		}else{
@@ -141,7 +156,12 @@ class GraduatesController extends AppController{
 					$this->request->data['Graduate']['user_id']=$this->Graduate->User->id;
 					$this->Graduate->create();				
 					if($this->Graduate->save($this->request->data)){
-						$this->Session->setFlash(__('保存されました。認証されるまでお待ちください。'));
+						$this->Session->setFlash(__('保存されました。認証されるまでお待ちください。'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-succsess',
+							));
 						return $this->redirect('/users/login');
 					}
 				}
@@ -197,7 +217,12 @@ class GraduatesController extends AppController{
 					$this->request->data['Graduate']['user_id']=$this->Graduate->User->id;
 					$this->Graduate->create();				
 					if($this->Graduate->save($this->request->data)){
-						$this->Session->setFlash(__('登録されました。'));
+						$this->Session->setFlash(__('登録されました。'),
+																		 'alert',
+																		 array(
+								'plugin' => 'BoostCake',
+								'class' => 'alert-succsess',
+							));
 						return $this->redirect('/graduates/add');
 					}
 				}
