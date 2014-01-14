@@ -55,4 +55,5 @@ echo $this->Html->link('参加者情報削除', '/participants/deleteone',array(
 );
 ?>
 
+<?php pr($pdata); ?>
 </div></div></div>
