@@ -79,7 +79,7 @@ class UsersController extends AppController {
 				'User.group_id' => $keys,
 			);
 		}
-		$this->Paginator->settings = $this->paginate;
+		//$this->Paginator->settings = $this->paginate;
 		$this->set('users',$this->Paginator->paginate());
 
 		/* 検索の内容をフォームに残す */
