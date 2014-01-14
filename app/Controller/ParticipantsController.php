@@ -21,7 +21,7 @@ class ParticipantsController extends AppController{
 	public function index(){
 		$id=$this->Auth->user('id');
 		$this->set('pdata',$this->Participant->findByUserId($id));
-		$this->set('data',pr($this->Participant->User->findById($id)));
+		$this->set('data',($this->Participant->User->findById($id)));
 
 	}
 
