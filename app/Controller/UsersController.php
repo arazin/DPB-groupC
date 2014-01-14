@@ -60,8 +60,7 @@ class UsersController extends AppController {
 		//pr($this->passedArgs);
 		pr($this->User->parseCriteria($this->passedArgs));
 
-		pr($this->request->data);
-		if(!empty($this->request->data)){
+
 
 			
 		/* 検索条件 */
@@ -83,14 +82,7 @@ class UsersController extends AppController {
 				'User.group_id' => $keys,
 			);
 		}
-		// パラメータをセッション変数に保存
-    $this->Session->write('params', $this->paginate);
-		}else{
-		if($this->Session->check('params')) {
-      $this->paginate = $this->Session->read('params');
-    }
-			
-		}
+
 		$this->Paginator->settings = $this->paginate;
 		$this->set('users',$this->Paginator->paginate());
 
