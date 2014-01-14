@@ -6,11 +6,12 @@
 			<?php echo $title_for_layout; ?>
 		</title>
 	<?php
+
 		//文字コードの設定()内入力無しでutf-8
 		echo $this->Html->charset();
 
 		//アイコンの設定部分
-		echo $this->Html->meta('icon');
+		echo $this->Html->meta('icon','/favicon.ico');
 
 		// jQuery CDN
 		echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
