@@ -34,8 +34,8 @@
         <td><?php echo $dataaa['User']['prefecture']; ?></td>
         <td><?php echo $dataaa['User']['postcord']; ?></td>
         <td><?php if($dataaa['User']['sex'] == 1){
-        			echo ("男");}
-        		else{echo ("女");}
+        			echo ("女");}
+        		else{echo ("男");}
         		?></td>
 
 					<td><?php echo $this->Html->link('追加', array('action' => 'add', $dataaa['User']['id'], $eveid)); ?></td>
