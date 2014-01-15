@@ -30,7 +30,12 @@ class CertificatesController extends AppController {
 
 	
   public function add() {
-
+		$id = $this->Auth->user('id');
+		$this->set('isCert',$this->Certificate->find('first',array(
+			'conditions' => array('graduate_id' => $id),
+			'rucursive' => 0,
+		)));
+		
     if ($this->request->is('post')) {
 			$this->Certificate->create();
 			$userId=$this->Auth->user('id');

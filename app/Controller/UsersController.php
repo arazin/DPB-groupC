@@ -18,8 +18,6 @@ class UsersController extends AppController {
 
 	
 	public $components = array('Search.Prg');
-	//Component:paginatorのoption
-	public $paginate;
 	//Searchの変数
 	public $presetVars = array(
 		'name' => array('type'=>'like'),

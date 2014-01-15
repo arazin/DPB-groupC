@@ -4,6 +4,7 @@
 		<div class="col-md-8 col-md-offset-2" >
 
 			<div class="certificatsr form">
+				<?php if(empty($isCert)): ?>
 				<fieldset>				
 				<?php echo $this->Form->create('Certificate',array(
 				'inputDefaults' => array(
@@ -39,6 +40,9 @@
 
 				<?php echo $this->Form->end(__('発行')); ?>
 				</fieldset>
+				<?php else: ?>
+				<h1>あなたの申請を処理中です。終了するまでお待ちください。</h1>
+				<?php endif; ?>
 			</div>
 
 		</div>
