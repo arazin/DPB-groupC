@@ -8,10 +8,6 @@ class CareersController extends AppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 	}
-  public function index() {
-    // $this->Careers->recursive = 0;
-    $this->set('careers', $this->paginate());
-  }
 
 	
  	public function add() {
