@@ -33,7 +33,7 @@
 						'label' => '送り先(登録住所と異なる場合)',
 						'required' => false,
 					));
-					echo $this->Recaptcha->display();
+
 					?>
 
 

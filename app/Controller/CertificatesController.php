@@ -3,10 +3,6 @@ App::uses('Sanitize', 'Utility');
 class CertificatesController extends AppController {
 	//	public $scaffold;
 
-	public $components = array(
-		'Recaptcha.Recaptcha' => array('actions' => array('add'))
-	);
-
 	public function beforeFilter(){
 		parent::beforeFilter();
 	}
